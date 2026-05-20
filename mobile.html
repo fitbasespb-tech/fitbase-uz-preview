@@ -52,12 +52,12 @@
   .nav-links a:hover{color:var(--blue)}
   .nav-right{display:flex;align-items:center;gap:14px}
   .lang-switcher{display:flex;gap:4px;background:var(--canvas);border-radius:8px;padding:3px}
-  .lang-switcher button{
+  .lang-switcher a{
     background:transparent;border:none;cursor:pointer;font-family:inherit;
-    font-size:12px;font-weight:700;color:var(--grey);
+    font-size:12px;font-weight:700;color:var(--grey);text-decoration:none;
     padding:5px 10px;border-radius:6px;letter-spacing:.04em;text-transform:uppercase;
   }
-  .lang-switcher button.active{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+  .lang-switcher a.active{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
   .nav-cta{
     background:var(--blue);color:#fff;padding:11px 20px;
     border-radius:10px;font-size:14px;font-weight:600;
@@ -668,7 +668,7 @@
     box-shadow:0 30px 60px -20px rgba(60,103,214,.25);
   }
   .price-card.featured::before{
-    content:"Eng mashhur · Самый популярный";
+    content:"Самый популярный";
     position:absolute;top:-14px;left:50%;transform:translateX(-50%);
     background:var(--blue);color:#fff;padding:6px 14px;border-radius:100px;
     font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
@@ -908,23 +908,22 @@
 <nav class="nav">
   <div class="container nav-row">
     <div class="nav-left">
-      <a href="#" class="nav-logo">
-        Fitbase<span class="dot"></span><span class="uz-tag">O'zbekiston</span>
+      <a href="/" class="nav-logo">
+        Fitbase<span class="dot"></span><span class="uz-tag">Узбекистан</span>
       </a>
       <div class="nav-links">
-        <a href="#features">Imkoniyatlar</a>
-        <a href="#cases">Mijozlar</a>
-        <a href="#price">Narxlar</a>
-        <a href="#faq">Savollar</a>
+        <a href="#features">Возможности</a>
+        <a href="#cases">Клиенты</a>
+        <a href="#price">Цены</a>
+        <a href="#faq">Вопросы</a>
       </div>
     </div>
     <div class="nav-right">
       <div class="lang-switcher">
-        <button class="active">UZ</button>
-        <button>RU</button>
-        <button>EN</button>
+        <a href="/" class="active">RU</a>
+        <a href="uz.html">UZ</a>
       </div>
-      <a href="#register" class="nav-cta">Bepul boshlash</a>
+      <a href="#register" class="nav-cta">Начать бесплатно</a>
     </div>
   </div>
 </nav>
@@ -934,7 +933,7 @@
   <div class="container">
     <div class="hero-grid">
       <div class="hero-left">
-        <div class="hero-uz-line">O'zbekiston fitnes-biznesi uchun · Для фитнес-бизнеса в Узбекистане</div>
+        <div class="hero-uz-line">Для фитнес-бизнеса в Узбекистане</div>
         <h1>Полный контроль клуба или студии — <span class="accent">в вашем телефоне</span></h1>
         <div class="hero-segments">
           <a href="#format" class="seg-chip active">🏋 Для клубов</a>
@@ -944,8 +943,8 @@
         <p class="lede"><b>Видите каждую цифру.</b> Защищаете базу клиентов от ухода с тренером. Даёте клиентам приложение, которым не стыдно поделиться. <b>1700+ клубов и студий</b> по СНГ и Узбекистану уже работают на Fitbase.</p>
 
         <div class="hero-cta-row">
-          <a href="#register" class="btn-primary">14 kun bepul sinab ko'ring →</a>
-          <a href="#" class="btn-ghost">Demo ko'rish</a>
+          <a href="#register" class="btn-primary">Попробовать 14 дней бесплатно →</a>
+          <a href="#" class="btn-ghost">Посмотреть демо</a>
         </div>
 
         <div class="hero-stats">
@@ -973,36 +972,36 @@
             </div>
             <div class="phone-header">
               <span class="logo">Fitbase</span>
-              <span class="uz-badge">O'zbek</span>
+              <span class="uz-badge">UZ</span>
             </div>
             <div class="phone-content">
-              <div class="ph-greet">Salom, <b>Aziza!</b></div>
+              <div class="ph-greet">Привет, <b>Азиза!</b></div>
               <div class="ph-card">
-                <div class="lbl">Sizning abonementingiz</div>
-                <div class="val">Pilates · Standart</div>
-                <div class="sub">Faol 12 mart gacha · 18 mashg'ulot qoldi</div>
+                <div class="lbl">Ваш абонемент</div>
+                <div class="val">Пилатес · Стандарт</div>
+                <div class="sub">Активен до 12 марта · 18 занятий осталось</div>
               </div>
-              <div class="ph-list-title">Yaqin darslar</div>
+              <div class="ph-list-title">Ближайшие занятия</div>
               <div class="ph-list-item">
                 <div class="info">
-                  <span class="nm">Pilates Reformer</span>
-                  <span class="sub">10:00 · Madina Karimova</span>
+                  <span class="nm">Пилатес Reformer</span>
+                  <span class="sub">10:00 · Мадина К.</span>
                 </div>
-                <span class="pill">Yozildi</span>
+                <span class="pill">Записан</span>
               </div>
               <div class="ph-list-item">
                 <div class="info">
-                  <span class="nm">Stretching</span>
-                  <span class="sub">18:30 · Aziza Yusupova</span>
+                  <span class="nm">Стретчинг</span>
+                  <span class="sub">18:30 · Азиза Ю.</span>
                 </div>
-                <span class="pill">Yozildi</span>
+                <span class="pill">Записан</span>
               </div>
             </div>
             <div class="phone-tab">
-              <div class="tab-item active"><div class="ic"></div><span>Bosh</span></div>
-              <div class="tab-item"><div class="ic"></div><span>Jadval</span></div>
-              <div class="tab-item"><div class="ic"></div><span>Mening</span></div>
-              <div class="tab-item"><div class="ic"></div><span>Profil</span></div>
+              <div class="tab-item active"><div class="ic"></div><span>Главная</span></div>
+              <div class="tab-item"><div class="ic"></div><span>Расписание</span></div>
+              <div class="tab-item"><div class="ic"></div><span>Мои</span></div>
+              <div class="tab-item"><div class="ic"></div><span>Профиль</span></div>
             </div>
           </div>
         </div>
@@ -1015,7 +1014,7 @@
 <div class="clients-strip">
   <div class="container">
     <div class="clients-head">
-      <div class="t">Bizga ishonishadi · Доверяют</div>
+      <div class="t">Нам доверяют</div>
       <div class="s">Более <b>50 клубов</b> в Ташкенте, Самарканде, Бухаре и других городах Узбекистана</div>
     </div>
     <div class="logos-row">
@@ -1043,8 +1042,8 @@
       <div class="pillar-card">
         <div class="pillar-icon uz">🇺🇿</div>
         <div>
-          <h3>Полностью на узбекском <span class="uz-flag">+ RU + EN</span></h3>
-          <p>Интерфейс, отчёты, рассылки клиентам, мобильное приложение — на узбекском. Не машинный перевод, а проверенная локализация.</p>
+          <h3>Полностью на узбекском <span class="uz-flag">и русском</span></h3>
+          <p>Интерфейс, отчёты, рассылки клиентам, мобильное приложение — на двух языках. Не машинный перевод, а проверенная локализация под местный рынок.</p>
         </div>
       </div>
       <div class="pillar-card">
@@ -1076,7 +1075,7 @@
 <section id="format">
   <div class="container">
     <div class="sec-head" style="text-align:center;margin:0 auto 56px;max-width:880px">
-      <span class="eyebrow" style="margin:0 auto 18px"><span class="dot"></span>Sizning biznesingiz · Под ваш бизнес</span>
+      <span class="eyebrow" style="margin:0 auto 18px"><span class="dot"></span>Под ваш бизнес</span>
       <h2>Подходит и для <span class="accent">клубов</span>, и для <span class="accent">студий</span></h2>
       <p class="lede" style="margin:0 auto">У клуба и студии — разные задачи. Большой клуб думает про команду, контроль смен и защиту базы. Студия — про автоматизацию записи и удержание клиентов. Fitbase работает и так, и так — с правильными приоритетами для каждого.</p>
     </div>
@@ -1197,7 +1196,7 @@
 <section class="canvas">
   <div class="container">
     <div class="sec-head" style="text-align:center;margin:0 auto 64px;max-width:880px">
-      <span class="eyebrow" style="margin:0 auto 18px"><span class="dot"></span>Eng muhimi · Самое важное</span>
+      <span class="eyebrow" style="margin:0 auto 18px"><span class="dot"></span>Самое важное</span>
       <h2>Три вещи, которые делают вас <span class="accent">хозяином бизнеса</span></h2>
       <p class="lede" style="margin:0 auto">Вы видите каждую цифру. Никто не уносит базу клиентов. Клиенты получают приложение, которым они хвастаются друзьям.</p>
     </div>
@@ -1207,7 +1206,7 @@
       <div class="power-text">
         <div class="power-num">01</div>
         <h3>
-          <span class="uz">To'liq nazorat · Полный контроль</span>
+          <span class="uz">Полный контроль</span>
           Видите <span class="accent">каждую цифру</span> в реальном времени
         </h3>
         <p>Не нужно ждать конца месяца, чтобы понять как идёт бизнес. Касса, выручка, маржа, активные клиенты, отток — <b>обновляются каждую минуту</b>. Открыли телефон утром в Самарканде — видите кассу клуба в Ташкенте.</p>
@@ -1284,7 +1283,7 @@
       <div class="power-text">
         <div class="power-num">02</div>
         <h3>
-          <span class="uz">Mijozlar bazasini himoya · Защита базы</span>
+          <span class="uz">Защита базы клиентов</span>
           Никто не <span class="accent">унесёт ваших клиентов</span>
         </h3>
         <p>База клиентов — главный актив клуба. Тренер уходит — и забирает половину клуба в свой телефон. С Fitbase такого не будет: <b>гибкие роли, лог действий, блок выгрузки</b>. Каждое движение видно. Каждый видит только то, что должен.</p>
@@ -1366,10 +1365,10 @@
       <div class="power-text">
         <div class="power-num">03</div>
         <h3>
-          <span class="uz">Mobil ilova · Мобильное приложение</span>
+          <span class="uz">Мобильное приложение</span>
           Приложение, которым клиенты <span class="accent">хвастаются друзьям</span>
         </h3>
-        <p>Современный дизайн уровня банковских приложений — Click, Payme, Anor. Клиенты сравнивают и выбирают тех, кто даёт удобство. <b>Запись в один тап, оплата через Click, push на узбекском</b>. Брендируем под ваш клуб — название, логотип, цвета.</p>
+        <p>Современный дизайн уровня банковских приложений — Click, Payme, Anor. Клиенты сравнивают и выбирают тех, кто даёт удобство. <b>Запись в один тап, оплата через Click, push-уведомления</b>. Брендируем под ваш клуб — название, логотип, цвета.</p>
         <div class="power-list">
           <div class="power-li">
             <div class="power-li-check"></div>
@@ -1412,49 +1411,49 @@
         <div class="mini-phone tilt-l">
           <div class="mp-screen">
             <div class="mp-head">
-              <div class="small">Sizning klubingiz</div>
-              <div class="title">Salom, Aziza!</div>
+              <div class="small">Ваш клуб</div>
+              <div class="title">Привет, Азиза!</div>
             </div>
             <div class="mp-content">
               <div class="mp-card">
-                <div class="mp-t">Pilates Reformer</div>
-                <div class="mp-s">10:00 · Madina K.</div>
-                <span class="mp-pill">Yozildi</span>
+                <div class="mp-t">Пилатес Reformer</div>
+                <div class="mp-s">10:00 · Мадина К.</div>
+                <span class="mp-pill">Записан</span>
               </div>
               <div class="mp-card">
-                <div class="mp-t">Stretching</div>
-                <div class="mp-s">18:30 · Aziza Y.</div>
-                <span class="mp-pill gold">Kutilmoqda</span>
+                <div class="mp-t">Стретчинг</div>
+                <div class="mp-s">18:30 · Азиза Ю.</div>
+                <span class="mp-pill gold">В очереди</span>
               </div>
               <div class="mp-card">
-                <div class="mp-t">Yoga Flow</div>
-                <div class="mp-s">20:00 · Nilufar S.</div>
+                <div class="mp-t">Йога Flow</div>
+                <div class="mp-s">20:00 · Нилуфар С.</div>
               </div>
-              <div class="mp-cta">Yozilish →</div>
+              <div class="mp-cta">Записаться →</div>
             </div>
           </div>
         </div>
         <div class="mini-phone tilt-r">
           <div class="mp-screen">
             <div class="mp-head" style="background:linear-gradient(135deg,#0E1B36,#1F2A47)">
-              <div class="small">Mening abonementim</div>
-              <div class="title">Pilates · Standart</div>
+              <div class="small">Мой абонемент</div>
+              <div class="title">Пилатес · Стандарт</div>
             </div>
             <div class="mp-content">
               <div class="mp-card" style="background:linear-gradient(135deg,#3C67D6,#3FABFF);color:#fff">
-                <div class="mp-t" style="color:#fff">18 mashg'ulot qoldi</div>
-                <div class="mp-s" style="color:rgba(255,255,255,.8)">12 mart gacha faol</div>
+                <div class="mp-t" style="color:#fff">18 занятий осталось</div>
+                <div class="mp-s" style="color:rgba(255,255,255,.8)">Активен до 12 марта</div>
               </div>
               <div class="mp-card">
-                <div class="mp-t">Yangilash</div>
+                <div class="mp-t">Продлить</div>
                 <div class="mp-s">Click · Payme · Humo</div>
-                <span class="mp-pill">Tanlangan: Click</span>
+                <span class="mp-pill">Выбрано: Click</span>
               </div>
               <div class="mp-card">
-                <div class="mp-t">Do'st olib keling</div>
-                <div class="mp-s">−15% chegirma</div>
+                <div class="mp-t">Приведи друга</div>
+                <div class="mp-s">−15% скидка</div>
               </div>
-              <div class="mp-cta" style="background:var(--uz-gold)">To'lash · 350 000</div>
+              <div class="mp-cta" style="background:var(--uz-gold)">Оплатить · 350 000</div>
             </div>
           </div>
         </div>
@@ -1472,7 +1471,7 @@
 <section class="canvas" id="cases">
   <div class="container">
     <div class="sec-head">
-      <span class="eyebrow"><span class="dot"></span>Mijozlar tajribasi · Опыт клиентов</span>
+      <span class="eyebrow"><span class="dot"></span>Опыт клиентов</span>
       <h2>Как локальные клубы и студии <span class="accent">выросли с Fitbase</span></h2>
       <p class="lede">Реальные клубы из Ташкента, Самарканда и Бухары — что изменилось после внедрения. Истории владельцев.</p>
     </div>
@@ -1533,7 +1532,7 @@
 <section id="features">
   <div class="container">
     <div class="sec-head">
-      <span class="eyebrow"><span class="dot"></span>Imkoniyatlar · Возможности</span>
+      <span class="eyebrow"><span class="dot"></span>Возможности</span>
       <h2>6 модулей в одной системе</h2>
       <p class="lede">Расписание, продажи, удержание, оплаты, отчёты, мобильное приложение — всё работает вместе, без интеграций с десятком сторонних систем.</p>
     </div>
@@ -1586,7 +1585,7 @@
             <rect x="34" y="46" width="32" height="8" rx="2" fill="#fff" stroke="#CAD9FF" stroke-width="1"/>
             <rect x="34" y="56" width="32" height="8" rx="2" fill="#fff" stroke="#CAD9FF" stroke-width="1"/>
             <rect x="34" y="70" width="32" height="14" rx="3" fill="#F4A82C"/>
-            <text x="50" y="80" font-family="Inter,sans-serif" font-weight="700" font-size="6" fill="#fff" text-anchor="middle">YOZILISH</text>
+            <text x="50" y="80" font-family="Inter,sans-serif" font-weight="700" font-size="6" fill="#fff" text-anchor="middle">ЗАПИСАТЬСЯ</text>
           </svg>
         </div>
         <h3>Мобильное приложение</h3>
@@ -1722,7 +1721,7 @@
 <section>
   <div class="container">
     <div class="sec-head" style="text-align:center;margin:0 auto 56px;max-width:880px">
-      <span class="eyebrow" style="margin:0 auto 18px"><span class="dot"></span>Sizning sherigingiz · Ваш партнёр</span>
+      <span class="eyebrow" style="margin:0 auto 18px"><span class="dot"></span>Ваш партнёр</span>
       <h2>С вами будет работать <span class="accent">владелец клуба</span> — а не московский менеджер</h2>
       <p class="lede" style="margin:0 auto">Никита не звонит вам с скриптом продажника. Он сам открывал клуб, нанимал команду, разбирался с тренерами и Click'ом. Знает рынок изнутри.</p>
     </div>
@@ -1733,7 +1732,7 @@
         <div class="partner-photo-fallback">
           <div class="ph-init">НК</div>
         </div>
-        <div class="partner-badge"><span class="dot"></span>Local partner · Toshkent</div>
+        <div class="partner-badge"><span class="dot"></span>Локальный партнёр · Ташкент</div>
         <div class="partner-club-card">
           <div class="left">
             <div class="nm">Inside Fit</div>
@@ -1781,7 +1780,7 @@
 <section class="canvas" id="price">
   <div class="container">
     <div class="sec-head">
-      <span class="eyebrow"><span class="dot"></span>Narxlar · Цены</span>
+      <span class="eyebrow"><span class="dot"></span>Цены</span>
       <h2>Открыто. В сумах. <span class="accent">Без «оставьте заявку».</span></h2>
       <p class="lede">Подписочная модель — платите помесячно, отменяете в любой момент. 14 дней бесплатно для всех тарифов.</p>
     </div>
@@ -1798,7 +1797,7 @@
           <div class="price-feat">Telegram-рассылки</div>
           <div class="price-feat">Поддержка на UZ + RU</div>
         </div>
-        <a href="#register" class="price-cta ghost">14 dan boshlash</a>
+        <a href="#register" class="price-cta ghost">Начать пробный период</a>
       </div>
 
       <div class="price-card featured">
@@ -1813,7 +1812,7 @@
           <div class="price-feat">Персональный аккаунт-менеджер</div>
           <div class="price-feat">Приоритет в поддержке</div>
         </div>
-        <a href="#register" class="price-cta">14 kun bepul →</a>
+        <a href="#register" class="price-cta">14 дней бесплатно →</a>
       </div>
 
       <div class="price-card">
@@ -1839,43 +1838,28 @@
 <section id="faq">
   <div class="container">
     <div class="sec-head">
-      <span class="eyebrow"><span class="dot"></span>FAQ · Tez-tez beriladigan savollar</span>
+      <span class="eyebrow"><span class="dot"></span>Частые вопросы</span>
       <h2>Часто спрашивают</h2>
     </div>
     <div class="faq-list">
       <div class="faq-item">
-        <h4>
-          <span class="uz">Fitbase — bu rus dasturmi?</span>
-          А это не российская система? Где хранятся данные?
-        </h4>
-        <p>Fitbase работает <b>в облаке с локальной поддержкой</b>. Команда поддержки и аккаунт-менеджмента — в Узбекистане. Данные клубов из UZ хранятся на серверах с резервированием. По договору NDA — никаких передач третьим сторонам без вашего согласия.</p>
+        <h4>А это не российская система? Где хранятся данные?</h4>
+        <p>Fitbase работает <b>в облаке с локальной поддержкой</b>. Команда поддержки и аккаунт-менеджмента — в Узбекистане. Данные клубов из Узбекистана хранятся на серверах с резервированием. По договору NDA — никаких передач третьим сторонам без вашего согласия.</p>
       </div>
       <div class="faq-item">
-        <h4>
-          <span class="uz">Click va Payme bilan qanday ishlaydi?</span>
-          Как работает оплата через Click и Payme?
-        </h4>
-        <p>Клиент в мобильном приложении выбирает абонемент → жмёт «оплатить» → попадает в Click или Payme через стандартный платёжный шлюз. Деньги приходят на ваше юрлицо в UZ. Чеки и фискализация — автоматом.</p>
+        <h4>Как работает оплата через Click и Payme?</h4>
+        <p>Клиент в мобильном приложении выбирает абонемент → жмёт «оплатить» → попадает в Click или Payme через стандартный платёжный шлюз. Деньги приходят на ваше юрлицо в Узбекистане. Чеки и фискализация — автоматом.</p>
       </div>
       <div class="faq-item">
-        <h4>
-          <span class="uz">Mavjud mijozlar bazasini ko'chirish mumkinmi?</span>
-          Можно ли перенести существующую базу клиентов?
-        </h4>
+        <h4>Можно ли перенести существующую базу клиентов?</h4>
         <p>Да. Поможем перенести базу из Excel, тетради, другой CRM или 1С. Делаем это <b>под ключ за 1–3 дня</b>, у клуба нет работы. Всё происходит до запуска, без потери истории.</p>
       </div>
       <div class="faq-item">
-        <h4>
-          <span class="uz">Tilni keyin almashtirish mumkinmi?</span>
-          Можно ли поменять язык интерфейса для клиента и для админа отдельно?
-        </h4>
-        <p>Да, каждый пользователь сам выбирает язык — UZ / RU / EN. Тренер может работать на узбекском, владелец на русском, а часть клиентов на английском. Никаких ограничений.</p>
+        <h4>Можно ли поменять язык интерфейса для клиента и для админа отдельно?</h4>
+        <p>Да, каждый пользователь сам выбирает язык — узбекский или русский. Тренер может работать на узбекском, владелец на русском, или наоборот. Никаких ограничений.</p>
       </div>
       <div class="faq-item">
-        <h4>
-          <span class="uz">Bepul davr tugagandan keyin nima bo'ladi?</span>
-          Что после бесплатного периода — обязательная оплата?
-        </h4>
+        <h4>Что после бесплатного периода — обязательная оплата?</h4>
         <p>14 дней — без карты, без обязательств. После окончания триала вы решаете: продолжать или нет. <b>Без автоматических списаний</b>. Если решите остаться — выбираете тариф, оплачиваете через Click/Payme/банковский перевод.</p>
       </div>
     </div>
@@ -1888,7 +1872,7 @@
     <div class="cta-box">
       <div class="cta-grid">
         <div class="cta-left">
-          <div class="cta-uz">Boshlash uchun bir necha daqiqa</div>
+          <div class="cta-uz">Старт за пару минут</div>
           <h2>Запустим ваш клуб <span class="accent">за 3 дня</span> — бесплатно</h2>
           <p>Оставьте контакт — аккаунт-менеджер из Узбекистана свяжется в течение рабочего дня, покажет систему, поможет настроить под ваш клуб.</p>
           <div class="cta-perks">
@@ -1899,22 +1883,22 @@
           </div>
         </div>
         <form class="cta-form">
-          <h3>Ariza qoldirish</h3>
-          <div class="sub">Свяжемся в течение рабочего дня (по UZT)</div>
+          <h3>Оставить заявку</h3>
+          <div class="sub">Свяжемся в течение рабочего дня (по времени Ташкента)</div>
           <div class="field">
-            <label>Ism · Имя</label>
-            <input type="text" placeholder="Ismingiz">
+            <label>Имя</label>
+            <input type="text" placeholder="Ваше имя">
           </div>
           <div class="field">
-            <label>Telefon · Телефон</label>
+            <label>Телефон</label>
             <input type="tel" placeholder="+998 XX XXX-XX-XX">
           </div>
           <div class="field">
-            <label>Klub yoki studiya nomi · Название клуба или студии</label>
+            <label>Название клуба или студии</label>
             <input type="text" placeholder="Например, Pilates Studio">
           </div>
           <div class="field">
-            <label>Biznes turi · Тип бизнеса</label>
+            <label>Тип бизнеса</label>
             <select>
               <option>🏋 Фитнес-клуб</option>
               <option>🧘 Студия (пилатес / йога / танцы / единоборства)</option>
@@ -1923,19 +1907,19 @@
             </select>
           </div>
           <div class="field">
-            <label>Shahar · Город</label>
+            <label>Город</label>
             <select>
-              <option>Toshkent</option>
-              <option>Samarqand</option>
-              <option>Buxoro</option>
-              <option>Andijon</option>
-              <option>Namangan</option>
-              <option>Farg'ona</option>
-              <option>Boshqa shahar</option>
+              <option>Ташкент</option>
+              <option>Самарканд</option>
+              <option>Бухара</option>
+              <option>Андижан</option>
+              <option>Наманган</option>
+              <option>Фергана</option>
+              <option>Другой город</option>
             </select>
           </div>
-          <button type="button" class="form-cta">Bepul boshlash →</button>
-          <p class="form-agree">Yuborib, siz <a href="#" style="color:var(--blue);text-decoration:underline">maxfiylik siyosatiga</a> rozilik bildirasiz</p>
+          <button type="button" class="form-cta">Начать бесплатно →</button>
+          <p class="form-agree">Отправляя форму, вы соглашаетесь с <a href="#" style="color:var(--blue);text-decoration:underline">политикой конфиденциальности</a></p>
         </form>
       </div>
     </div>
@@ -1952,29 +1936,29 @@
         <p>1 700+ клубов · 5 стран СНГ · 50+ в Узбекистане</p>
       </div>
       <div class="footer-col">
-        <h5>Aloqa · Контакты</h5>
+        <h5>Контакты</h5>
         <a href="tel:+998000000000">+998 XX XXX-XX-XX</a>
         <a href="mailto:hello@fitbase.uz">hello@fitbase.uz</a>
         <a href="https://t.me/fitbase_uz">@fitbase_uz</a>
-        <p>Toshkent, [адрес офиса — заглушка]</p>
+        <p>Ташкент, [адрес офиса — заглушка]</p>
       </div>
       <div class="footer-col">
-        <h5>Imkoniyatlar</h5>
-        <a href="#features">Возможности</a>
+        <h5>Возможности</h5>
+        <a href="#features">Модули</a>
         <a href="#cases">Кейсы клиентов</a>
         <a href="#price">Тарифы</a>
         <a href="#faq">Вопросы</a>
       </div>
       <div class="footer-col">
-        <h5>Hujjatlar · Документы</h5>
+        <h5>Документы</h5>
         <a href="#">Политика конфиденциальности</a>
         <a href="#">Договор-оферта</a>
         <a href="#">Реквизиты</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2020–2026 Fitbase O'zbekiston · Все права защищены</span>
-      <span>ИНН/STIR: XXXXXXXX · OOO «[название UZ юрлица — заглушка]»</span>
+      <span>© 2020–2026 Fitbase Узбекистан · Все права защищены</span>
+      <span>ИНН: XXXXXXXX · ООО «[название UZ юрлица — заглушка]»</span>
     </div>
   </div>
 </footer>
