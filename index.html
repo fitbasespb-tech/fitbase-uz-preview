@@ -527,6 +527,72 @@
   .compare-cell .icon.yes{background:var(--green-10);color:var(--green)}
   .compare-cell.our-col{background:rgba(60,103,214,.04);font-weight:600}
 
+  /* ─── Partner (Nikita) ─── */
+  .partner-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:stretch}
+  .partner-photo{
+    position:relative;border-radius:28px;overflow:hidden;
+    background:linear-gradient(135deg,var(--blue-10),var(--blue-20));
+    min-height:520px;
+    box-shadow:0 30px 60px -15px rgba(60,103,214,.25);
+  }
+  .partner-photo img{
+    width:100%;height:100%;object-fit:cover;display:block;
+  }
+  .partner-photo-fallback{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,var(--blue) 0%,#1F2A47 100%);color:#fff;
+  }
+  .partner-photo-fallback .ph-init{font-size:96px;font-weight:900;letter-spacing:-.06em}
+  .partner-badge{
+    position:absolute;top:24px;left:24px;
+    background:rgba(14,27,54,.85);backdrop-filter:blur(12px);
+    color:#fff;padding:10px 16px;border-radius:100px;
+    font-size:13px;font-weight:700;
+    display:flex;align-items:center;gap:8px;
+  }
+  .partner-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--uz-gold)}
+  .partner-club-card{
+    position:absolute;bottom:24px;left:24px;right:24px;
+    background:rgba(255,255,255,.95);backdrop-filter:blur(20px);
+    border-radius:16px;padding:18px 22px;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .partner-club-card .left .nm{font-size:14px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+  .partner-club-card .left .sub{font-size:12px;color:var(--grey);margin-top:2px}
+  .partner-club-card .stat{text-align:right}
+  .partner-club-card .stat .v{font-size:18px;font-weight:800;color:var(--uz-gold);letter-spacing:-.01em;line-height:1}
+  .partner-club-card .stat .l{font-size:10px;color:var(--grey);text-transform:uppercase;letter-spacing:.06em;margin-top:3px;font-weight:600}
+
+  .partner-info{display:flex;flex-direction:column;justify-content:center;gap:24px}
+  .partner-info h2{font-size:42px;font-weight:800;line-height:1.05;letter-spacing:-.025em;color:var(--ink)}
+  .partner-info h2 .accent{color:var(--blue)}
+  .partner-quote{
+    font-size:18px;line-height:1.55;color:var(--ink-2);font-weight:500;
+    padding:0 20px;border-left:4px solid var(--uz-gold);
+  }
+  .partner-quote b{color:var(--ink);font-weight:700}
+  .partner-points{display:flex;flex-direction:column;gap:14px}
+  .partner-point{
+    display:flex;gap:14px;align-items:flex-start;
+  }
+  .partner-point-icon{
+    width:36px;height:36px;border-radius:10px;
+    background:var(--blue-10);color:var(--blue);
+    display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;
+  }
+  .partner-point-icon.uz{background:var(--uz-gold-soft);color:var(--uz-gold)}
+  .partner-point .tx{font-size:15px;color:var(--ink-2);line-height:1.5}
+  .partner-point .tx b{color:var(--ink);font-weight:700}
+  .partner-contacts{
+    background:var(--canvas);border-radius:14px;padding:16px 20px;
+    display:flex;flex-wrap:wrap;gap:18px;align-items:center;
+  }
+  .partner-contact-pill{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;
+  }
+  .partner-contact-pill .ic{font-size:15px}
+
   /* ─── Local support / team ─── */
   .support-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
   .support-vis{
@@ -782,13 +848,21 @@
     .compare-row.head .cell{font-size:11px}
     .compare-cell .icon{width:20px;height:20px;font-size:11px;margin-right:6px}
 
-    .support-grid{grid-template-columns:1fr;gap:32px}
-    .support-vis{padding:32px 24px}
-    .support-ava{width:100px;height:100px;font-size:36px}
-    .support-info h2{font-size:28px}
-    .support-info p{font-size:15px}
-    .payments{padding:16px 18px;gap:10px}
-    .pay-pill{font-size:12px;padding:6px 10px}
+    /* Partner */
+    .partner-grid{grid-template-columns:1fr;gap:24px}
+    .partner-photo{min-height:380px;border-radius:20px}
+    .partner-photo-fallback .ph-init{font-size:72px}
+    .partner-badge{padding:8px 12px;font-size:12px;top:16px;left:16px}
+    .partner-club-card{padding:14px 16px;bottom:16px;left:16px;right:16px}
+    .partner-club-card .left .nm{font-size:13px}
+    .partner-club-card .stat .v{font-size:15px}
+    .partner-info{gap:20px}
+    .partner-info h2{font-size:26px}
+    .partner-quote{font-size:15px;padding:0 14px;border-left-width:3px}
+    .partner-point .tx{font-size:14px}
+    .partner-point-icon{width:32px;height:32px;font-size:16px}
+    .partner-contacts{padding:14px 16px;gap:14px}
+    .partner-contact-pill{font-size:12px}
 
     .price-grid{grid-template-columns:1fr;gap:14px}
     .price-card{padding:28px 24px;border-radius:18px}
@@ -845,7 +919,7 @@
     <div class="hero-grid">
       <div class="hero-left">
         <div class="hero-uz-line">O'zbekiston fitnes-biznesi uchun · Для фитнес-бизнеса в Узбекистане</div>
-        <h1>Полный контроль фитнес-бизнеса — <span class="accent">в одной системе</span></h1>
+        <h1>Полный контроль клуба или студии — <span class="accent">в вашем телефоне</span></h1>
         <div class="hero-segments">
           <a href="#format" class="seg-chip active">🏋 Для клубов</a>
           <a href="#format" class="seg-chip">🧘 Для студий</a>
@@ -944,8 +1018,8 @@
 <section>
   <div class="container">
     <div class="sec-head">
-      <span class="eyebrow"><span class="dot"></span>Чем Fitbase отличается</span>
-      <h2>Что важно для <span class="accent">узбекского клуба</span></h2>
+      <span class="eyebrow"><span class="dot"></span>Local-first · Адаптация</span>
+      <h2>Полная адаптация под <span class="accent">Узбекистан</span></h2>
       <p class="lede">Не «есть поддержка узбекского» — а полноценная локализация: интерфейс, поддержка, оплаты, отчётность под местный рынок.</p>
     </div>
 
@@ -1538,50 +1612,59 @@
   </div>
 </section>
 
-<!-- LOCAL SUPPORT -->
+<!-- PARTNER — Никита Коденко -->
 <section>
   <div class="container">
-    <div class="support-grid">
-      <div class="support-vis">
-        <div class="support-ava">АМ</div>
-        <div style="text-align:center">
-          <div style="font-size:18px;font-weight:800;color:var(--ink);margin-bottom:4px">Аккаунт-менеджер</div>
-          <div style="font-size:14px;color:var(--grey)">Имя · Должность <em>— заглушка</em></div>
+    <div class="sec-head" style="text-align:center;margin:0 auto 56px;max-width:880px">
+      <span class="eyebrow" style="margin:0 auto 18px"><span class="dot"></span>Sizning sherigingiz · Ваш партнёр</span>
+      <h2>С вами будет работать <span class="accent">владелец клуба</span> — а не московский менеджер</h2>
+      <p class="lede" style="margin:0 auto">Никита не звонит вам с скриптом продажника. Он сам открывал клуб, нанимал команду, разбирался с тренерами и Click'ом. Знает рынок изнутри.</p>
+    </div>
+
+    <div class="partner-grid">
+      <div class="partner-photo">
+        <img src="assets/nikita.jpg" alt="Никита Коденко, владелец Inside Fit" onerror="this.style.display='none'">
+        <div class="partner-photo-fallback">
+          <div class="ph-init">НК</div>
         </div>
-        <div class="support-card">
-          <div class="lbl">Каналы связи</div>
-          <div class="ch"><span class="name">Telegram</span><span class="val">@fitbase_uz</span></div>
-          <div class="ch"><span class="name">Телефон</span><span class="val">+998 XX XXX-XX-XX</span></div>
-          <div class="ch"><span class="name">Email</span><span class="val">support@fitbase.uz</span></div>
-          <div class="ch"><span class="name">Часы работы</span><span class="val">Пн–Сб 9:00–19:00</span></div>
+        <div class="partner-badge"><span class="dot"></span>Local partner · Toshkent</div>
+        <div class="partner-club-card">
+          <div class="left">
+            <div class="nm">Inside Fit</div>
+            <div class="sub">Фитнес-клуб · Ташкент</div>
+          </div>
+          <div class="stat">
+            <div class="v">Свой</div>
+            <div class="l">в индустрии</div>
+          </div>
         </div>
       </div>
-      <div class="support-info">
-        <span class="eyebrow uz"><span class="dot"></span>Mahalliy yordam · Локальная поддержка</span>
-        <h2>Не Москва. Не Питер. <span class="accent">Реальная команда в Узбекистане</span></h2>
-        <p>За каждым клубом закреплён персональный аккаунт-менеджер. Помогаем с настройкой, обучением команды, миграцией данных. На узбекском или русском — как удобно.</p>
-        <div class="support-points">
-          <div class="sp-item">
-            <div class="ic">1</div>
-            <div class="tx"><b>Запуск за 3 дня</b> — перенос базы клиентов, настройка тарифов, обучение команды</div>
+
+      <div class="partner-info">
+        <h2>Никита Коденко<br><span class="accent">Владелец Inside Fit</span> · Ташкент</h2>
+        <div class="partner-quote">
+          «Я не консультант, который никогда не открывал клуб. Я сам через это прошёл — выбор локации, наём тренеров, разборки с базой, оплаты через Click и Humo. <b>Подскажу не из книжки, а из своей практики.</b>»
+        </div>
+
+        <div class="partner-points">
+          <div class="partner-point">
+            <div class="partner-point-icon uz">🏋</div>
+            <div class="tx"><b>Сам владелец клуба</b> — Inside Fit в Ташкенте. Знает реальную операционку, а не теорию из обучения</div>
           </div>
-          <div class="sp-item">
-            <div class="ic">2</div>
-            <div class="tx"><b>Подключение Click/Payme</b> — настроим оплаты под ваше юрлицо в Узбекистане</div>
+          <div class="partner-point">
+            <div class="partner-point-icon">🇺🇿</div>
+            <div class="tx"><b>Локальный рынок</b> — какие районы Ташкента работают, какие тренеры воруют базу, какие платежи реально проходят</div>
           </div>
-          <div class="sp-item">
-            <div class="ic">3</div>
-            <div class="tx"><b>Поддержка в Telegram</b> — отвечаем в рабочее время UZ, не московское</div>
+          <div class="partner-point">
+            <div class="partner-point-icon uz">💬</div>
+            <div class="tx"><b>На связи в Telegram</b> — отвечает в рабочее время UZ, на узбекском или русском, без скриптов и продаж</div>
           </div>
         </div>
 
-        <div class="payments">
-          <span class="lbl">Локальные платежи:</span>
-          <span class="pay-pill"><span class="dot click"></span>Click</span>
-          <span class="pay-pill"><span class="dot payme"></span>Payme</span>
-          <span class="pay-pill"><span class="dot humo"></span>Humo</span>
-          <span class="pay-pill"><span class="dot uzcard"></span>Uzcard</span>
-          <span class="pay-pill"><span class="dot apelsin"></span>Apelsin</span>
+        <div class="partner-contacts">
+          <a href="https://t.me/nikita_codenko" class="partner-contact-pill"><span class="ic">📱</span>@nikita_codenko</a>
+          <a href="tel:+998000000000" class="partner-contact-pill"><span class="ic">📞</span>+998 XX XXX-XX-XX</a>
+          <a href="#" class="partner-contact-pill"><span class="ic">📷</span>@inside_fit_tashkent</a>
         </div>
       </div>
     </div>
