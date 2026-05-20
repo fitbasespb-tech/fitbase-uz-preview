@@ -118,6 +118,16 @@
   }
   .hero .lede b{color:var(--ink);font-weight:600}
 
+  .hero-segments{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 28px}
+  .seg-chip{
+    display:inline-flex;align-items:center;gap:6px;
+    background:#fff;border:1.5px solid var(--line);
+    color:var(--ink);padding:9px 16px;border-radius:100px;
+    font-size:14px;font-weight:600;text-decoration:none;letter-spacing:-.01em;
+    transition:border-color .2s,background .2s;
+  }
+  .seg-chip:hover{border-color:var(--blue);background:var(--blue-10)}
+  .seg-chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
   .hero-cta-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:40px}
   .btn-primary{
     background:var(--blue);color:#fff;padding:18px 28px;
@@ -230,6 +240,73 @@
   .pillar-card h3{font-size:20px;font-weight:800;letter-spacing:-.015em;margin-bottom:6px;color:var(--ink)}
   .pillar-card h3 .uz-flag{margin-left:6px;font-size:.85em}
   .pillar-card p{font-size:15px;line-height:1.55;color:var(--grey)}
+
+  /* ─── Format split (Клубы vs Студии) ─── */
+  .format-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .format-card{
+    background:#fff;border:1.5px solid var(--line);border-radius:24px;
+    padding:40px 36px;display:flex;flex-direction:column;gap:18px;
+    transition:border-color .2s,transform .2s,box-shadow .2s;
+    position:relative;overflow:hidden;
+  }
+  .format-card:hover{
+    border-color:var(--blue);transform:translateY(-3px);
+    box-shadow:0 30px 60px -20px rgba(60,103,214,.18);
+  }
+  .format-card.club{
+    background:linear-gradient(135deg,#fff 0%,#F8FAFE 100%);
+  }
+  .format-card.studio{
+    background:linear-gradient(135deg,#fff 0%,#FEF8EE 100%);
+  }
+  .format-tag-row{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+  .format-icon{
+    width:54px;height:54px;border-radius:14px;
+    background:var(--blue-10);color:var(--blue);
+    display:flex;align-items:center;justify-content:center;font-size:26px;
+  }
+  .format-card.studio .format-icon{background:var(--uz-gold-soft);color:var(--uz-gold)}
+  .format-tag{
+    font-size:11px;font-weight:800;color:var(--blue);
+    background:var(--blue-10);padding:4px 10px;border-radius:6px;
+    text-transform:uppercase;letter-spacing:.06em;
+  }
+  .format-card.studio .format-tag{color:var(--uz-gold);background:var(--uz-gold-soft)}
+  .format-card h3{
+    font-size:30px;font-weight:800;line-height:1.1;letter-spacing:-.02em;
+    color:var(--ink);
+  }
+  .format-card h3 .accent{color:var(--blue)}
+  .format-card.studio h3 .accent{color:var(--uz-gold)}
+  .format-card .who{
+    font-size:14px;color:var(--grey);line-height:1.5;
+    padding:14px 16px;background:var(--canvas);border-radius:12px;
+  }
+  .format-card .who b{color:var(--ink);font-weight:700}
+  .format-bull-title{
+    font-size:12px;font-weight:700;color:var(--grey);
+    text-transform:uppercase;letter-spacing:.06em;margin-top:6px;
+  }
+  .format-bulls{display:flex;flex-direction:column;gap:10px}
+  .format-bull{
+    display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink-2);line-height:1.45;
+  }
+  .format-bull::before{
+    content:"";flex-shrink:0;width:20px;height:20px;border-radius:50%;
+    background:var(--blue);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5L8.5 13.5L14.5 7.5' stroke='%23fff' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size:contain;margin-top:2px;
+  }
+  .format-card.studio .format-bull::before{background:var(--uz-gold)}
+  .format-bull b{color:var(--ink);font-weight:700}
+  .format-cta-row{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:12px}
+  .format-link{
+    color:var(--blue);font-size:15px;font-weight:700;text-decoration:none;
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .format-card.studio .format-link{color:var(--uz-gold)}
+  .format-stat{font-size:12px;color:var(--grey)}
+  .format-stat b{color:var(--ink);font-weight:700;font-size:14px}
 
   /* ─── 3 Power modules (контроль, защита, мобильное) ─── */
   .power-block{
@@ -634,6 +711,18 @@
     .pillar-icon{width:48px;height:48px;font-size:22px}
     .pillar-card h3{font-size:18px}
 
+    /* Hero segments */
+    .hero-segments{margin:6px 0 22px;gap:6px}
+    .seg-chip{padding:7px 12px;font-size:12px}
+
+    /* Format split */
+    .format-grid{grid-template-columns:1fr;gap:14px}
+    .format-card{padding:28px 24px;border-radius:18px;gap:14px}
+    .format-icon{width:46px;height:46px;font-size:22px;border-radius:12px}
+    .format-card h3{font-size:24px}
+    .format-card .who{font-size:13px;padding:12px 14px}
+    .format-bull{font-size:13px}
+
     /* Power blocks */
     .power-block{grid-template-columns:1fr;gap:28px;margin-bottom:48px}
     .power-block.reverse{direction:ltr}
@@ -743,9 +832,14 @@
   <div class="container">
     <div class="hero-grid">
       <div class="hero-left">
-        <div class="hero-uz-line">O'zbekiston fitnes-klublari uchun · Полностью на узбекском языке</div>
-        <h1>Полный контроль клуба — <span class="accent">в одной системе</span></h1>
-        <p class="lede"><b>Видите каждую цифру.</b> Защищаете базу клиентов от ухода с тренером. Даёте клиентам приложение, которым не стыдно поделиться. <b>1700+ клубов</b> по СНГ и Узбекистану уже работают на Fitbase.</p>
+        <div class="hero-uz-line">O'zbekiston fitnes-biznesi uchun · Для фитнес-бизнеса в Узбекистане</div>
+        <h1>Полный контроль фитнес-бизнеса — <span class="accent">в одной системе</span></h1>
+        <div class="hero-segments">
+          <a href="#format" class="seg-chip active">🏋 Для клубов</a>
+          <a href="#format" class="seg-chip">🧘 Для студий</a>
+          <a href="#format" class="seg-chip">🏢 Для сетей</a>
+        </div>
+        <p class="lede"><b>Видите каждую цифру.</b> Защищаете базу клиентов от ухода с тренером. Даёте клиентам приложение, которым не стыдно поделиться. <b>1700+ клубов и студий</b> по СНГ и Узбекистану уже работают на Fitbase.</p>
 
         <div class="hero-cta-row">
           <a href="#register" class="btn-primary">14 kun bepul sinab ko'ring →</a>
@@ -870,6 +964,67 @@
         <div>
           <h3>1 700+ клубов по СНГ</h3>
           <p>5+ лет на рынке. Проверенный продукт, не «новинка». Все обновления, безопасность, бэкапы — на уровне зрелого SaaS.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMAT SPLIT — Клубы vs Студии -->
+<section id="format">
+  <div class="container">
+    <div class="sec-head" style="text-align:center;margin:0 auto 56px;max-width:880px">
+      <span class="eyebrow" style="margin:0 auto 18px"><span class="dot"></span>Sizning biznesingiz · Под ваш бизнес</span>
+      <h2>У клубов и студий — <span class="accent">разные задачи</span></h2>
+      <p class="lede" style="margin:0 auto">Большой клуб думает про команду, контроль смен и защиту базы. Студия — про автоматизацию записи и удержание клиентов. Fitbase подходит и тем, и тем — но с разными приоритетами.</p>
+    </div>
+
+    <div class="format-grid">
+      <!-- Club -->
+      <div class="format-card club">
+        <div class="format-tag-row">
+          <div class="format-icon">🏋</div>
+          <span class="format-tag">Для клуба</span>
+        </div>
+        <h3>Большой формат с <span class="accent">командой и сменами</span></h3>
+        <div class="who">
+          <b>Если у вас:</b> клуб от 500 м², несколько залов и направлений, команда админов и тренеров, кардио + силовая + групповые, более 500 активных клиентов.
+        </div>
+        <div class="format-bull-title">Что важно для вас</div>
+        <div class="format-bulls">
+          <div class="format-bull"><b>Контроль команды</b> — кто и когда вышел на смену, что делал, какие операции провёл</div>
+          <div class="format-bull"><b>СКУД и турникеты</b> — пропуск по QR, картам, биометрии, контроль одновременной загрузки</div>
+          <div class="format-bull"><b>Защита базы от тренеров</b> — каждый видит только своих клиентов, выгрузка заблокирована</div>
+          <div class="format-bull"><b>KPI и зарплаты тренеров</b> — автоматический расчёт по посещаемости и формулам</div>
+          <div class="format-bull"><b>Сравнение по сменам и точкам</b> — кто выручка приносит, где провал</div>
+        </div>
+        <div class="format-cta-row">
+          <a href="#register" class="format-link">Узнать подробнее →</a>
+          <span class="format-stat"><b>800+</b> клубов в работе</span>
+        </div>
+      </div>
+
+      <!-- Studio -->
+      <div class="format-card studio">
+        <div class="format-tag-row">
+          <div class="format-icon">🧘</div>
+          <span class="format-tag">Для студии</span>
+        </div>
+        <h3>Моно-направление и <span class="accent">владелец-оператор</span></h3>
+        <div class="who">
+          <b>Если у вас:</b> пилатес, йога, танцы, единоборства, стретчинг, реабилитация. До 800 клиентов, 100-300 м², 1-2 администратора или совмещаете сами.
+        </div>
+        <div class="format-bull-title">Что важно для вас</div>
+        <div class="format-bulls">
+          <div class="format-bull"><b>Запись через приложение</b> — клиенты сами бронируют место в группе 24/7</div>
+          <div class="format-bull"><b>Оплата через Click / Payme</b> — без админа, без бумажек, с автопродлением</div>
+          <div class="format-bull"><b>Удержание и возвращение</b> — система видит «спящих» клиентов и шлёт напоминания</div>
+          <div class="format-bull"><b>Заморозка и отмена</b> — клиент сам в приложении, без вашего участия</div>
+          <div class="format-bull"><b>Быстрый запуск</b> — вы запускаете студию за 3 дня, не за месяц</div>
+        </div>
+        <div class="format-cta-row">
+          <a href="#register" class="format-link">Узнать подробнее →</a>
+          <span class="format-stat"><b>900+</b> студий в работе</span>
         </div>
       </div>
     </div>
@@ -1405,8 +1560,17 @@
             <input type="tel" placeholder="+998 XX XXX-XX-XX">
           </div>
           <div class="field">
-            <label>Klub nomi · Название клуба</label>
+            <label>Klub yoki studiya nomi · Название клуба или студии</label>
             <input type="text" placeholder="Например, Pilates Studio">
+          </div>
+          <div class="field">
+            <label>Biznes turi · Тип бизнеса</label>
+            <select>
+              <option>🏋 Фитнес-клуб</option>
+              <option>🧘 Студия (пилатес / йога / танцы / единоборства)</option>
+              <option>🏢 Сеть из нескольких точек</option>
+              <option>🏗 Только планирую открывать</option>
+            </select>
           </div>
           <div class="field">
             <label>Shahar · Город</label>
