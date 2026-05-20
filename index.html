@@ -536,12 +536,18 @@
     box-shadow:0 30px 60px -15px rgba(60,103,214,.25);
   }
   .partner-photo img{
+    position:absolute;inset:0;
     width:100%;height:100%;object-fit:cover;display:block;
+    z-index:1;
   }
   .partner-photo-fallback{
-    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    display:none;position:absolute;inset:0;align-items:center;justify-content:center;
     background:linear-gradient(135deg,var(--blue) 0%,#1F2A47 100%);color:#fff;
+    z-index:1;
   }
+  .partner-photo.no-photo .partner-photo-fallback{display:flex}
+  .partner-photo .partner-badge,
+  .partner-photo .partner-club-card{z-index:2}
   .partner-photo-fallback .ph-init{font-size:96px;font-weight:900;letter-spacing:-.06em}
   .partner-badge{
     position:absolute;top:24px;left:24px;
@@ -1623,7 +1629,7 @@
 
     <div class="partner-grid">
       <div class="partner-photo">
-        <img src="assets/nikita.jpg" alt="Никита Коденко, владелец Inside Fit" onerror="this.style.display='none'">
+        <img src="assets/nikita.jpg" alt="Никита Коденко, владелец Inside Fit" onerror="this.parentElement.classList.add('no-photo');this.remove()">
         <div class="partner-photo-fallback">
           <div class="ph-init">НК</div>
         </div>
