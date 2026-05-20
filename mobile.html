@@ -283,22 +283,29 @@
     padding:14px 16px;background:var(--canvas);border-radius:12px;
   }
   .format-card .who b{color:var(--ink);font-weight:700}
-  .format-bull-title{
+  .format-bull-section{
     font-size:12px;font-weight:700;color:var(--grey);
     text-transform:uppercase;letter-spacing:.06em;margin-top:6px;
   }
-  .format-bulls{display:flex;flex-direction:column;gap:10px}
+  .format-bulls{display:flex;flex-direction:column;gap:14px}
   .format-bull{
-    display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink-2);line-height:1.45;
+    display:flex;gap:12px;align-items:flex-start;
   }
-  .format-bull::before{
-    content:"";flex-shrink:0;width:20px;height:20px;border-radius:50%;
+  .format-bull-check{
+    flex-shrink:0;width:22px;height:22px;border-radius:50%;
     background:var(--blue);
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5L8.5 13.5L14.5 7.5' stroke='%23fff' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-    background-size:contain;margin-top:2px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M6 11.5L9 14.5L16 7' stroke='%23fff' stroke-width='2.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size:contain;margin-top:1px;
   }
-  .format-card.studio .format-bull::before{background:var(--uz-gold)}
-  .format-bull b{color:var(--ink);font-weight:700}
+  .format-card.studio .format-bull-check{background:var(--uz-gold)}
+  .format-bull-text{flex:1;min-width:0}
+  .format-bull-title{
+    display:block;font-size:15px;font-weight:700;color:var(--ink);
+    line-height:1.35;letter-spacing:-.01em;margin-bottom:3px;
+  }
+  .format-bull-desc{
+    display:block;font-size:13.5px;color:var(--grey);line-height:1.5;
+  }
   .format-cta-row{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:12px}
   .format-link{
     color:var(--blue);font-size:15px;font-weight:700;text-decoration:none;
@@ -983,8 +990,8 @@
   <div class="container">
     <div class="sec-head" style="text-align:center;margin:0 auto 56px;max-width:880px">
       <span class="eyebrow" style="margin:0 auto 18px"><span class="dot"></span>Sizning biznesingiz · Под ваш бизнес</span>
-      <h2>У клубов и студий — <span class="accent">разные задачи</span></h2>
-      <p class="lede" style="margin:0 auto">Большой клуб думает про команду, контроль смен и защиту базы. Студия — про автоматизацию записи и удержание клиентов. Fitbase подходит и тем, и тем — но с разными приоритетами.</p>
+      <h2>Подходит и для <span class="accent">клубов</span>, и для <span class="accent">студий</span></h2>
+      <p class="lede" style="margin:0 auto">У клуба и студии — разные задачи. Большой клуб думает про команду, контроль смен и защиту базы. Студия — про автоматизацию записи и удержание клиентов. Fitbase работает и так, и так — с правильными приоритетами для каждого.</p>
     </div>
 
     <div class="format-grid">
@@ -998,13 +1005,43 @@
         <div class="who">
           <b>Если у вас:</b> клуб от 500 м², несколько залов и направлений, команда админов и тренеров, кардио + силовая + групповые, более 500 активных клиентов.
         </div>
-        <div class="format-bull-title">Что важно для вас</div>
+        <div class="format-bull-section">Что важно для вас</div>
         <div class="format-bulls">
-          <div class="format-bull"><b>Контроль команды</b> — кто и когда вышел на смену, что делал, какие операции провёл</div>
-          <div class="format-bull"><b>СКУД и турникеты</b> — пропуск по QR, картам, биометрии, контроль одновременной загрузки</div>
-          <div class="format-bull"><b>Защита базы от тренеров</b> — каждый видит только своих клиентов, выгрузка заблокирована</div>
-          <div class="format-bull"><b>KPI и зарплаты тренеров</b> — автоматический расчёт по посещаемости и формулам</div>
-          <div class="format-bull"><b>Сравнение по сменам и точкам</b> — кто выручка приносит, где провал</div>
+          <div class="format-bull">
+            <div class="format-bull-check"></div>
+            <div class="format-bull-text">
+              <span class="format-bull-title">Контроль команды</span>
+              <span class="format-bull-desc">Кто и когда вышел на смену, что делал, какие операции провёл</span>
+            </div>
+          </div>
+          <div class="format-bull">
+            <div class="format-bull-check"></div>
+            <div class="format-bull-text">
+              <span class="format-bull-title">СКУД и турникеты</span>
+              <span class="format-bull-desc">Пропуск по QR, картам, биометрии, контроль одновременной загрузки</span>
+            </div>
+          </div>
+          <div class="format-bull">
+            <div class="format-bull-check"></div>
+            <div class="format-bull-text">
+              <span class="format-bull-title">Защита базы от тренеров</span>
+              <span class="format-bull-desc">Каждый видит только своих клиентов, выгрузка базы заблокирована</span>
+            </div>
+          </div>
+          <div class="format-bull">
+            <div class="format-bull-check"></div>
+            <div class="format-bull-text">
+              <span class="format-bull-title">KPI и зарплаты тренеров</span>
+              <span class="format-bull-desc">Автоматический расчёт по посещаемости и сложным формулам</span>
+            </div>
+          </div>
+          <div class="format-bull">
+            <div class="format-bull-check"></div>
+            <div class="format-bull-text">
+              <span class="format-bull-title">Сравнение по сменам и точкам</span>
+              <span class="format-bull-desc">Кто из админов приносит выручку, где провал в графике</span>
+            </div>
+          </div>
         </div>
         <div class="format-cta-row">
           <a href="#register" class="format-link">Узнать подробнее →</a>
@@ -1022,13 +1059,43 @@
         <div class="who">
           <b>Если у вас:</b> пилатес, йога, танцы, единоборства, стретчинг, реабилитация. До 800 клиентов, 100-300 м², 1-2 администратора или совмещаете сами.
         </div>
-        <div class="format-bull-title">Что важно для вас</div>
+        <div class="format-bull-section">Что важно для вас</div>
         <div class="format-bulls">
-          <div class="format-bull"><b>Запись через приложение</b> — клиенты сами бронируют место в группе 24/7</div>
-          <div class="format-bull"><b>Оплата через Click / Payme</b> — без админа, без бумажек, с автопродлением</div>
-          <div class="format-bull"><b>Удержание и возвращение</b> — система видит «спящих» клиентов и шлёт напоминания</div>
-          <div class="format-bull"><b>Заморозка и отмена</b> — клиент сам в приложении, без вашего участия</div>
-          <div class="format-bull"><b>Быстрый запуск</b> — вы запускаете студию за 3 дня, не за месяц</div>
+          <div class="format-bull">
+            <div class="format-bull-check"></div>
+            <div class="format-bull-text">
+              <span class="format-bull-title">Запись через приложение</span>
+              <span class="format-bull-desc">Клиенты сами бронируют место в группе 24/7, без звонков и админа</span>
+            </div>
+          </div>
+          <div class="format-bull">
+            <div class="format-bull-check"></div>
+            <div class="format-bull-text">
+              <span class="format-bull-title">Оплата через Click / Payme</span>
+              <span class="format-bull-desc">Без бумажек и бумажных абонементов, с автопродлением и заморозкой</span>
+            </div>
+          </div>
+          <div class="format-bull">
+            <div class="format-bull-check"></div>
+            <div class="format-bull-text">
+              <span class="format-bull-title">Удержание и возвращение</span>
+              <span class="format-bull-desc">Система видит «спящих» клиентов и шлёт напоминания автоматически</span>
+            </div>
+          </div>
+          <div class="format-bull">
+            <div class="format-bull-check"></div>
+            <div class="format-bull-text">
+              <span class="format-bull-title">Заморозка и отмена</span>
+              <span class="format-bull-desc">Клиент управляет подпиской сам в приложении, без вашего участия</span>
+            </div>
+          </div>
+          <div class="format-bull">
+            <div class="format-bull-check"></div>
+            <div class="format-bull-text">
+              <span class="format-bull-title">Быстрый запуск</span>
+              <span class="format-bull-desc">Запуск студии за 3 дня, не за месяц — перенос базы и настройка под ключ</span>
+            </div>
+          </div>
         </div>
         <div class="format-cta-row">
           <a href="#register" class="format-link">Узнать подробнее →</a>
@@ -1044,7 +1111,7 @@
   <div class="container">
     <div class="sec-head" style="text-align:center;margin:0 auto 64px;max-width:880px">
       <span class="eyebrow" style="margin:0 auto 18px"><span class="dot"></span>Eng muhimi · Самое важное</span>
-      <h2>Три вещи, которые делают вас <span class="accent">хозяином клуба</span></h2>
+      <h2>Три вещи, которые делают вас <span class="accent">хозяином бизнеса</span></h2>
       <p class="lede" style="margin:0 auto">Вы видите каждую цифру. Никто не уносит базу клиентов. Клиенты получают приложение, которым они хвастаются друзьям.</p>
     </div>
 
@@ -1229,7 +1296,7 @@
   <div class="container">
     <div class="sec-head">
       <span class="eyebrow"><span class="dot"></span>Mijozlar tajribasi · Опыт клиентов</span>
-      <h2>Как локальные клубы <span class="accent">выросли с Fitbase</span></h2>
+      <h2>Как локальные клубы и студии <span class="accent">выросли с Fitbase</span></h2>
       <p class="lede">Реальные клубы из Ташкента, Самарканда и Бухары — что изменилось после внедрения. Истории владельцев.</p>
     </div>
 
