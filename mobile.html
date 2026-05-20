@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fitbase O'zbekiston — CRM для фитнес-клубов и студий в Узбекистане</title>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:'Inter',-apple-system,sans-serif;
+    color:#0E1B36;background:#fff;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  img{max-width:100%;height:auto;display:block}
+
+  :root{
+    --blue:#3C67D6;
+    --blue-2:#3FABFF;
+    --blue-10:#ECF1FF;
+    --blue-20:#CAD9FF;
+    --uz-gold:#F4A82C;
+    --uz-gold-soft:#FEF4E0;
+    --ink:#0E1B36;
+    --ink-2:#1F2A47;
+    --grey:#6B7589;
+    --grey-l:#9AA3B5;
+    --line:#E4E7EE;
+    --canvas:#F4F6FA;
+    --green:#4EB410;
+    --green-10:#EDF7E7;
+    --red:#ED3D3D;
+    --red-10:#FDECEC;
+  }
+
+  .container{max-width:1280px;margin:0 auto;padding:0 32px}
+
+  /* ─── Nav ─── */
+  .nav{padding:18px 0;background:#fff;position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line)}
+  .nav-row{display:flex;justify-content:space-between;align-items:center;gap:32px}
+  .nav-left{display:flex;align-items:center;gap:36px}
+  .nav-logo{font-size:24px;font-weight:900;color:var(--blue);letter-spacing:-.02em;display:flex;align-items:center;gap:8px;text-decoration:none}
+  .nav-logo .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--uz-gold)}
+  .nav-logo .uz-tag{font-size:11px;font-weight:700;color:var(--uz-gold);background:var(--uz-gold-soft);padding:3px 8px;border-radius:6px;letter-spacing:.04em;text-transform:uppercase}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{font-size:14px;font-weight:500;color:var(--ink);text-decoration:none}
+  .nav-links a:hover{color:var(--blue)}
+  .nav-right{display:flex;align-items:center;gap:14px}
+  .lang-switcher{display:flex;gap:4px;background:var(--canvas);border-radius:8px;padding:3px}
+  .lang-switcher button{
+    background:transparent;border:none;cursor:pointer;font-family:inherit;
+    font-size:12px;font-weight:700;color:var(--grey);
+    padding:5px 10px;border-radius:6px;letter-spacing:.04em;text-transform:uppercase;
+  }
+  .lang-switcher button.active{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+  .nav-cta{
+    background:var(--blue);color:#fff;padding:11px 20px;
+    border-radius:10px;font-size:14px;font-weight:600;
+    text-decoration:none;letter-spacing:-.01em;
+    box-shadow:0 4px 14px rgba(60,103,214,.3);
+  }
+
+  /* ─── Eyebrow / sec-head ─── */
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12px;font-weight:700;color:var(--blue);
+    background:var(--blue-10);padding:6px 12px;border-radius:100px;
+    text-transform:uppercase;letter-spacing:.06em;margin-bottom:18px;
+  }
+  .eyebrow.uz{color:var(--uz-gold);background:var(--uz-gold-soft)}
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+
+  .sec-head{margin-bottom:56px;max-width:880px}
+  .sec-head h2{
+    font-size:48px;font-weight:800;line-height:1.05;letter-spacing:-.025em;
+    color:var(--ink);margin-bottom:18px;
+  }
+  .sec-head h2 .accent{color:var(--blue)}
+  .sec-head h2 .uz-accent{color:var(--uz-gold)}
+  .sec-head .lede{font-size:18px;line-height:1.55;color:var(--grey);max-width:760px}
+
+  section{padding:96px 0}
+  section.canvas{background:var(--canvas)}
+
+  /* ─── HERO ─── */
+  .hero{
+    background:linear-gradient(180deg,#fff 0%,#F8FAFE 100%);
+    padding:64px 0 80px;position:relative;overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;top:-200px;right:-200px;
+    width:600px;height:600px;border-radius:50%;
+    background:radial-gradient(circle,rgba(60,103,214,.08) 0%,transparent 70%);
+    pointer-events:none;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:60px;align-items:center;position:relative;z-index:1}
+  .hero-uz-line{
+    font-size:14px;color:var(--uz-gold);font-weight:700;
+    margin-bottom:18px;letter-spacing:.02em;
+    display:flex;align-items:center;gap:10px;
+  }
+  .hero-uz-line::before{
+    content:"🇺🇿";font-size:18px;
+  }
+  .hero h1{
+    font-size:60px;font-weight:800;line-height:1.05;letter-spacing:-.03em;
+    color:var(--ink);margin-bottom:22px;
+  }
+  .hero h1 .accent{color:var(--blue)}
+  .hero .lede{
+    font-size:20px;font-weight:400;line-height:1.5;color:var(--grey);
+    margin-bottom:32px;max-width:580px;
+  }
+  .hero .lede b{color:var(--ink);font-weight:600}
+
+  .hero-cta-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:40px}
+  .btn-primary{
+    background:var(--blue);color:#fff;padding:18px 28px;
+    border-radius:12px;font-size:16px;font-weight:600;letter-spacing:-.01em;
+    text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+    box-shadow:0 6px 20px rgba(60,103,214,.3);
+  }
+  .btn-ghost{
+    background:#fff;color:var(--ink);border:1.5px solid var(--line);
+    padding:17px 26px;border-radius:12px;font-size:15px;font-weight:600;
+    text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-ghost:hover{border-color:var(--blue)}
+
+  .hero-stats{
+    display:flex;gap:32px;border-top:1px solid var(--line);padding-top:24px;
+  }
+  .hero-stat .v{font-size:28px;font-weight:800;color:var(--ink);letter-spacing:-.02em;line-height:1}
+  .hero-stat .v .accent{color:var(--blue)}
+  .hero-stat .l{font-size:13px;color:var(--grey);margin-top:6px}
+
+  /* Hero phone mockup */
+  .hero-phone{
+    position:relative;width:340px;height:680px;margin:0 auto;
+    background:#0E1B36;border-radius:48px;
+    padding:14px;
+    box-shadow:0 60px 100px -30px rgba(60,103,214,.3),0 30px 50px -10px rgba(14,27,54,.2);
+  }
+  .hero-phone::before{
+    content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);
+    width:110px;height:30px;background:#000;border-radius:100px;z-index:3;
+  }
+  .phone-screen{
+    width:100%;height:100%;background:#F4F6FA;
+    border-radius:36px;overflow:hidden;
+    display:flex;flex-direction:column;
+  }
+  .phone-status{
+    padding:18px 20px 8px;display:flex;justify-content:space-between;align-items:center;
+    font-size:13px;font-weight:600;color:var(--ink);
+  }
+  .phone-status .right{display:flex;gap:5px;align-items:center;font-size:11px}
+  .phone-header{
+    background:#fff;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;
+    border-bottom:1px solid var(--line);
+  }
+  .phone-header .logo{font-size:18px;font-weight:800;color:var(--blue)}
+  .phone-header .uz-badge{font-size:9px;background:var(--uz-gold-soft);color:var(--uz-gold);padding:3px 7px;border-radius:5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+  .phone-content{padding:18px;display:flex;flex-direction:column;gap:14px;flex:1;overflow:hidden}
+  .ph-greet{font-size:14px;color:var(--grey)}
+  .ph-greet b{color:var(--ink);font-weight:700}
+  .ph-card{
+    background:linear-gradient(135deg,var(--blue),var(--blue-2));
+    border-radius:18px;padding:20px;color:#fff;
+  }
+  .ph-card .lbl{font-size:11px;font-weight:600;opacity:.8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+  .ph-card .val{font-size:22px;font-weight:800;letter-spacing:-.015em;line-height:1.2;margin-bottom:14px}
+  .ph-card .sub{font-size:12px;opacity:.85}
+  .ph-list-title{font-size:13px;font-weight:700;color:var(--ink);margin-top:6px}
+  .ph-list-item{
+    background:#fff;border-radius:12px;padding:12px 14px;
+    display:flex;justify-content:space-between;align-items:center;
+    box-shadow:0 1px 3px rgba(14,27,54,.04);
+  }
+  .ph-list-item .info{display:flex;flex-direction:column;gap:2px}
+  .ph-list-item .nm{font-size:13px;font-weight:700;color:var(--ink)}
+  .ph-list-item .sub{font-size:11px;color:var(--grey)}
+  .ph-list-item .pill{font-size:10px;font-weight:700;padding:4px 8px;border-radius:6px;background:var(--green-10);color:var(--green)}
+  .phone-tab{
+    background:#fff;border-top:1px solid var(--line);padding:14px;
+    display:flex;justify-content:space-around;align-items:center;
+  }
+  .tab-item{display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--grey-l)}
+  .tab-item.active{color:var(--blue)}
+  .tab-item .ic{width:22px;height:22px;background:currentColor;mask-size:contain;border-radius:5px}
+  .tab-item span{font-size:9px;font-weight:600}
+
+  /* ─── Clients logos strip ─── */
+  .clients-strip{padding:48px 0;background:#fff;border-bottom:1px solid var(--line)}
+  .clients-head{text-align:center;margin-bottom:28px}
+  .clients-head .t{font-size:13px;font-weight:700;color:var(--grey);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+  .clients-head .s{font-size:15px;color:var(--ink-2);font-weight:500}
+  .clients-head .s b{color:var(--blue);font-weight:700}
+  .logos-row{display:grid;grid-template-columns:repeat(6,1fr);gap:32px;align-items:center}
+  .logo-ph{
+    height:48px;display:flex;align-items:center;justify-content:center;
+    background:var(--canvas);border-radius:10px;
+    font-size:14px;font-weight:800;color:var(--grey);letter-spacing:.05em;
+    text-transform:uppercase;
+    opacity:.7;transition:opacity .2s;
+  }
+  .logo-ph:hover{opacity:1}
+
+  /* ─── 4 pillars ─── */
+  .pillars-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .pillar-card{
+    background:#fff;border:1.5px solid var(--line);
+    border-radius:20px;padding:36px 32px;
+    display:flex;gap:24px;align-items:flex-start;
+    transition:border-color .2s,transform .2s;
+  }
+  .pillar-card:hover{border-color:var(--blue);transform:translateY(-2px)}
+  .pillar-icon{
+    width:56px;height:56px;border-radius:14px;
+    background:var(--blue-10);color:var(--blue);
+    display:flex;align-items:center;justify-content:center;
+    font-size:26px;flex-shrink:0;
+  }
+  .pillar-icon.uz{background:var(--uz-gold-soft);color:var(--uz-gold)}
+  .pillar-card h3{font-size:20px;font-weight:800;letter-spacing:-.015em;margin-bottom:6px;color:var(--ink)}
+  .pillar-card h3 .uz-flag{margin-left:6px;font-size:.85em}
+  .pillar-card p{font-size:15px;line-height:1.55;color:var(--grey)}
+
+  /* ─── 3 Power modules (контроль, защита, мобильное) ─── */
+  .power-block{
+    display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+    margin-bottom:32px;
+  }
+  .power-block.reverse{direction:rtl}
+  .power-block.reverse > *{direction:ltr}
+  .power-text{padding:0 8px}
+  .power-num{
+    font-family:'Inter',sans-serif;font-size:64px;font-weight:900;
+    color:var(--blue-20);letter-spacing:-.04em;line-height:.9;margin-bottom:12px;
+  }
+  .power-text h3{
+    font-size:38px;font-weight:800;line-height:1.05;letter-spacing:-.025em;
+    color:var(--ink);margin-bottom:14px;
+  }
+  .power-text h3 .uz{
+    display:block;font-size:.5em;font-weight:700;color:var(--uz-gold);
+    letter-spacing:.02em;margin-bottom:8px;
+  }
+  .power-text h3 .accent{color:var(--blue)}
+  .power-text p{font-size:17px;line-height:1.55;color:var(--grey);margin-bottom:24px}
+  .power-text p b{color:var(--ink);font-weight:600}
+  .power-list{display:flex;flex-direction:column;gap:12px}
+  .power-li{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--ink-2);line-height:1.45}
+  .power-li::before{
+    content:"";flex-shrink:0;width:22px;height:22px;border-radius:50%;
+    background:var(--blue);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M6 11.5L9 14.5L16 7' stroke='%23fff' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size:contain;margin-top:1px;
+  }
+  .power-li b{color:var(--ink);font-weight:700}
+
+  /* Power visual containers */
+  .power-vis{
+    background:#fff;border-radius:24px;padding:36px;
+    box-shadow:0 30px 80px -20px rgba(60,103,214,.22);
+    border:1px solid var(--line);
+    position:relative;
+  }
+  /* Dashboard mock */
+  .dash-mock{display:flex;flex-direction:column;gap:14px}
+  .dash-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:14px}
+  .dash-head .t{font-size:14px;font-weight:800;color:var(--ink)}
+  .dash-head .live{font-size:11px;font-weight:700;color:var(--green);background:var(--green-10);padding:4px 10px;border-radius:100px;display:flex;align-items:center;gap:5px}
+  .dash-head .live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 1.6s infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+  .dash-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}
+  .dash-row:last-child{border-bottom:none}
+  .dash-row .name{color:var(--grey)}
+  .dash-row .val{font-weight:800;color:var(--ink);font-size:15px;letter-spacing:-.01em}
+  .dash-row .val.green{color:var(--green)}
+  .dash-row .val.red{color:var(--red)}
+  .dash-bars{display:flex;gap:6px;align-items:flex-end;height:60px;margin-top:8px;padding:8px 0}
+  .dash-bars .bar{flex:1;background:linear-gradient(180deg,var(--blue),var(--blue-2));border-radius:4px 4px 0 0}
+  .dash-bars .bar.uz{background:linear-gradient(180deg,var(--uz-gold),#E89510)}
+  .dash-summary{
+    background:linear-gradient(135deg,var(--blue) 0%,var(--blue-2) 100%);
+    color:#fff;border-radius:14px;padding:18px 20px;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .dash-summary .lbl{font-size:11px;font-weight:700;opacity:.8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+  .dash-summary .v{font-size:24px;font-weight:800;letter-spacing:-.015em;line-height:1}
+  .dash-summary .arrow{font-size:24px}
+
+  /* Roles mock */
+  .roles-mock{display:flex;flex-direction:column;gap:10px}
+  .role-row{
+    background:var(--canvas);border-radius:12px;padding:14px 16px;
+    display:flex;align-items:center;gap:14px;
+  }
+  .role-ava{
+    width:36px;height:36px;border-radius:50%;
+    background:linear-gradient(135deg,var(--blue),var(--blue-2));
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:800;flex-shrink:0;
+  }
+  .role-ava.green{background:linear-gradient(135deg,var(--green),#3A8F07)}
+  .role-ava.red{background:linear-gradient(135deg,var(--red),#C72525)}
+  .role-ava.gold{background:linear-gradient(135deg,var(--uz-gold),#E89510)}
+  .role-info{flex:1}
+  .role-info .nm{font-size:13px;font-weight:700;color:var(--ink);line-height:1.2}
+  .role-info .rl{font-size:11px;color:var(--grey);margin-top:2px}
+  .role-perms{display:flex;gap:4px}
+  .perm{
+    font-size:9px;font-weight:700;text-transform:uppercase;
+    padding:3px 7px;border-radius:5px;letter-spacing:.04em;
+  }
+  .perm.yes{background:var(--green-10);color:var(--green)}
+  .perm.no{background:var(--red-10);color:var(--red)}
+  .role-log{
+    background:#0E1B36;color:#fff;border-radius:12px;padding:14px 16px;
+    font-family:'SF Mono','Menlo',monospace;font-size:11px;
+    display:flex;flex-direction:column;gap:6px;margin-top:6px;
+  }
+  .role-log .l{color:rgba(255,255,255,.7);line-height:1.4}
+  .role-log .l b{color:var(--uz-gold);font-weight:700}
+  .role-log .l .time{color:rgba(255,255,255,.4);margin-right:8px}
+
+  /* App showcase — two-phone collage */
+  .app-vis{
+    display:flex;gap:14px;justify-content:center;align-items:flex-start;
+    padding:0;background:transparent;box-shadow:none;border:none;
+    position:relative;
+  }
+  .mini-phone{
+    width:200px;height:420px;background:#0E1B36;border-radius:32px;padding:10px;
+    box-shadow:0 30px 60px -15px rgba(14,27,54,.3);
+    flex-shrink:0;
+  }
+  .mini-phone.tilt-l{transform:rotate(-4deg);margin-top:24px}
+  .mini-phone.tilt-r{transform:rotate(4deg)}
+  .mp-screen{
+    width:100%;height:100%;background:#F4F6FA;border-radius:24px;overflow:hidden;
+    display:flex;flex-direction:column;
+  }
+  .mp-head{
+    background:linear-gradient(135deg,var(--blue),var(--blue-2));
+    padding:18px 16px;color:#fff;
+  }
+  .mp-head .small{font-size:9px;opacity:.85;text-transform:uppercase;letter-spacing:.06em}
+  .mp-head .title{font-size:14px;font-weight:800;margin-top:4px}
+  .mp-content{padding:14px;flex:1;display:flex;flex-direction:column;gap:10px}
+  .mp-card{background:#fff;border-radius:10px;padding:10px 12px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .mp-card .mp-t{font-size:11px;font-weight:700;color:var(--ink)}
+  .mp-card .mp-s{font-size:9px;color:var(--grey);margin-top:1px}
+  .mp-card .mp-pill{font-size:8px;font-weight:700;background:var(--green-10);color:var(--green);padding:3px 6px;border-radius:4px;display:inline-block;margin-top:5px}
+  .mp-card .mp-pill.gold{background:var(--uz-gold-soft);color:var(--uz-gold)}
+  .mp-cta{background:var(--blue);color:#fff;text-align:center;padding:10px;border-radius:8px;font-size:11px;font-weight:700;margin-top:auto}
+  .app-stores{
+    display:flex;justify-content:center;gap:10px;margin-top:24px;
+  }
+  .store-pill{
+    background:#0E1B36;color:#fff;padding:10px 16px;border-radius:10px;
+    font-size:12px;font-weight:600;display:flex;align-items:center;gap:8px;
+  }
+  .store-pill .ic{width:16px;height:16px;background:currentColor;border-radius:3px;opacity:.85}
+
+  /* ─── Cases ─── */
+  .cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .case-card{
+    background:#fff;border:1px solid var(--line);border-radius:24px;
+    padding:36px 32px;display:flex;flex-direction:column;gap:18px;
+    box-shadow:0 2px 8px rgba(14,27,54,.04);
+  }
+  .case-top{display:flex;align-items:center;gap:14px}
+  .case-avatar{
+    width:56px;height:56px;border-radius:50%;
+    background:linear-gradient(135deg,var(--blue),var(--blue-2));
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    font-size:18px;font-weight:800;letter-spacing:-.02em;flex-shrink:0;
+  }
+  .case-meta .nm{font-size:16px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+  .case-meta .role{font-size:13px;color:var(--grey)}
+  .case-stat{
+    background:var(--blue-10);border-left:3px solid var(--blue);
+    padding:14px 16px;border-radius:10px;
+  }
+  .case-stat .v{font-size:26px;font-weight:800;color:var(--blue);letter-spacing:-.02em;line-height:1}
+  .case-stat .l{font-size:12px;color:var(--grey);margin-top:4px}
+  .case-quote{font-size:15px;line-height:1.55;color:var(--ink-2);font-style:italic;font-weight:500}
+  .case-quote::before{content:"„";font-size:32px;color:var(--blue);font-weight:700;line-height:0;margin-right:4px;vertical-align:-12px}
+  .case-tag{font-size:11px;color:var(--grey-l);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-top:auto}
+
+  /* ─── Modules ─── */
+  .modules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .module-card{
+    background:#fff;border:1.5px solid var(--line);
+    border-radius:18px;padding:32px 28px;
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .module-icon{
+    width:48px;height:48px;border-radius:12px;
+    background:var(--canvas);color:var(--blue);
+    display:flex;align-items:center;justify-content:center;font-size:22px;
+  }
+  .module-card h3{font-size:19px;font-weight:800;letter-spacing:-.015em;color:var(--ink)}
+  .module-card p{font-size:14px;line-height:1.55;color:var(--grey)}
+
+  /* ─── Comparison table ─── */
+  .compare-table{
+    background:#fff;border:1.5px solid var(--line);border-radius:20px;overflow:hidden;
+  }
+  .compare-row{
+    display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;
+    border-bottom:1px solid var(--line);
+  }
+  .compare-row:last-child{border-bottom:none}
+  .compare-row.head{background:var(--canvas)}
+  .compare-row.head .cell{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--ink)}
+  .compare-row.head .cell.our{background:var(--blue);color:#fff}
+  .compare-cell, .cell{
+    padding:18px 22px;font-size:14px;color:var(--ink-2);
+    display:flex;align-items:center;border-right:1px solid var(--line);
+  }
+  .compare-cell:last-child, .cell:last-child{border-right:none}
+  .compare-cell.label{font-weight:600;color:var(--ink)}
+  .compare-cell .icon{
+    width:24px;height:24px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:700;margin-right:10px;flex-shrink:0;
+  }
+  .compare-cell .icon.no{background:var(--red-10);color:var(--red)}
+  .compare-cell .icon.partial{background:var(--uz-gold-soft);color:var(--uz-gold)}
+  .compare-cell .icon.yes{background:var(--green-10);color:var(--green)}
+  .compare-cell.our-col{background:rgba(60,103,214,.04);font-weight:600}
+
+  /* ─── Local support / team ─── */
+  .support-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .support-vis{
+    background:linear-gradient(135deg,var(--blue-10),var(--blue-20));
+    border-radius:28px;padding:48px;
+    display:flex;flex-direction:column;align-items:center;gap:24px;
+  }
+  .support-ava{
+    width:140px;height:140px;border-radius:50%;
+    background:linear-gradient(135deg,var(--uz-gold),#E89510);
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    font-size:48px;font-weight:800;letter-spacing:-.04em;
+    box-shadow:0 20px 40px rgba(244,168,44,.3);
+  }
+  .support-card{background:#fff;border-radius:18px;padding:24px;width:100%;box-shadow:0 8px 24px rgba(14,27,54,.08)}
+  .support-card .lbl{font-size:11px;font-weight:700;color:var(--grey);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+  .support-card .ch{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .support-card .ch:last-child{border-bottom:none}
+  .support-card .ch .name{color:var(--ink);font-weight:600}
+  .support-card .ch .val{color:var(--blue);font-weight:700;font-size:13px}
+  .support-info h2{font-size:42px;font-weight:800;line-height:1.05;letter-spacing:-.025em;margin-bottom:18px;color:var(--ink)}
+  .support-info h2 .accent{color:var(--blue)}
+  .support-info p{font-size:17px;line-height:1.55;color:var(--grey);margin-bottom:24px}
+  .support-points{display:flex;flex-direction:column;gap:14px}
+  .sp-item{display:flex;gap:14px;align-items:flex-start}
+  .sp-item .ic{
+    width:28px;height:28px;border-radius:50%;background:var(--blue-10);color:var(--blue);
+    display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex-shrink:0;
+  }
+  .sp-item .tx{font-size:15px;color:var(--ink-2);line-height:1.5}
+  .sp-item .tx b{color:var(--ink);font-weight:700}
+
+  /* ─── Payments strip ─── */
+  .payments{
+    margin-top:32px;background:#fff;border:1px solid var(--line);
+    border-radius:14px;padding:20px 24px;
+    display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  }
+  .payments .lbl{font-size:12px;font-weight:700;color:var(--grey);text-transform:uppercase;letter-spacing:.06em}
+  .pay-pill{
+    background:var(--canvas);border-radius:8px;padding:8px 14px;
+    font-size:13px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:6px;
+  }
+  .pay-pill .dot{width:8px;height:8px;border-radius:2px}
+  .pay-pill .dot.click{background:#03A9F4}
+  .pay-pill .dot.payme{background:#00C4FF}
+  .pay-pill .dot.humo{background:#E50914}
+  .pay-pill .dot.uzcard{background:#0066B3}
+  .pay-pill .dot.apelsin{background:#FF6B00}
+
+  /* ─── Pricing ─── */
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .price-card{
+    background:#fff;border:1.5px solid var(--line);border-radius:24px;
+    padding:36px 32px;display:flex;flex-direction:column;gap:20px;
+    position:relative;
+  }
+  .price-card.featured{
+    border:2px solid var(--blue);
+    box-shadow:0 30px 60px -20px rgba(60,103,214,.25);
+  }
+  .price-card.featured::before{
+    content:"Eng mashhur · Самый популярный";
+    position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+    background:var(--blue);color:#fff;padding:6px 14px;border-radius:100px;
+    font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+    white-space:nowrap;
+  }
+  .price-name{font-size:14px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em}
+  .price-desc{font-size:14px;color:var(--grey);line-height:1.45}
+  .price-big{font-size:42px;font-weight:800;color:var(--ink);letter-spacing:-.03em;line-height:1}
+  .price-big .small{font-size:.4em;font-weight:600;color:var(--grey)}
+  .price-big .currency{font-size:.55em;color:var(--grey-l)}
+  .price-features{display:flex;flex-direction:column;gap:10px}
+  .price-feat{font-size:14px;line-height:1.45;color:var(--ink-2);display:flex;gap:10px;align-items:flex-start}
+  .price-feat::before{
+    content:"";flex-shrink:0;width:18px;height:18px;border-radius:50%;
+    background:var(--green-10);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.5L7.5 12L13 6.5' stroke='%234EB410' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size:contain;margin-top:2px;
+  }
+  .price-cta{
+    background:var(--blue);color:#fff;padding:14px 20px;
+    border-radius:12px;font-size:15px;font-weight:700;
+    text-align:center;text-decoration:none;letter-spacing:-.01em;
+    margin-top:auto;
+  }
+  .price-cta.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+
+  /* ─── FAQ ─── */
+  .faq-list{display:flex;flex-direction:column;gap:14px;max-width:880px}
+  .faq-item{
+    background:#fff;border:1px solid var(--line);
+    border-radius:14px;padding:24px 28px;
+  }
+  .faq-item h4{font-size:17px;font-weight:700;letter-spacing:-.01em;color:var(--ink);margin-bottom:10px}
+  .faq-item h4 .uz{color:var(--uz-gold);font-size:.85em;display:block;margin-bottom:4px;font-weight:600}
+  .faq-item p{font-size:14px;color:var(--grey);line-height:1.55}
+  .faq-item p b{color:var(--ink);font-weight:600}
+
+  /* ─── CTA Form ─── */
+  .cta-box{
+    background:linear-gradient(135deg,var(--ink) 0%,#1A2A4F 100%);
+    color:#fff;border-radius:32px;padding:64px;position:relative;overflow:hidden;
+  }
+  .cta-box::before{
+    content:"";position:absolute;top:-200px;right:-100px;
+    width:500px;height:500px;border-radius:50%;
+    background:radial-gradient(circle,rgba(244,168,44,.18) 0%,transparent 65%);
+    pointer-events:none;
+  }
+  .cta-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;position:relative;z-index:1}
+  .cta-uz{font-size:14px;font-weight:700;color:var(--uz-gold);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+  .cta-uz::before{content:"🇺🇿";font-size:18px}
+  .cta-left h2{font-size:42px;font-weight:800;line-height:1.05;letter-spacing:-.025em;margin-bottom:20px}
+  .cta-left h2 .accent{color:var(--uz-gold)}
+  .cta-left p{font-size:17px;line-height:1.55;color:rgba(255,255,255,.75);margin-bottom:28px;max-width:520px}
+  .cta-perks{display:flex;flex-direction:column;gap:12px}
+  .cta-perk{display:flex;gap:12px;align-items:center;font-size:14px;color:rgba(255,255,255,.85)}
+  .cta-perk::before{content:"✓";color:var(--uz-gold);font-weight:800;font-size:16px}
+  .cta-perk b{color:#fff;font-weight:700}
+
+  .cta-form{
+    background:#fff;color:var(--ink);
+    border-radius:24px;padding:32px;
+  }
+  .cta-form h3{font-size:22px;font-weight:800;color:var(--ink);margin-bottom:6px;letter-spacing:-.015em}
+  .cta-form .sub{font-size:13px;color:var(--grey);margin-bottom:22px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:11px;font-weight:700;color:var(--grey);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+  .field input,.field select{
+    width:100%;background:#fff;border:1.5px solid var(--line);
+    border-radius:10px;padding:13px 14px;color:var(--ink);
+    font-family:inherit;font-size:14px;
+  }
+  .field input:focus{outline:none;border-color:var(--blue)}
+  .field input::placeholder{color:var(--grey-l)}
+  .form-cta{
+    width:100%;background:var(--blue);color:#fff;border:none;cursor:pointer;
+    padding:16px;border-radius:12px;font-family:inherit;font-size:15px;font-weight:700;
+    letter-spacing:-.01em;margin-top:6px;
+    box-shadow:0 6px 20px rgba(60,103,214,.3);
+  }
+  .form-agree{font-size:11px;color:var(--grey);margin-top:12px;line-height:1.5;text-align:center}
+
+  /* ─── Footer ─── */
+  .footer{padding:48px 0 28px;background:var(--ink);color:#fff}
+  .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;margin-bottom:36px}
+  .footer-col h5{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--uz-gold);margin-bottom:14px}
+  .footer-col p,.footer-col a{font-size:14px;color:rgba(255,255,255,.7);line-height:1.7;text-decoration:none;display:block}
+  .footer-col a:hover{color:#fff}
+  .footer-col .lg{color:#fff;font-weight:600;margin-bottom:8px}
+  .footer-logo{font-size:22px;font-weight:900;color:#fff;display:flex;align-items:center;gap:6px;margin-bottom:14px}
+  .footer-logo .dot{width:5px;height:5px;border-radius:50%;background:var(--uz-gold)}
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,.1);padding-top:20px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;
+    font-size:12px;color:rgba(255,255,255,.5);
+  }
+
+  /* ─── Responsive — mobile ≤ 768px ─── */
+  
+
+    .container{padding:0 20px}
+
+    .nav{padding:14px 0}
+    .nav-links{display:none}
+    .nav-logo{font-size:20px}
+    .nav-logo .uz-tag{display:none}
+    .lang-switcher button{padding:4px 8px;font-size:11px}
+    .nav-cta{padding:9px 14px;font-size:13px}
+
+    .hero{padding:36px 0 56px}
+    .hero-grid{grid-template-columns:1fr;gap:40px}
+    .hero h1{font-size:34px}
+    .hero .lede{font-size:16px;margin-bottom:24px}
+    .hero-cta-row{flex-direction:column;align-items:stretch;margin-bottom:28px}
+    .btn-primary,.btn-ghost{justify-content:center;padding:16px 20px;font-size:15px}
+    .hero-stats{gap:18px;flex-wrap:wrap}
+    .hero-stat .v{font-size:22px}
+    .hero-phone{width:280px;height:560px;border-radius:36px;padding:10px}
+    .hero-phone::before{width:90px;height:24px;top:14px}
+
+    section{padding:56px 0}
+    .sec-head{margin-bottom:32px}
+    .sec-head h2{font-size:30px;margin-bottom:12px}
+    .sec-head .lede{font-size:15px}
+
+    .clients-strip{padding:32px 0}
+    .logos-row{grid-template-columns:repeat(3,1fr);gap:16px}
+    .logo-ph{height:40px;font-size:11px}
+
+    .pillars-grid{grid-template-columns:1fr;gap:14px}
+    .pillar-card{padding:24px 22px;gap:18px}
+    .pillar-icon{width:48px;height:48px;font-size:22px}
+    .pillar-card h3{font-size:18px}
+
+    /* Power blocks */
+    .power-block{grid-template-columns:1fr;gap:28px;margin-bottom:48px}
+    .power-block.reverse{direction:ltr}
+    .power-text{padding:0}
+    .power-num{font-size:48px;margin-bottom:8px}
+    .power-text h3{font-size:26px;margin-bottom:12px}
+    .power-text h3 .uz{font-size:.6em}
+    .power-text p{font-size:15px;margin-bottom:18px}
+    .power-li{font-size:14px}
+    .power-vis{padding:24px;border-radius:18px}
+    .dash-head .t{font-size:13px}
+    .dash-row{font-size:12px;padding:8px 0}
+    .dash-row .val{font-size:13px}
+    .dash-bars{height:48px}
+    .dash-summary{padding:14px 16px}
+    .dash-summary .v{font-size:19px}
+    .role-row{padding:11px 12px}
+    .role-info .nm{font-size:12px}
+    .role-info .rl{font-size:10px}
+    .perm{font-size:8px;padding:3px 5px}
+    .role-log{font-size:10px}
+    .app-vis{gap:8px}
+    .mini-phone{width:150px;height:316px;padding:7px;border-radius:24px}
+    .mp-screen{border-radius:18px}
+    .mp-head{padding:14px 12px}
+    .mp-head .title{font-size:12px}
+    .mp-content{padding:10px;gap:7px}
+    .mp-card{padding:8px 10px}
+    .mp-card .mp-t{font-size:10px}
+    .mp-card .mp-s{font-size:8px}
+    .mp-cta{font-size:10px;padding:8px}
+    .app-stores{gap:8px}
+    .store-pill{font-size:11px;padding:8px 14px}
+
+    .cases-grid{grid-template-columns:1fr;gap:14px}
+    .case-card{padding:28px 24px;border-radius:18px}
+    .case-stat .v{font-size:22px}
+
+    .modules-grid{grid-template-columns:1fr;gap:12px}
+    .module-card{padding:24px 22px}
+    .module-card h3{font-size:17px}
+
+    .compare-row{grid-template-columns:1.4fr 1fr 1fr 1fr}
+    .compare-cell,.cell{padding:12px 10px;font-size:12px}
+    .compare-row.head .cell{font-size:11px}
+    .compare-cell .icon{width:20px;height:20px;font-size:11px;margin-right:6px}
+
+    .support-grid{grid-template-columns:1fr;gap:32px}
+    .support-vis{padding:32px 24px}
+    .support-ava{width:100px;height:100px;font-size:36px}
+    .support-info h2{font-size:28px}
+    .support-info p{font-size:15px}
+    .payments{padding:16px 18px;gap:10px}
+    .pay-pill{font-size:12px;padding:6px 10px}
+
+    .price-grid{grid-template-columns:1fr;gap:14px}
+    .price-card{padding:28px 24px;border-radius:18px}
+    .price-card.featured::before{font-size:10px;padding:5px 12px}
+    .price-big{font-size:34px}
+
+    .faq-item{padding:20px 22px;border-radius:12px}
+    .faq-item h4{font-size:15px}
+    .faq-item p{font-size:13px}
+
+    .cta-box{padding:32px 24px;border-radius:24px}
+    .cta-grid{grid-template-columns:1fr;gap:32px}
+    .cta-left h2{font-size:28px;margin-bottom:14px}
+    .cta-left p{font-size:15px;margin-bottom:22px}
+    .cta-form{padding:24px;border-radius:18px}
+    .cta-form h3{font-size:19px}
+
+    .footer{padding:32px 0 20px}
+    .footer-grid{grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+    .footer-logo{font-size:18px}
+  
+  /* Force mobile body width */
+  body{max-width:420px;margin:0 auto;border-left:1px solid #E4E6EB;border-right:1px solid #E4E6EB}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container nav-row">
+    <div class="nav-left">
+      <a href="#" class="nav-logo">
+        Fitbase<span class="dot"></span><span class="uz-tag">O'zbekiston</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Imkoniyatlar</a>
+        <a href="#cases">Mijozlar</a>
+        <a href="#price">Narxlar</a>
+        <a href="#faq">Savollar</a>
+      </div>
+    </div>
+    <div class="nav-right">
+      <div class="lang-switcher">
+        <button class="active">UZ</button>
+        <button>RU</button>
+        <button>EN</button>
+      </div>
+      <a href="#register" class="nav-cta">Bepul boshlash</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="hero-uz-line">O'zbekiston fitnes-klublari uchun · Полностью на узбекском языке</div>
+        <h1>Полный контроль клуба — <span class="accent">в одной системе</span></h1>
+        <p class="lede"><b>Видите каждую цифру.</b> Защищаете базу клиентов от ухода с тренером. Даёте клиентам приложение, которым не стыдно поделиться. <b>1700+ клубов</b> по СНГ и Узбекистану уже работают на Fitbase.</p>
+
+        <div class="hero-cta-row">
+          <a href="#register" class="btn-primary">14 kun bepul sinab ko'ring →</a>
+          <a href="#" class="btn-ghost">Demo ko'rish</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="v"><span class="accent">1 700+</span></div>
+            <div class="l">клубов в работе</div>
+          </div>
+          <div class="hero-stat">
+            <div class="v">5</div>
+            <div class="l">стран СНГ</div>
+          </div>
+          <div class="hero-stat">
+            <div class="v">50+</div>
+            <div class="l">в Узбекистане</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-phone">
+          <div class="phone-screen">
+            <div class="phone-status">
+              <span>9:41</span>
+              <span class="right">●●● 100%</span>
+            </div>
+            <div class="phone-header">
+              <span class="logo">Fitbase</span>
+              <span class="uz-badge">O'zbek</span>
+            </div>
+            <div class="phone-content">
+              <div class="ph-greet">Salom, <b>Aziza!</b></div>
+              <div class="ph-card">
+                <div class="lbl">Sizning abonementingiz</div>
+                <div class="val">Pilates · Standart</div>
+                <div class="sub">Faol 12 mart gacha · 18 mashg'ulot qoldi</div>
+              </div>
+              <div class="ph-list-title">Yaqin darslar</div>
+              <div class="ph-list-item">
+                <div class="info">
+                  <span class="nm">Pilates Reformer</span>
+                  <span class="sub">10:00 · Madina Karimova</span>
+                </div>
+                <span class="pill">Yozildi</span>
+              </div>
+              <div class="ph-list-item">
+                <div class="info">
+                  <span class="nm">Stretching</span>
+                  <span class="sub">18:30 · Aziza Yusupova</span>
+                </div>
+                <span class="pill">Yozildi</span>
+              </div>
+            </div>
+            <div class="phone-tab">
+              <div class="tab-item active"><div class="ic"></div><span>Bosh</span></div>
+              <div class="tab-item"><div class="ic"></div><span>Jadval</span></div>
+              <div class="tab-item"><div class="ic"></div><span>Mening</span></div>
+              <div class="tab-item"><div class="ic"></div><span>Profil</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENT LOGOS STRIP -->
+<div class="clients-strip">
+  <div class="container">
+    <div class="clients-head">
+      <div class="t">Bizga ishonishadi · Доверяют</div>
+      <div class="s">Более <b>50 клубов</b> в Ташкенте, Самарканде, Бухаре и других городах Узбекистана</div>
+    </div>
+    <div class="logos-row">
+      <div class="logo-ph">Club Alpha</div>
+      <div class="logo-ph">FitZone</div>
+      <div class="logo-ph">Toshkent Sport</div>
+      <div class="logo-ph">Body & Soul</div>
+      <div class="logo-ph">Pilates Studio</div>
+      <div class="logo-ph">Crossfit UZ</div>
+    </div>
+    <p style="text-align:center;font-size:12px;color:#9AA3B5;margin-top:18px;font-style:italic">— Логотипы клиентов — заглушки. Нужны реальные с разрешением на размещение.</p>
+  </div>
+</div>
+
+<!-- 4 PILLARS -->
+<section>
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow"><span class="dot"></span>Чем Fitbase отличается</span>
+      <h2>Что важно для <span class="accent">узбекского клуба</span></h2>
+      <p class="lede">Не «есть поддержка узбекского» — а полноценная локализация: интерфейс, поддержка, оплаты, отчётность под местный рынок.</p>
+    </div>
+
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon uz">🇺🇿</div>
+        <div>
+          <h3>Полностью на узбекском <span class="uz-flag">+ RU + EN</span></h3>
+          <p>Интерфейс, отчёты, рассылки клиентам, мобильное приложение — на узбекском. Не машинный перевод, а проверенная локализация.</p>
+        </div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">💳</div>
+        <div>
+          <h3>Click, Payme, Humo, Uzcard</h3>
+          <p>Оплата подписок и абонементов через локальные платёжные системы. Автосписание, возвраты, чеки — всё работает из коробки.</p>
+        </div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">📞</div>
+        <div>
+          <h3>Поддержка из Узбекистана</h3>
+          <p>Аккаунт-менеджер и техподдержка на узбекском и русском в рабочие часы UZ. Не Москва, не Питер — реальная локальная команда.</p>
+        </div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">📊</div>
+        <div>
+          <h3>1 700+ клубов по СНГ</h3>
+          <p>5+ лет на рынке. Проверенный продукт, не «новинка». Все обновления, безопасность, бэкапы — на уровне зрелого SaaS.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 POWER MODULES — контроль, защита, мобильное -->
+<section class="canvas">
+  <div class="container">
+    <div class="sec-head" style="text-align:center;margin:0 auto 64px;max-width:880px">
+      <span class="eyebrow" style="margin:0 auto 18px"><span class="dot"></span>Eng muhimi · Самое важное</span>
+      <h2>Три вещи, которые делают вас <span class="accent">хозяином клуба</span></h2>
+      <p class="lede" style="margin:0 auto">Вы видите каждую цифру. Никто не уносит базу клиентов. Клиенты получают приложение, которым они хвастаются друзьям.</p>
+    </div>
+
+    <!-- Block 1: Контроль -->
+    <div class="power-block">
+      <div class="power-text">
+        <div class="power-num">01</div>
+        <h3>
+          <span class="uz">To'liq nazorat · Полный контроль</span>
+          Видите <span class="accent">каждую цифру</span> в реальном времени
+        </h3>
+        <p>Не нужно ждать конца месяца, чтобы понять как идёт бизнес. Касса, выручка, маржа, активные клиенты, отток — <b>обновляются каждую минуту</b>. Открыли телефон утром в Самарканде — видите кассу клуба в Ташкенте.</p>
+        <div class="power-list">
+          <div class="power-li"><b>Касса и реализация</b> отдельно — видите авансы клиентов и реальную прибыль</div>
+          <div class="power-li"><b>Аналитика по дням / месяцам</b> — где провал, где рост, какой тренер приносит больше</div>
+          <div class="power-li"><b>Сравнение точек</b> сети — единый дашборд по всему бизнесу</div>
+          <div class="power-li"><b>Push-уведомления</b> о подозрительных операциях — возврат больше нормы, нетипичная скидка</div>
+          <div class="power-li"><b>Мобильный доступ</b> к финрезу — из любой точки, без ноутбука</div>
+        </div>
+      </div>
+      <div class="power-vis">
+        <div class="dash-mock">
+          <div class="dash-head">
+            <span class="t">Касса · Сегодня</span>
+            <span class="live">В реальном времени</span>
+          </div>
+          <div class="dash-row"><span class="name">Поступило</span><span class="val green">12 480 000 сум</span></div>
+          <div class="dash-row"><span class="name">Реализация</span><span class="val">8 760 000 сум</span></div>
+          <div class="dash-row"><span class="name">Возвраты</span><span class="val red">−320 000 сум</span></div>
+          <div class="dash-row"><span class="name">Новых клиентов</span><span class="val">+14</span></div>
+          <div class="dash-bars">
+            <div class="bar" style="height:55%"></div>
+            <div class="bar" style="height:70%"></div>
+            <div class="bar" style="height:50%"></div>
+            <div class="bar" style="height:85%"></div>
+            <div class="bar" style="height:65%"></div>
+            <div class="bar uz" style="height:95%"></div>
+            <div class="bar" style="height:75%"></div>
+          </div>
+          <div class="dash-summary">
+            <div>
+              <div class="lbl">Прибыль этого месяца</div>
+              <div class="v">38 240 000 сум</div>
+            </div>
+            <div class="arrow">↑</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Block 2: Защита от воровства -->
+    <div class="power-block reverse">
+      <div class="power-text">
+        <div class="power-num">02</div>
+        <h3>
+          <span class="uz">Mijozlar bazasini himoya · Защита базы</span>
+          Никто не <span class="accent">унесёт ваших клиентов</span>
+        </h3>
+        <p>База клиентов — главный актив клуба. Тренер уходит — и забирает половину клуба в свой телефон. С Fitbase такого не будет: <b>гибкие роли, лог действий, блок выгрузки</b>. Каждое движение видно. Каждый видит только то, что должен.</p>
+        <div class="power-list">
+          <div class="power-li"><b>Роли и доступы</b> — админ видит только своё, тренер — только своих клиентов</div>
+          <div class="power-li"><b>Лог действий</b> — кто, когда, что изменил, с какого устройства</div>
+          <div class="power-li"><b>NDA в шаблоне договора</b> — юридическая защита базы при найме</div>
+          <div class="power-li"><b>Блокировка выгрузки</b> базы целиком — нельзя скачать список телефонов</div>
+          <div class="power-li"><b>Двухфакторная аутентификация</b> — без вашего разрешения никто не зайдёт</div>
+        </div>
+      </div>
+      <div class="power-vis">
+        <div class="roles-mock">
+          <div class="role-row">
+            <div class="role-ava gold">Й</div>
+            <div class="role-info">
+              <div class="nm">Йулдашев Анвар</div>
+              <div class="rl">Владелец · Полный доступ</div>
+            </div>
+            <div class="role-perms"><span class="perm yes">Финрез</span><span class="perm yes">База</span></div>
+          </div>
+          <div class="role-row">
+            <div class="role-ava">М</div>
+            <div class="role-info">
+              <div class="nm">Малика Каримова</div>
+              <div class="rl">Администратор · Только клуб 1</div>
+            </div>
+            <div class="role-perms"><span class="perm no">Финрез</span><span class="perm yes">База клуба</span></div>
+          </div>
+          <div class="role-row">
+            <div class="role-ava green">Т</div>
+            <div class="role-info">
+              <div class="nm">Темур Сафаров</div>
+              <div class="rl">Тренер · Только свои клиенты</div>
+            </div>
+            <div class="role-perms"><span class="perm no">База</span><span class="perm yes">Своя группа</span></div>
+          </div>
+          <div class="role-log">
+            <div class="l"><span class="time">14:32</span><b>М. Каримова</b> — добавила клиента (iPhone)</div>
+            <div class="l"><span class="time">14:18</span><b>Т. Сафаров</b> — отметил посещения (Android)</div>
+            <div class="l"><span class="time">13:55</span><b>А. Йулдашев</b> — открыл отчёт по выручке</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Block 3: Мобильное приложение -->
+    <div class="power-block">
+      <div class="power-text">
+        <div class="power-num">03</div>
+        <h3>
+          <span class="uz">Mobil ilova · Мобильное приложение</span>
+          Приложение, которым клиенты <span class="accent">хвастаются друзьям</span>
+        </h3>
+        <p>Современный дизайн уровня банковских приложений — Click, Payme, Anor. Клиенты сравнивают и выбирают тех, кто даёт удобство. <b>Запись в один тап, оплата через Click, push на узбекском</b>. Брендируем под ваш клуб — название, логотип, цвета.</p>
+        <div class="power-list">
+          <div class="power-li"><b>iOS + Android</b> в официальных сторах — App Store и Google Play</div>
+          <div class="power-li"><b>Брендирование</b> под клуб — название, цвета, логотип, иконка</div>
+          <div class="power-li"><b>Запись 24/7</b> — клиент бронирует место в любое время без админа</div>
+          <div class="power-li"><b>Оплата Click, Payme, Humo</b> прямо в приложении</div>
+          <div class="power-li"><b>Push-уведомления</b> на узбекском — напоминания, продление, акции</div>
+        </div>
+      </div>
+      <div class="app-vis">
+        <div class="mini-phone tilt-l">
+          <div class="mp-screen">
+            <div class="mp-head">
+              <div class="small">Sizning klubingiz</div>
+              <div class="title">Salom, Aziza!</div>
+            </div>
+            <div class="mp-content">
+              <div class="mp-card">
+                <div class="mp-t">Pilates Reformer</div>
+                <div class="mp-s">10:00 · Madina K.</div>
+                <span class="mp-pill">Yozildi</span>
+              </div>
+              <div class="mp-card">
+                <div class="mp-t">Stretching</div>
+                <div class="mp-s">18:30 · Aziza Y.</div>
+                <span class="mp-pill gold">Kutilmoqda</span>
+              </div>
+              <div class="mp-card">
+                <div class="mp-t">Yoga Flow</div>
+                <div class="mp-s">20:00 · Nilufar S.</div>
+              </div>
+              <div class="mp-cta">Yozilish →</div>
+            </div>
+          </div>
+        </div>
+        <div class="mini-phone tilt-r">
+          <div class="mp-screen">
+            <div class="mp-head" style="background:linear-gradient(135deg,#0E1B36,#1F2A47)">
+              <div class="small">Mening abonementim</div>
+              <div class="title">Pilates · Standart</div>
+            </div>
+            <div class="mp-content">
+              <div class="mp-card" style="background:linear-gradient(135deg,#3C67D6,#3FABFF);color:#fff">
+                <div class="mp-t" style="color:#fff">18 mashg'ulot qoldi</div>
+                <div class="mp-s" style="color:rgba(255,255,255,.8)">12 mart gacha faol</div>
+              </div>
+              <div class="mp-card">
+                <div class="mp-t">Yangilash</div>
+                <div class="mp-s">Click · Payme · Humo</div>
+                <span class="mp-pill">Tanlangan: Click</span>
+              </div>
+              <div class="mp-card">
+                <div class="mp-t">Do'st olib keling</div>
+                <div class="mp-s">−15% chegirma</div>
+              </div>
+              <div class="mp-cta" style="background:var(--uz-gold)">To'lash · 350 000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-stores">
+      <div class="store-pill"><span class="ic"></span>App Store</div>
+      <div class="store-pill"><span class="ic"></span>Google Play</div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section class="canvas" id="cases">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow"><span class="dot"></span>Mijozlar tajribasi · Опыт клиентов</span>
+      <h2>Как локальные клубы <span class="accent">выросли с Fitbase</span></h2>
+      <p class="lede">Реальные клубы из Ташкента, Самарканда и Бухары — что изменилось после внедрения. Истории владельцев.</p>
+    </div>
+
+    <div class="cases-grid">
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-avatar">МК</div>
+          <div class="case-meta">
+            <div class="nm">Малика К.</div>
+            <div class="role">Pilates-студия · Ташкент</div>
+          </div>
+        </div>
+        <div class="case-stat">
+          <div class="v">+34%</div>
+          <div class="l">прироста выручки за 6 месяцев</div>
+        </div>
+        <p class="case-quote">Когда мы перешли с тетрадки на Fitbase, я впервые увидела реальные цифры по клубу. Оказалось, что 40% клиентов забывали продлевать абонементы — теперь система напоминает автоматом.</p>
+        <span class="case-tag">— Заглушка. Нужно реальное интервью + фото —</span>
+      </div>
+
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-avatar">УЖ</div>
+          <div class="case-meta">
+            <div class="nm">Улугбек Ж.</div>
+            <div class="role">Сеть фитнес-клубов · Самарканд</div>
+          </div>
+        </div>
+        <div class="case-stat">
+          <div class="v">3 → 7</div>
+          <div class="l">точек за 2 года роста</div>
+        </div>
+        <p class="case-quote">Главная задача сети — видеть всё в одном окне. Раньше каждый клуб имел свою таблицу. Сейчас открываю Fitbase утром — и сразу понимаю, где провал, где рост.</p>
+        <span class="case-tag">— Заглушка. Нужно реальное интервью + фото —</span>
+      </div>
+
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-avatar">НА</div>
+          <div class="case-meta">
+            <div class="nm">Нодира А.</div>
+            <div class="role">Йога-студия · Бухара</div>
+          </div>
+        </div>
+        <div class="case-stat">
+          <div class="v">2 часа</div>
+          <div class="l">экономии в день у владельца</div>
+        </div>
+        <p class="case-quote">Я веду занятия сама и не могу позволить себе администратора. Fitbase заменил администратора — клиенты записываются в приложении, оплачивают через Click, я просто веду занятия.</p>
+        <span class="case-tag">— Заглушка. Нужно реальное интервью + фото —</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section id="features">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow"><span class="dot"></span>Imkoniyatlar · Возможности</span>
+      <h2>6 модулей в одной системе</h2>
+      <p class="lede">Расписание, продажи, удержание, оплаты, отчёты, мобильное приложение — всё работает вместе, без интеграций с десятком сторонних систем.</p>
+    </div>
+
+    <div class="modules-grid">
+      <div class="module-card">
+        <div class="module-icon">📅</div>
+        <h3>Расписание и запись</h3>
+        <p>Групповые занятия, персональные тренировки, бронирование зала. Клиенты записываются в приложении 24/7.</p>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">💳</div>
+        <h3>Абонементы и оплаты</h3>
+        <p>Click, Payme, Humo, Uzcard, наличные. Автопродление, заморозка, рассрочка — всё в одном месте.</p>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">📱</div>
+        <h3>Мобильное приложение</h3>
+        <p>Брендированное под ваш клуб приложение в App Store и Google Play. На узбекском, русском и английском.</p>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">🔐</div>
+        <h3>СКУД и доступ</h3>
+        <p>Турникеты по QR, картам, биометрии. Контроль одновременной загрузки, безопасность — в одной системе.</p>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">📊</div>
+        <h3>Аналитика и отчёты</h3>
+        <p>Реальная выручка, LTV, отток, прогноз. Отчёты в сумах с НДС и без, для бухгалтерии и для управления.</p>
+      </div>
+      <div class="module-card">
+        <div class="module-icon">💬</div>
+        <h3>Telegram, SMS, рассылки</h3>
+        <p>Напоминания о тренировках, продление абонемента, поздравления с днём рождения — всё через Telegram и SMS UZ.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="canvas">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow"><span class="dot"></span>Сравнение</span>
+      <h2>Что выбирают <span class="accent">владельцы клубов</span> в Узбекистане</h2>
+      <p class="lede">Три типа решений на местном рынке. Какое подходит конкретно вам — зависит от размера бизнеса и задач.</p>
+    </div>
+
+    <div class="compare-table">
+      <div class="compare-row head">
+        <div class="cell"></div>
+        <div class="cell">Excel / тетрадь</div>
+        <div class="cell">Десктоп-программа</div>
+        <div class="cell our">Fitbase</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Узбекский интерфейс</div>
+        <div class="compare-cell"><span class="icon no">−</span>нет</div>
+        <div class="compare-cell"><span class="icon partial">≈</span>частично</div>
+        <div class="compare-cell our-col"><span class="icon yes">✓</span>полностью</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Click / Payme / Humo</div>
+        <div class="compare-cell"><span class="icon no">−</span>нет</div>
+        <div class="compare-cell"><span class="icon no">−</span>обычно нет</div>
+        <div class="compare-cell our-col"><span class="icon yes">✓</span>все из коробки</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Мобильное приложение для клиента</div>
+        <div class="compare-cell"><span class="icon no">−</span>нет</div>
+        <div class="compare-cell"><span class="icon partial">≈</span>веб-версия</div>
+        <div class="compare-cell our-col"><span class="icon yes">✓</span>iOS + Android</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Доступ из любой точки</div>
+        <div class="compare-cell"><span class="icon no">−</span>только в клубе</div>
+        <div class="compare-cell"><span class="icon no">−</span>только на ПК</div>
+        <div class="compare-cell our-col"><span class="icon yes">✓</span>облако, везде</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Поддержка на узбекском</div>
+        <div class="compare-cell"><span class="icon no">−</span>—</div>
+        <div class="compare-cell"><span class="icon no">−</span>обычно нет</div>
+        <div class="compare-cell our-col"><span class="icon yes">✓</span>да, UZ + RU</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Бесплатный пробный период</div>
+        <div class="compare-cell"><span class="icon yes">✓</span>да, всегда</div>
+        <div class="compare-cell"><span class="icon partial">≈</span>иногда</div>
+        <div class="compare-cell our-col"><span class="icon yes">✓</span>14 дней</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCAL SUPPORT -->
+<section>
+  <div class="container">
+    <div class="support-grid">
+      <div class="support-vis">
+        <div class="support-ava">АМ</div>
+        <div style="text-align:center">
+          <div style="font-size:18px;font-weight:800;color:var(--ink);margin-bottom:4px">Аккаунт-менеджер</div>
+          <div style="font-size:14px;color:var(--grey)">Имя · Должность <em>— заглушка</em></div>
+        </div>
+        <div class="support-card">
+          <div class="lbl">Каналы связи</div>
+          <div class="ch"><span class="name">Telegram</span><span class="val">@fitbase_uz</span></div>
+          <div class="ch"><span class="name">Телефон</span><span class="val">+998 XX XXX-XX-XX</span></div>
+          <div class="ch"><span class="name">Email</span><span class="val">support@fitbase.uz</span></div>
+          <div class="ch"><span class="name">Часы работы</span><span class="val">Пн–Сб 9:00–19:00</span></div>
+        </div>
+      </div>
+      <div class="support-info">
+        <span class="eyebrow uz"><span class="dot"></span>Mahalliy yordam · Локальная поддержка</span>
+        <h2>Не Москва. Не Питер. <span class="accent">Реальная команда в Узбекистане</span></h2>
+        <p>За каждым клубом закреплён персональный аккаунт-менеджер. Помогаем с настройкой, обучением команды, миграцией данных. На узбекском или русском — как удобно.</p>
+        <div class="support-points">
+          <div class="sp-item">
+            <div class="ic">1</div>
+            <div class="tx"><b>Запуск за 3 дня</b> — перенос базы клиентов, настройка тарифов, обучение команды</div>
+          </div>
+          <div class="sp-item">
+            <div class="ic">2</div>
+            <div class="tx"><b>Подключение Click/Payme</b> — настроим оплаты под ваше юрлицо в Узбекистане</div>
+          </div>
+          <div class="sp-item">
+            <div class="ic">3</div>
+            <div class="tx"><b>Поддержка в Telegram</b> — отвечаем в рабочее время UZ, не московское</div>
+          </div>
+        </div>
+
+        <div class="payments">
+          <span class="lbl">Локальные платежи:</span>
+          <span class="pay-pill"><span class="dot click"></span>Click</span>
+          <span class="pay-pill"><span class="dot payme"></span>Payme</span>
+          <span class="pay-pill"><span class="dot humo"></span>Humo</span>
+          <span class="pay-pill"><span class="dot uzcard"></span>Uzcard</span>
+          <span class="pay-pill"><span class="dot apelsin"></span>Apelsin</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="canvas" id="price">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow"><span class="dot"></span>Narxlar · Цены</span>
+      <h2>Открыто. В сумах. <span class="accent">Без «оставьте заявку».</span></h2>
+      <p class="lede">Подписочная модель — платите помесячно, отменяете в любой момент. 14 дней бесплатно для всех тарифов.</p>
+    </div>
+
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="price-name">Start · Для студий</div>
+        <div class="price-big">350 000 <span class="currency">сум</span><span class="small">/мес</span></div>
+        <div class="price-desc">Для одной студии или клуба до 200 активных клиентов. Базовый функционал — расписание, оплаты, мобильное приложение.</div>
+        <div class="price-features">
+          <div class="price-feat">До 200 активных клиентов</div>
+          <div class="price-feat">Click, Payme, Humo, Uzcard</div>
+          <div class="price-feat">Мобильное приложение клиента</div>
+          <div class="price-feat">Telegram-рассылки</div>
+          <div class="price-feat">Поддержка на UZ + RU</div>
+        </div>
+        <a href="#register" class="price-cta ghost">14 dan boshlash</a>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-name">Business · Самый выбираемый</div>
+        <div class="price-big">750 000 <span class="currency">сум</span><span class="small">/мес</span></div>
+        <div class="price-desc">Для растущего клуба или студии 200–800 клиентов. Все модули + расширенная аналитика и СКУД.</div>
+        <div class="price-features">
+          <div class="price-feat">До 800 активных клиентов</div>
+          <div class="price-feat">Все модули включая СКУД</div>
+          <div class="price-feat">Брендированное приложение</div>
+          <div class="price-feat">Расширенная аналитика и отчёты</div>
+          <div class="price-feat">Персональный аккаунт-менеджер</div>
+          <div class="price-feat">Приоритет в поддержке</div>
+        </div>
+        <a href="#register" class="price-cta">14 kun bepul →</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-name">Network · Для сетей</div>
+        <div class="price-big">от 1 200 000 <span class="currency">сум</span><span class="small">/мес</span></div>
+        <div class="price-desc">Для сетей от 2 точек. Единая база, сравнение точек, мульти-юрлица, кастомные интеграции.</div>
+        <div class="price-features">
+          <div class="price-feat">От 2 точек, без лимита клиентов</div>
+          <div class="price-feat">Единый дашборд по сети</div>
+          <div class="price-feat">Мульти-юрлица в одном кабинете</div>
+          <div class="price-feat">Кастомные интеграции и API</div>
+          <div class="price-feat">SLA и выделенная поддержка</div>
+        </div>
+        <a href="#register" class="price-cta ghost">Связаться с нами</a>
+      </div>
+    </div>
+
+    <p style="text-align:center;font-size:13px;color:#9AA3B5;margin-top:24px;font-style:italic">— Цены — заглушки. Нужны реальные тарифы под UZ-рынок —</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow"><span class="dot"></span>FAQ · Tez-tez beriladigan savollar</span>
+      <h2>Часто спрашивают</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h4>
+          <span class="uz">Fitbase — bu rus dasturmi?</span>
+          А это не российская система? Где хранятся данные?
+        </h4>
+        <p>Fitbase работает <b>в облаке с локальной поддержкой</b>. Команда поддержки и аккаунт-менеджмента — в Узбекистане. Данные клубов из UZ хранятся на серверах с резервированием. По договору NDA — никаких передач третьим сторонам без вашего согласия.</p>
+      </div>
+      <div class="faq-item">
+        <h4>
+          <span class="uz">Click va Payme bilan qanday ishlaydi?</span>
+          Как работает оплата через Click и Payme?
+        </h4>
+        <p>Клиент в мобильном приложении выбирает абонемент → жмёт «оплатить» → попадает в Click или Payme через стандартный платёжный шлюз. Деньги приходят на ваше юрлицо в UZ. Чеки и фискализация — автоматом.</p>
+      </div>
+      <div class="faq-item">
+        <h4>
+          <span class="uz">Mavjud mijozlar bazasini ko'chirish mumkinmi?</span>
+          Можно ли перенести существующую базу клиентов?
+        </h4>
+        <p>Да. Поможем перенести базу из Excel, тетради, другой CRM или 1С. Делаем это <b>под ключ за 1–3 дня</b>, у клуба нет работы. Всё происходит до запуска, без потери истории.</p>
+      </div>
+      <div class="faq-item">
+        <h4>
+          <span class="uz">Tilni keyin almashtirish mumkinmi?</span>
+          Можно ли поменять язык интерфейса для клиента и для админа отдельно?
+        </h4>
+        <p>Да, каждый пользователь сам выбирает язык — UZ / RU / EN. Тренер может работать на узбекском, владелец на русском, а часть клиентов на английском. Никаких ограничений.</p>
+      </div>
+      <div class="faq-item">
+        <h4>
+          <span class="uz">Bepul davr tugagandan keyin nima bo'ladi?</span>
+          Что после бесплатного периода — обязательная оплата?
+        </h4>
+        <p>14 дней — без карты, без обязательств. После окончания триала вы решаете: продолжать или нет. <b>Без автоматических списаний</b>. Если решите остаться — выбираете тариф, оплачиваете через Click/Payme/банковский перевод.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA + FORM -->
+<section id="register">
+  <div class="container">
+    <div class="cta-box">
+      <div class="cta-grid">
+        <div class="cta-left">
+          <div class="cta-uz">Boshlash uchun bir necha daqiqa</div>
+          <h2>Запустим ваш клуб <span class="accent">за 3 дня</span> — бесплатно</h2>
+          <p>Оставьте контакт — аккаунт-менеджер из Узбекистана свяжется в течение рабочего дня, покажет систему, поможет настроить под ваш клуб.</p>
+          <div class="cta-perks">
+            <div class="cta-perk"><b>14 kun bepul</b> · без карты, без обязательств</div>
+            <div class="cta-perk">Перенос базы клиентов <b>под ключ</b></div>
+            <div class="cta-perk">Подключение <b>Click, Payme, Humo</b></div>
+            <div class="cta-perk">Поддержка на <b>узбекском и русском</b></div>
+          </div>
+        </div>
+        <form class="cta-form">
+          <h3>Ariza qoldirish</h3>
+          <div class="sub">Свяжемся в течение рабочего дня (по UZT)</div>
+          <div class="field">
+            <label>Ism · Имя</label>
+            <input type="text" placeholder="Ismingiz">
+          </div>
+          <div class="field">
+            <label>Telefon · Телефон</label>
+            <input type="tel" placeholder="+998 XX XXX-XX-XX">
+          </div>
+          <div class="field">
+            <label>Klub nomi · Название клуба</label>
+            <input type="text" placeholder="Например, Pilates Studio">
+          </div>
+          <div class="field">
+            <label>Shahar · Город</label>
+            <select>
+              <option>Toshkent</option>
+              <option>Samarqand</option>
+              <option>Buxoro</option>
+              <option>Andijon</option>
+              <option>Namangan</option>
+              <option>Farg'ona</option>
+              <option>Boshqa shahar</option>
+            </select>
+          </div>
+          <button type="button" class="form-cta">Bepul boshlash →</button>
+          <p class="form-agree">Yuborib, siz <a href="#" style="color:var(--blue);text-decoration:underline">maxfiylik siyosatiga</a> rozilik bildirasiz</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">Fitbase<span class="dot"></span></div>
+        <p class="lg">Программа управления фитнес-клубом для Узбекистана</p>
+        <p>1 700+ клубов · 5 стран СНГ · 50+ в Узбекистане</p>
+      </div>
+      <div class="footer-col">
+        <h5>Aloqa · Контакты</h5>
+        <a href="tel:+998000000000">+998 XX XXX-XX-XX</a>
+        <a href="mailto:hello@fitbase.uz">hello@fitbase.uz</a>
+        <a href="https://t.me/fitbase_uz">@fitbase_uz</a>
+        <p>Toshkent, [адрес офиса — заглушка]</p>
+      </div>
+      <div class="footer-col">
+        <h5>Imkoniyatlar</h5>
+        <a href="#features">Возможности</a>
+        <a href="#cases">Кейсы клиентов</a>
+        <a href="#price">Тарифы</a>
+        <a href="#faq">Вопросы</a>
+      </div>
+      <div class="footer-col">
+        <h5>Hujjatlar · Документы</h5>
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Договор-оферта</a>
+        <a href="#">Реквизиты</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2020–2026 Fitbase O'zbekiston · Все права защищены</span>
+      <span>ИНН/STIR: XXXXXXXX · OOO «[название UZ юрлица — заглушка]»</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
