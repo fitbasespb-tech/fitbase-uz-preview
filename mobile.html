@@ -338,15 +338,22 @@
   .power-text h3 .accent{color:var(--blue)}
   .power-text p{font-size:17px;line-height:1.55;color:var(--grey);margin-bottom:24px}
   .power-text p b{color:var(--ink);font-weight:600}
-  .power-list{display:flex;flex-direction:column;gap:12px}
-  .power-li{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--ink-2);line-height:1.45}
-  .power-li::before{
-    content:"";flex-shrink:0;width:22px;height:22px;border-radius:50%;
+  .power-list{display:flex;flex-direction:column;gap:14px}
+  .power-li{display:flex;gap:12px;align-items:flex-start}
+  .power-li-check{
+    flex-shrink:0;width:22px;height:22px;border-radius:50%;
     background:var(--blue);
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M6 11.5L9 14.5L16 7' stroke='%23fff' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     background-size:contain;margin-top:1px;
   }
-  .power-li b{color:var(--ink);font-weight:700}
+  .power-li-text{flex:1;min-width:0}
+  .power-li-title{
+    display:block;font-size:16px;font-weight:700;color:var(--ink);
+    line-height:1.35;letter-spacing:-.01em;margin-bottom:3px;
+  }
+  .power-li-desc{
+    display:block;font-size:14.5px;color:var(--grey);line-height:1.5;
+  }
 
   /* Power visual containers */
   .power-vis{
@@ -1205,11 +1212,41 @@
         </h3>
         <p>Не нужно ждать конца месяца, чтобы понять как идёт бизнес. Касса, выручка, маржа, активные клиенты, отток — <b>обновляются каждую минуту</b>. Открыли телефон утром в Самарканде — видите кассу клуба в Ташкенте.</p>
         <div class="power-list">
-          <div class="power-li"><b>Касса и реализация</b> отдельно — видите авансы клиентов и реальную прибыль</div>
-          <div class="power-li"><b>Аналитика по дням / месяцам</b> — где провал, где рост, какой тренер приносит больше</div>
-          <div class="power-li"><b>Сравнение точек</b> сети — единый дашборд по всему бизнесу</div>
-          <div class="power-li"><b>Push-уведомления</b> о подозрительных операциях — возврат больше нормы, нетипичная скидка</div>
-          <div class="power-li"><b>Мобильный доступ</b> к финрезу — из любой точки, без ноутбука</div>
+          <div class="power-li">
+            <div class="power-li-check"></div>
+            <div class="power-li-text">
+              <span class="power-li-title">Касса и реализация — отдельно</span>
+              <span class="power-li-desc">Видите авансы клиентов и реальную прибыль, не путая их с кассой</span>
+            </div>
+          </div>
+          <div class="power-li">
+            <div class="power-li-check"></div>
+            <div class="power-li-text">
+              <span class="power-li-title">Аналитика по дням и месяцам</span>
+              <span class="power-li-desc">Где провал, где рост, какой тренер и направление приносит больше</span>
+            </div>
+          </div>
+          <div class="power-li">
+            <div class="power-li-check"></div>
+            <div class="power-li-text">
+              <span class="power-li-title">Сравнение точек сети</span>
+              <span class="power-li-desc">Единый дашборд по всему бизнесу — клубы, студии, точки в разных городах</span>
+            </div>
+          </div>
+          <div class="power-li">
+            <div class="power-li-check"></div>
+            <div class="power-li-text">
+              <span class="power-li-title">Push о подозрительных операциях</span>
+              <span class="power-li-desc">Возврат больше нормы, нетипичная скидка, операция вне рабочего времени</span>
+            </div>
+          </div>
+          <div class="power-li">
+            <div class="power-li-check"></div>
+            <div class="power-li-text">
+              <span class="power-li-title">Мобильный доступ к финрезу</span>
+              <span class="power-li-desc">Из любой точки, без ноутбука — открыли телефон и видите кассу</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="power-vis">
@@ -1252,11 +1289,41 @@
         </h3>
         <p>База клиентов — главный актив клуба. Тренер уходит — и забирает половину клуба в свой телефон. С Fitbase такого не будет: <b>гибкие роли, лог действий, блок выгрузки</b>. Каждое движение видно. Каждый видит только то, что должен.</p>
         <div class="power-list">
-          <div class="power-li"><b>Роли и доступы</b> — админ видит только своё, тренер — только своих клиентов</div>
-          <div class="power-li"><b>Лог действий</b> — кто, когда, что изменил, с какого устройства</div>
-          <div class="power-li"><b>NDA в шаблоне договора</b> — юридическая защита базы при найме</div>
-          <div class="power-li"><b>Блокировка выгрузки</b> базы целиком — нельзя скачать список телефонов</div>
-          <div class="power-li"><b>Двухфакторная аутентификация</b> — без вашего разрешения никто не зайдёт</div>
+          <div class="power-li">
+            <div class="power-li-check"></div>
+            <div class="power-li-text">
+              <span class="power-li-title">Роли и доступы</span>
+              <span class="power-li-desc">Админ видит только своё, тренер — только своих клиентов</span>
+            </div>
+          </div>
+          <div class="power-li">
+            <div class="power-li-check"></div>
+            <div class="power-li-text">
+              <span class="power-li-title">Лог действий</span>
+              <span class="power-li-desc">Кто, когда, что изменил, с какого устройства — всё видно</span>
+            </div>
+          </div>
+          <div class="power-li">
+            <div class="power-li-check"></div>
+            <div class="power-li-text">
+              <span class="power-li-title">NDA в шаблоне договора</span>
+              <span class="power-li-desc">Юридическая защита базы при найме тренеров и админов</span>
+            </div>
+          </div>
+          <div class="power-li">
+            <div class="power-li-check"></div>
+            <div class="power-li-text">
+              <span class="power-li-title">Блокировка выгрузки базы</span>
+              <span class="power-li-desc">Нельзя скачать список телефонов целиком — только работать через систему</span>
+            </div>
+          </div>
+          <div class="power-li">
+            <div class="power-li-check"></div>
+            <div class="power-li-text">
+              <span class="power-li-title">Двухфакторная аутентификация</span>
+              <span class="power-li-desc">Без вашего разрешения никто не зайдёт — даже зная пароль</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="power-vis">
@@ -1304,11 +1371,41 @@
         </h3>
         <p>Современный дизайн уровня банковских приложений — Click, Payme, Anor. Клиенты сравнивают и выбирают тех, кто даёт удобство. <b>Запись в один тап, оплата через Click, push на узбекском</b>. Брендируем под ваш клуб — название, логотип, цвета.</p>
         <div class="power-list">
-          <div class="power-li"><b>iOS + Android</b> в официальных сторах — App Store и Google Play</div>
-          <div class="power-li"><b>Брендирование</b> под клуб — название, цвета, логотип, иконка</div>
-          <div class="power-li"><b>Запись 24/7</b> — клиент бронирует место в любое время без админа</div>
-          <div class="power-li"><b>Оплата Click, Payme, Humo</b> прямо в приложении</div>
-          <div class="power-li"><b>Push-уведомления</b> на узбекском — напоминания, продление, акции</div>
+          <div class="power-li">
+            <div class="power-li-check"></div>
+            <div class="power-li-text">
+              <span class="power-li-title">iOS + Android в официальных сторах</span>
+              <span class="power-li-desc">App Store и Google Play — без обходных путей и установки apk</span>
+            </div>
+          </div>
+          <div class="power-li">
+            <div class="power-li-check"></div>
+            <div class="power-li-text">
+              <span class="power-li-title">Брендирование под клуб</span>
+              <span class="power-li-desc">Название, цвета, логотип, иконка — приложение выглядит как ваше</span>
+            </div>
+          </div>
+          <div class="power-li">
+            <div class="power-li-check"></div>
+            <div class="power-li-text">
+              <span class="power-li-title">Запись 24/7</span>
+              <span class="power-li-desc">Клиент бронирует место в любое время без админа и звонков</span>
+            </div>
+          </div>
+          <div class="power-li">
+            <div class="power-li-check"></div>
+            <div class="power-li-text">
+              <span class="power-li-title">Оплата Click, Payme, Humo</span>
+              <span class="power-li-desc">Прямо в приложении — с автопродлением и сохранением карты</span>
+            </div>
+          </div>
+          <div class="power-li">
+            <div class="power-li-check"></div>
+            <div class="power-li-text">
+              <span class="power-li-title">Push-уведомления на узбекском</span>
+              <span class="power-li-desc">Напоминания о тренировке, продление, акции — всё на родном языке</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="app-vis">
