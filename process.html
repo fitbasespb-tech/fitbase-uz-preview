@@ -266,6 +266,67 @@
   .slide.end h2 .accent{color:var(--sticky-yellow)}
   .slide.end p{font-size:22px;color:rgba(255,255,255,.8);max-width:720px;margin-bottom:36px;line-height:1.4}
 
+  /* JTBD scrollable table */
+  .jtbd-wrap{
+    background:#fff;border-radius:16px;
+    border:1.5px solid var(--line);
+    box-shadow:0 14px 36px rgba(60,103,214,.10);
+    overflow:hidden;
+    width:100%;max-width:1200px;
+  }
+  .jtbd-scroll{
+    max-height:480px;overflow-y:auto;
+    scrollbar-width:thin;scrollbar-color:var(--blue-2) var(--canvas);
+  }
+  .jtbd-scroll::-webkit-scrollbar{width:10px}
+  .jtbd-scroll::-webkit-scrollbar-track{background:var(--canvas)}
+  .jtbd-scroll::-webkit-scrollbar-thumb{background:var(--blue-2);border-radius:10px;border:2px solid var(--canvas)}
+  .jtbd-table{width:100%;border-collapse:collapse;font-size:14px}
+  .jtbd-table thead{
+    position:sticky;top:0;background:var(--ink);color:#fff;z-index:2;
+  }
+  .jtbd-table th{
+    padding:14px 18px;text-align:left;font-size:11px;font-weight:800;
+    text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.85);
+  }
+  .jtbd-table tbody tr{
+    border-bottom:1px solid var(--line);transition:background .15s;
+  }
+  .jtbd-table tbody tr:hover{background:var(--canvas)}
+  .jtbd-table tbody tr.hot{background:rgba(255,243,140,.35)}
+  .jtbd-table tbody tr.hot:hover{background:rgba(255,243,140,.55)}
+  .jtbd-table td{padding:14px 18px;line-height:1.4;color:var(--ink-2);vertical-align:top}
+  .jtbd-table td.size{width:90px}
+  .jtbd-table td.trend{width:80px;font-family:'SF Mono',monospace;font-weight:800;text-align:center}
+  .jtbd-table td.segments{width:240px;font-size:12.5px;color:var(--grey)}
+  .jtbd-table td.name{font-weight:600}
+  .size-pill{
+    display:inline-block;padding:4px 10px;border-radius:6px;
+    font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;
+  }
+  .size-pill.big{background:#3C67D6;color:#fff}
+  .size-pill.mid{background:#FFE5A0;color:#9C7300}
+  .size-pill.sml{background:var(--canvas);color:var(--grey)}
+  .trend-up{color:var(--green)}
+  .trend-up-strong{color:#2E8B0A}
+  .trend-flat{color:var(--grey-l)}
+  .trend-down{color:var(--red)}
+  .hot-badge{
+    display:inline-block;background:var(--sticky-yellow);color:#5C4C00;
+    font-size:9px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;
+    padding:2px 7px;border-radius:4px;margin-left:8px;vertical-align:middle;
+  }
+  .jtbd-foot{
+    background:var(--canvas);padding:14px 22px;
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:12px;color:var(--grey);font-weight:600;border-top:1px solid var(--line);
+  }
+  .jtbd-foot b{color:var(--ink)}
+  .jtbd-foot .legend{display:flex;gap:18px;align-items:center}
+  .jtbd-foot .leg-item{display:flex;align-items:center;gap:6px}
+  .jtbd-foot .leg-swatch{width:14px;height:14px;border-radius:3px}
+  .jtbd-foot .leg-swatch.hot{background:rgba(255,243,140,.6)}
+
   /* Browser-style landing mockup */
   .lend-row{display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap;padding:24px 0}
   .lend-card{display:flex;flex-direction:column;align-items:center;gap:14px}
@@ -674,10 +735,81 @@
     </div>
   </section>
 
-  <!-- SLIDE 8: ПРИМЕРЫ -->
+  <!-- SLIDE 8: JTBD-КАРТА -->
   <section class="slide">
     <div class="slide-step">
       <span class="slide-num">08</span>
+      <span class="slide-tag">топливо для claude</span>
+    </div>
+    <h2 class="slide-title">JTBD-карта — <span class="accent">95 работ</span> из интервью</h2>
+    <p class="slide-lede">Каждое интервью — Whisper → разбор по гайду Замесина → джобы в таблицу. Claude видит всю карту: какие работы критичные, в каком сегменте, какой тренд. Когда нужен лендинг — берёт релевантные джобы и собирает копирайт под них. <b>Поэтому черновик попадает в боль с первого раза.</b></p>
+
+    <div class="canvas-area" style="flex-direction:column;align-items:flex-start;gap:24px">
+      <div class="jtbd-wrap">
+        <div class="jtbd-scroll">
+          <table class="jtbd-table">
+            <thead>
+              <tr>
+                <th class="size">Размер</th>
+                <th>Работа клиента (Job to be Done)</th>
+                <th class="segments">Ключевые сегменты</th>
+                <th class="trend">Тренд</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="hot"><td class="size"><span class="size-pill big">Big</span></td><td class="name">Управлять студией централизованно — не быть узким местом<span class="hot-badge">критический</span></td><td class="segments">Все сегменты</td><td class="trend trend-up-strong">↑↑</td></tr>
+              <tr class="hot"><td class="size"><span class="size-pill mid">Middle</span></td><td class="name">Видеть реальную прибыль — реализация vs касса<span class="hot-badge">критический</span></td><td class="segments">Каталина, Сеть, Клубы</td><td class="trend trend-up-strong">↑↑</td></tr>
+              <tr class="hot"><td class="size"><span class="size-pill mid">Middle</span></td><td class="name">Видеть кто «засыпает» — удержание до отмены<span class="hot-badge">критический</span></td><td class="segments">Каталина, Растущие студии</td><td class="trend trend-up-strong">↑↑</td></tr>
+              <tr class="hot"><td class="size"><span class="size-pill mid">Middle</span></td><td class="name">Считать зарплату по KPI без Excel и ошибок<span class="hot-badge">критический</span></td><td class="segments">Каталина, Дмитрий, Lime</td><td class="trend trend-up-strong">↑↑</td></tr>
+              <tr class="hot"><td class="size"><span class="size-pill mid">Middle</span></td><td class="name">Автоматизировать рекурренты и автопродление<span class="hot-badge">критический</span></td><td class="segments">Unmanned, Сеть</td><td class="trend trend-up-strong">↑↑</td></tr>
+              <tr class="hot"><td class="size"><span class="size-pill big">Big</span></td><td class="name">Удерживать клиентов через коммуникации<span class="hot-badge">критический</span></td><td class="segments">Все</td><td class="trend trend-up-strong">↑↑</td></tr>
+              <tr class="hot"><td class="size"><span class="size-pill mid">Middle</span></td><td class="name">Делегировать продажи и сервис администраторам<span class="hot-badge">критический</span></td><td class="segments">Каталина, J2</td><td class="trend trend-up-strong">↑↑</td></tr>
+              <tr class="hot"><td class="size"><span class="size-pill mid">Middle</span></td><td class="name">Нанять и контролировать правильных сотрудников<span class="hot-badge">критический</span></td><td class="segments">Сеть, Каталина</td><td class="trend trend-up-strong">↑↑</td></tr>
+              <tr><td class="size"><span class="size-pill big">Big</span></td><td class="name">Контролировать финансы и продажи</td><td class="segments">Все</td><td class="trend trend-up">↑↑</td></tr>
+              <tr><td class="size"><span class="size-pill mid">Middle</span></td><td class="name">Контролировать продажи и выручку (план-факт)</td><td class="segments">Все</td><td class="trend trend-up">↑↑</td></tr>
+              <tr><td class="size"><span class="size-pill big">Big</span></td><td class="name">Автоматизировать зарплаты тренеров</td><td class="segments">Танцы, Сеть</td><td class="trend trend-up">↑↑</td></tr>
+              <tr><td class="size"><span class="size-pill mid">Middle</span></td><td class="name">Мотивировать тренеров оплатой по факту посещений</td><td class="segments">Все</td><td class="trend trend-up">↑↑</td></tr>
+              <tr><td class="size"><span class="size-pill mid">Middle</span></td><td class="name">Удерживать клиентов через рассылки и триггеры</td><td class="segments">Все</td><td class="trend trend-up">↑↑</td></tr>
+              <tr><td class="size"><span class="size-pill mid">Middle</span></td><td class="name">Привлечь через уведомления и геймификацию</td><td class="segments">Ярослава, Дмитрий</td><td class="trend trend-flat">↔</td></tr>
+              <tr><td class="size"><span class="size-pill mid">Middle</span></td><td class="name">Гибко управлять расписанием (группы + персональные)</td><td class="segments">Все</td><td class="trend trend-flat">↔</td></tr>
+              <tr><td class="size"><span class="size-pill mid">Middle</span></td><td class="name">Тренеры сами отмечают посещения и ведут запись</td><td class="segments">Ярослава, Дмитрий</td><td class="trend trend-flat">↔</td></tr>
+              <tr><td class="size"><span class="size-pill mid">Middle</span></td><td class="name">Интегрировать все каналы коммуникации в одно окно</td><td class="segments">Все</td><td class="trend trend-flat">↔</td></tr>
+              <tr><td class="size"><span class="size-pill mid">Middle</span></td><td class="name">Лидогенерация — заявки из всех каналов в CRM</td><td class="segments">Все</td><td class="trend trend-up">↑</td></tr>
+              <tr><td class="size"><span class="size-pill mid">Middle</span></td><td class="name">Аналитика и отчёты (BI-дашборд)</td><td class="segments">Все</td><td class="trend trend-up">↑↑</td></tr>
+              <tr><td class="size"><span class="size-pill mid">Middle</span></td><td class="name">Обзор по сети — один экран без ручной сборки</td><td class="segments">Сеть, Дмитрий</td><td class="trend trend-up">↑</td></tr>
+              <tr><td class="size"><span class="size-pill mid">Middle</span></td><td class="name">Автоматический вход по QR без участия человека</td><td class="segments">Unmanned</td><td class="trend trend-up">↑↑</td></tr>
+              <tr><td class="size"><span class="size-pill mid">Middle</span></td><td class="name">Внедрить свободное посещение с кодовым доступом</td><td class="segments">Дмитрий, Unmanned</td><td class="trend trend-up">↑</td></tr>
+              <tr><td class="size"><span class="size-pill mid">Middle</span></td><td class="name">Защитить базу клиентов от тренеров (NDA, доступы)</td><td class="segments">Каталина</td><td class="trend trend-up">↑</td></tr>
+              <tr><td class="size"><span class="size-pill sml">Small</span></td><td class="name">Видеть остатки по абонементам в моменте</td><td class="segments">Каталина</td><td class="trend trend-flat">↔</td></tr>
+              <tr><td class="size"><span class="size-pill sml">Small</span></td><td class="name">Связать аккаунты родителя и ребёнка</td><td class="segments">Каталина, Танцы</td><td class="trend trend-up">↑</td></tr>
+              <tr><td class="size"><span class="size-pill sml">Small</span></td><td class="name">Подписывать договоры через СМС (электронно)</td><td class="segments">Каталина, Ярослава</td><td class="trend trend-up">↑</td></tr>
+              <tr><td class="size"><span class="size-pill sml">Small</span></td><td class="name">Видеть рейтинг тренеров по посещаемости</td><td class="segments">Каталина</td><td class="trend trend-flat">↔</td></tr>
+              <tr><td class="size"><span class="size-pill big">Big</span></td><td class="name">Запустить студию с нуля с готовыми процессами</td><td class="segments">Opening (Ярослава)</td><td class="trend trend-up">↑</td></tr>
+              <tr><td class="size"><span class="size-pill big">Big</span></td><td class="name">Удобство для клиентов и лояльность</td><td class="segments">Все</td><td class="trend trend-up">↑</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="jtbd-foot">
+          <span><b>29 / 95</b> работ в таблице · полная карта в Knowledge/</span>
+          <div class="legend">
+            <div class="leg-item"><div class="leg-swatch hot"></div>топ-8 критических</div>
+            <div class="leg-item">↑↑ растёт · ↑ умеренный рост · ↔ стабильный</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+        <div class="sticky">95 джобов<br>из 30+ интервью<small>гайд Замесина AJTBD v3.3</small></div>
+        <div class="sticky pink tilt-r">Claude знает<br>все эти работы<small>и под нужный сегмент<br>собирает копирайт</small></div>
+        <div class="sticky green">Поэтому черновик<br>попадает в боль<small>с первой итерации</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 9: ПРИМЕРЫ -->
+  <section class="slide">
+    <div class="slide-step">
+      <span class="slide-num">09</span>
       <span class="slide-tag">примеры</span>
     </div>
     <h2 class="slide-title">Что собрали за <span class="accent">полгода</span></h2>
@@ -752,10 +884,10 @@
     </div>
   </section>
 
-  <!-- SLIDE 9: ИТОГ / БУДУЩЕЕ -->
+  <!-- SLIDE 10: ИТОГ / БУДУЩЕЕ -->
   <section class="slide end">
     <div class="slide-step">
-      <span class="slide-num">09</span>
+      <span class="slide-num">10</span>
       <span class="slide-tag">итог</span>
     </div>
     <h2><span class="accent">×10 скорость.</span><br>×3 гипотез / месяц.<br>−70% бюджет на старте.</h2>
