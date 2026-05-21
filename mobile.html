@@ -657,30 +657,32 @@
   .pay-pill .dot.apelsin{background:#FF6B00}
 
   /* ─── Pricing ─── */
-  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:32px}
   .price-card{
     background:#fff;border:1.5px solid var(--line);border-radius:24px;
-    padding:36px 32px;display:flex;flex-direction:column;gap:20px;
+    padding:36px 32px;display:flex;flex-direction:column;gap:18px;
     position:relative;
+    transition:border-color .2s,transform .2s;
   }
-  .price-card.featured{
-    border:2px solid var(--blue);
-    box-shadow:0 30px 60px -20px rgba(60,103,214,.25);
+  .price-card:hover{border-color:var(--blue);transform:translateY(-3px)}
+  .price-icon{
+    width:54px;height:54px;border-radius:14px;
+    background:var(--blue-10);color:var(--blue);
+    display:flex;align-items:center;justify-content:center;font-size:26px;
+    margin-bottom:4px;
   }
-  .price-card.featured::before{
-    content:"Самый популярный";
-    position:absolute;top:-14px;left:50%;transform:translateX(-50%);
-    background:var(--blue);color:#fff;padding:6px 14px;border-radius:100px;
-    font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
-    white-space:nowrap;
+  .price-name{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.015em;line-height:1.2}
+  .price-target{font-size:13px;color:var(--grey);line-height:1.5}
+  .price-from{
+    display:flex;align-items:baseline;gap:6px;
+    padding:14px 18px;background:var(--canvas);border-radius:12px;
+    margin:6px 0 2px;
   }
-  .price-name{font-size:14px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em}
-  .price-desc{font-size:14px;color:var(--grey);line-height:1.45}
-  .price-big{font-size:42px;font-weight:800;color:var(--ink);letter-spacing:-.03em;line-height:1}
-  .price-big .small{font-size:.4em;font-weight:600;color:var(--grey)}
-  .price-big .currency{font-size:.55em;color:var(--grey-l)}
-  .price-features{display:flex;flex-direction:column;gap:10px}
-  .price-feat{font-size:14px;line-height:1.45;color:var(--ink-2);display:flex;gap:10px;align-items:flex-start}
+  .price-from .lbl{font-size:11px;font-weight:700;color:var(--grey-l);text-transform:uppercase;letter-spacing:.06em;margin-right:auto}
+  .price-from .v{font-size:22px;font-weight:800;color:var(--blue-dk);letter-spacing:-.015em;line-height:1}
+  .price-from .v .small{font-size:.55em;font-weight:600;color:var(--grey)}
+  .price-features{display:flex;flex-direction:column;gap:9px}
+  .price-feat{font-size:13.5px;line-height:1.45;color:var(--ink-2);display:flex;gap:10px;align-items:flex-start}
   .price-feat::before{
     content:"";flex-shrink:0;width:18px;height:18px;border-radius:50%;
     background:var(--green-10);
@@ -691,9 +693,47 @@
     background:var(--blue);color:#fff;padding:14px 20px;
     border-radius:12px;font-size:15px;font-weight:700;
     text-align:center;text-decoration:none;letter-spacing:-.01em;
-    margin-top:auto;
+    margin-top:auto;display:flex;align-items:center;justify-content:center;gap:6px;
   }
-  .price-cta.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+  .price-cta:hover{background:var(--blue-dk)}
+
+  /* Conditions block under pricing */
+  .price-conditions{
+    background:linear-gradient(135deg,#0E1B36 0%,#1F2A47 100%);
+    color:#fff;border-radius:28px;padding:48px;position:relative;overflow:hidden;
+  }
+  .price-conditions::before{
+    content:"";position:absolute;top:-150px;right:-100px;
+    width:420px;height:420px;border-radius:50%;
+    background:radial-gradient(circle,rgba(244,168,44,.15) 0%,transparent 60%);
+    pointer-events:none;
+  }
+  .price-cond-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative;z-index:1}
+  .price-cond-left h3{font-size:32px;font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:14px}
+  .price-cond-left h3 .accent{color:var(--uz-gold)}
+  .price-cond-left p{font-size:16px;line-height:1.55;color:rgba(255,255,255,.78);margin-bottom:24px}
+  .price-cond-cta{
+    background:var(--uz-gold);color:var(--ink);padding:16px 28px;
+    border-radius:12px;font-size:15px;font-weight:700;
+    text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+    letter-spacing:-.01em;
+  }
+  .price-cond-cta:hover{background:#E89510}
+  .price-cond-list{display:flex;flex-direction:column;gap:12px}
+  .price-cond-item{
+    display:flex;gap:14px;align-items:flex-start;
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:12px;padding:14px 18px;
+  }
+  .price-cond-icon{
+    width:36px;height:36px;border-radius:10px;
+    background:rgba(244,168,44,.15);color:var(--uz-gold);
+    display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;
+  }
+  .price-cond-text .t{font-size:14px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:2px}
+  .price-cond-text .d{font-size:12.5px;color:rgba(255,255,255,.65);line-height:1.45}
 
   /* ─── FAQ ─── */
   .faq-list{display:flex;flex-direction:column;gap:14px;max-width:880px}
@@ -879,9 +919,24 @@
     .partner-contact-pill{font-size:12px}
 
     .price-grid{grid-template-columns:1fr;gap:14px}
-    .price-card{padding:28px 24px;border-radius:18px}
-    .price-card.featured::before{font-size:10px;padding:5px 12px}
-    .price-big{font-size:34px}
+    .price-card{padding:28px 24px;border-radius:18px;gap:14px}
+    .price-icon{width:46px;height:46px;font-size:22px}
+    .price-name{font-size:19px}
+    .price-target{font-size:13px}
+    .price-from{padding:12px 14px;margin:4px 0}
+    .price-from .v{font-size:18px}
+    .price-cta{padding:13px 18px;font-size:14px}
+
+    /* Conditions */
+    .price-conditions{padding:32px 24px;border-radius:20px}
+    .price-cond-grid{grid-template-columns:1fr;gap:28px}
+    .price-cond-left h3{font-size:24px}
+    .price-cond-left p{font-size:14px;margin-bottom:18px}
+    .price-cond-cta{padding:14px 22px;font-size:14px}
+    .price-cond-item{padding:12px 14px;gap:12px}
+    .price-cond-icon{width:32px;height:32px;font-size:16px}
+    .price-cond-text .t{font-size:13px}
+    .price-cond-text .d{font-size:12px}
 
     .faq-item{padding:20px 22px;border-radius:12px}
     .faq-item h4{font-size:15px}
@@ -1681,31 +1736,39 @@
 <!-- PRICING -->
 <section class="canvas" id="price">
   <div class="container">
-    <div class="sec-head">
-      <span class="eyebrow"><span class="dot"></span>Цены</span>
-      <h2>Открыто. В сумах. <span class="accent">Без «оставьте заявку».</span></h2>
-      <p class="lede">Подписочная модель — платите помесячно, отменяете в любой момент. 14 дней бесплатно для всех тарифов.</p>
+    <div class="sec-head" style="text-align:center;margin:0 auto 56px;max-width:880px">
+      <span class="eyebrow" style="margin:0 auto 18px"><span class="dot"></span>Подбор тарифа</span>
+      <h2>Считаем <span class="accent">под ваш клуб</span> — со всеми скидками и условиями</h2>
+      <p class="lede" style="margin:0 auto">Финальная цена зависит от размера клуба, длительности контракта и нужных модулей. Никаких «оставьте заявку и потом мы вам скажем» — расчёт за день, без сюрпризов.</p>
     </div>
 
     <div class="price-grid">
       <div class="price-card">
-        <div class="price-name">Start · Для студий</div>
-        <div class="price-big">350 000 <span class="currency">сум</span><span class="small">/мес</span></div>
-        <div class="price-desc">Для одной студии или клуба до 200 активных клиентов. Базовый функционал — расписание, оплаты, мобильное приложение.</div>
+        <div class="price-icon">🧘</div>
+        <div class="price-name">Start</div>
+        <div class="price-target">Для одной студии — пилатес, йога, танцы, единоборства. До 200 активных клиентов.</div>
+        <div class="price-from">
+          <span class="lbl">от</span>
+          <span class="v">350 000 <span class="small">сум/мес</span></span>
+        </div>
         <div class="price-features">
           <div class="price-feat">До 200 активных клиентов</div>
           <div class="price-feat">Click, Payme, Humo, Uzcard</div>
           <div class="price-feat">Мобильное приложение клиента</div>
           <div class="price-feat">Telegram-рассылки</div>
-          <div class="price-feat">Поддержка на UZ + RU</div>
+          <div class="price-feat">Поддержка на узбекском и русском</div>
         </div>
-        <a href="#register" class="price-cta ghost">Начать пробный период</a>
+        <a href="#register" class="price-cta">Получить расчёт</a>
       </div>
 
-      <div class="price-card featured">
-        <div class="price-name">Business · Самый выбираемый</div>
-        <div class="price-big">750 000 <span class="currency">сум</span><span class="small">/мес</span></div>
-        <div class="price-desc">Для растущего клуба или студии 200–800 клиентов. Все модули + расширенная аналитика и СКУД.</div>
+      <div class="price-card">
+        <div class="price-icon">🏋</div>
+        <div class="price-name">Business</div>
+        <div class="price-target">Для растущего клуба или студии — 200–800 клиентов. Все модули, СКУД, аккаунт-менеджер.</div>
+        <div class="price-from">
+          <span class="lbl">от</span>
+          <span class="v">750 000 <span class="small">сум/мес</span></span>
+        </div>
         <div class="price-features">
           <div class="price-feat">До 800 активных клиентов</div>
           <div class="price-feat">Все модули включая СКУД</div>
@@ -1714,13 +1777,17 @@
           <div class="price-feat">Персональный аккаунт-менеджер</div>
           <div class="price-feat">Приоритет в поддержке</div>
         </div>
-        <a href="#register" class="price-cta">14 дней бесплатно →</a>
+        <a href="#register" class="price-cta">Получить расчёт</a>
       </div>
 
       <div class="price-card">
-        <div class="price-name">Network · Для сетей</div>
-        <div class="price-big">от 1 200 000 <span class="currency">сум</span><span class="small">/мес</span></div>
-        <div class="price-desc">Для сетей от 2 точек. Единая база, сравнение точек, мульти-юрлица, кастомные интеграции.</div>
+        <div class="price-icon">🏢</div>
+        <div class="price-name">Network</div>
+        <div class="price-target">Для сетей от 2 точек. Единая база, сравнение точек, мульти-юрлица, кастомные интеграции.</div>
+        <div class="price-from">
+          <span class="lbl">от</span>
+          <span class="v">1 200 000 <span class="small">сум/мес</span></span>
+        </div>
         <div class="price-features">
           <div class="price-feat">От 2 точек, без лимита клиентов</div>
           <div class="price-feat">Единый дашборд по сети</div>
@@ -1728,11 +1795,50 @@
           <div class="price-feat">Кастомные интеграции и API</div>
           <div class="price-feat">SLA и выделенная поддержка</div>
         </div>
-        <a href="#register" class="price-cta ghost">Связаться с нами</a>
+        <a href="#register" class="price-cta">Получить расчёт</a>
       </div>
     </div>
 
-    <p style="text-align:center;font-size:13px;color:#9AA3B5;margin-top:24px;font-style:italic">— Цены — заглушки. Нужны реальные тарифы под UZ-рынок —</p>
+    <!-- Conditions -->
+    <div class="price-conditions">
+      <div class="price-cond-grid">
+        <div class="price-cond-left">
+          <h3>Считаем <span class="accent">индивидуально</span> — со всеми скидками и условиями для вашего клуба</h3>
+          <p>Финальная цена зависит от размера клуба, длительности контракта и нужных модулей. Заявка — расчёт за рабочий день — встреча с Никитой — пробный период.</p>
+          <a href="#register" class="price-cond-cta">Получить расчёт →</a>
+        </div>
+        <div class="price-cond-list">
+          <div class="price-cond-item">
+            <div class="price-cond-icon">⚡</div>
+            <div class="price-cond-text">
+              <div class="t">14 дней бесплатно</div>
+              <div class="d">Полный доступ, без карты, без обязательств</div>
+            </div>
+          </div>
+          <div class="price-cond-item">
+            <div class="price-cond-icon">💰</div>
+            <div class="price-cond-text">
+              <div class="t">Скидки до 30% за длительный контракт</div>
+              <div class="d">3 / 6 / 12 месяцев — чем длиннее, тем выгоднее</div>
+            </div>
+          </div>
+          <div class="price-cond-item">
+            <div class="price-cond-icon">🚀</div>
+            <div class="price-cond-text">
+              <div class="t">Запуск под ключ — бесплатно</div>
+              <div class="d">Перенос базы, настройка, обучение команды — за наш счёт</div>
+            </div>
+          </div>
+          <div class="price-cond-item">
+            <div class="price-cond-icon">🤝</div>
+            <div class="price-cond-text">
+              <div class="t">Индивидуальные условия для сетей</div>
+              <div class="d">Скидки за объём, рассрочка, кастомные модули — обсуждаем</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
