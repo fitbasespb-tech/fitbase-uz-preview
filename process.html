@@ -266,6 +266,56 @@
   .slide.end h2 .accent{color:var(--sticky-yellow)}
   .slide.end p{font-size:22px;color:rgba(255,255,255,.8);max-width:720px;margin-bottom:36px;line-height:1.4}
 
+  /* Browser-style landing mockup */
+  .lend-row{display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap;padding:24px 0}
+  .lend-card{display:flex;flex-direction:column;align-items:center;gap:14px}
+  .lend-frame{
+    width:240px;background:#fff;
+    border-radius:14px;overflow:hidden;
+    box-shadow:0 30px 60px rgba(60,103,214,.18),0 4px 14px rgba(0,0,0,.08);
+    border:1px solid var(--line);
+    transform:rotate(-1.5deg);
+    transition:transform .25s;
+  }
+  .lend-card:nth-child(even) .lend-frame{transform:rotate(1.5deg)}
+  .lend-card:nth-child(3) .lend-frame{transform:rotate(-2deg)}
+  .lend-frame:hover{transform:rotate(0) scale(1.04)}
+  .lend-bar{
+    background:#F0F0F0;padding:8px 12px;
+    display:flex;align-items:center;gap:6px;
+    border-bottom:1px solid #E0E0E0;
+  }
+  .lend-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+  .lend-dot.red{background:#FF5F57}
+  .lend-dot.yellow{background:#FEBC2E}
+  .lend-dot.green{background:#28C840}
+  .lend-url{
+    flex:1;text-align:center;font-size:10px;color:#555;
+    background:#fff;padding:4px 10px;border-radius:6px;margin-left:8px;
+    font-family:'SF Mono','Menlo',monospace;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .lend-screen{
+    max-height:380px;overflow:hidden;position:relative;
+  }
+  .lend-screen img{width:100%;display:block}
+  .lend-screen::after{
+    content:"";position:absolute;bottom:0;left:0;right:0;
+    height:60px;
+    background:linear-gradient(180deg,transparent 0%,rgba(255,255,255,.85) 100%);
+    pointer-events:none;
+  }
+  .lend-meta{text-align:center;max-width:240px}
+  .lend-name{font-size:18px;font-weight:800;color:var(--ink);letter-spacing:-.01em;margin-bottom:4px}
+  .lend-tag{font-size:13px;color:var(--grey);line-height:1.4;margin-bottom:6px}
+  .lend-badge{
+    display:inline-flex;align-items:center;gap:5px;
+    font-size:11px;font-weight:700;color:var(--blue);
+    background:var(--blue-10);padding:4px 10px;border-radius:100px;
+    letter-spacing:.02em;
+  }
+  .lend-badge.gold{color:#9C7300;background:#FFF6D8}
+
   /* Comparison row */
   .compare-row{
     display:grid;grid-template-columns:1fr 1fr;gap:32px;width:100%;align-items:start;
@@ -624,10 +674,88 @@
     </div>
   </section>
 
-  <!-- SLIDE 8: ИТОГ / БУДУЩЕЕ -->
-  <section class="slide end">
+  <!-- SLIDE 8: ПРИМЕРЫ -->
+  <section class="slide">
     <div class="slide-step">
       <span class="slide-num">08</span>
+      <span class="slide-tag">примеры</span>
+    </div>
+    <h2 class="slide-title">Что собрали за <span class="accent">полгода</span></h2>
+    <p class="slide-lede">Все лендинги — от интервью до URL за 1–2 дня. Claude собирает HTML по джобам клиента из расшифровки, правлю в чате, отдаю в Figma — дизайнер докрашивает 1–2 часа, дальше верстка или Lovable.</p>
+
+    <div class="canvas-area">
+      <div class="lend-row">
+
+        <div class="lend-card">
+          <div class="lend-frame">
+            <div class="lend-bar">
+              <span class="lend-dot red"></span>
+              <span class="lend-dot yellow"></span>
+              <span class="lend-dot green"></span>
+              <span class="lend-url">fitbase.uz</span>
+            </div>
+            <div class="lend-screen">
+              <img src="assets/lend-fitbase-uz.png" alt="Fitbase UZ landing">
+            </div>
+          </div>
+          <div class="lend-meta">
+            <div class="lend-name">Fitbase Узбекистан</div>
+            <div class="lend-tag">CRM для UZ-рынка с локальным партнёром</div>
+            <div class="lend-badge">→ в работе</div>
+          </div>
+        </div>
+
+        <div class="lend-card">
+          <div class="lend-frame">
+            <div class="lend-bar">
+              <span class="lend-dot red"></span>
+              <span class="lend-dot yellow"></span>
+              <span class="lend-dot green"></span>
+              <span class="lend-url">tvoyzal.ru</span>
+            </div>
+            <div class="lend-screen">
+              <img src="assets/lend-119.png" alt="ТВОЙ ЗАЛ landing">
+            </div>
+          </div>
+          <div class="lend-meta">
+            <div class="lend-name">ТВОЙ ЗАЛ</div>
+            <div class="lend-tag">Зал без персонала · подписка по QR</div>
+            <div class="lend-badge gold">→ передан в Lovable</div>
+          </div>
+        </div>
+
+        <div class="lend-card">
+          <div class="lend-frame">
+            <div class="lend-bar">
+              <span class="lend-dot red"></span>
+              <span class="lend-dot yellow"></span>
+              <span class="lend-dot green"></span>
+              <span class="lend-url">events.fitbase.io</span>
+            </div>
+            <div class="lend-screen">
+              <img src="assets/lend-workshop.png" alt="Workshop landing">
+            </div>
+          </div>
+          <div class="lend-meta">
+            <div class="lend-name">Воркшоп · залы без персонала</div>
+            <div class="lend-tag">Лендинг под трафик за полдня</div>
+            <div class="lend-badge">→ под трафик 28 мая</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="display:flex;gap:24px;margin-top:24px;align-items:center;flex-wrap:wrap">
+        <div class="sticky green">Один человек.<br>1-2 дня на лендинг<small>раньше: команда + 2 недели</small></div>
+        <div class="sticky tilt-r">Можно потрогать —<br>все ссылки публичные<small>можно тестировать трафиком</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 9: ИТОГ / БУДУЩЕЕ -->
+  <section class="slide end">
+    <div class="slide-step">
+      <span class="slide-num">09</span>
       <span class="slide-tag">итог</span>
     </div>
     <h2><span class="accent">×10 скорость.</span><br>×3 гипотез / месяц.<br>−70% бюджет на старте.</h2>
