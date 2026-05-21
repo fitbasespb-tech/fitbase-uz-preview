@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Эволюция дизайна лендингов · Fitbase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html,body{margin:0;padding:0;height:100%;overflow:hidden}
+  body{
+    font-family:'Inter',-apple-system,sans-serif;
+    color:#0E1B36;background:#FAFAF7;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+
+  :root{
+    --blue:#3C67D6;
+    --blue-2:#3FABFF;
+    --blue-10:#ECF1FF;
+    --ink:#0E1B36;
+    --grey:#6B7589;
+    --grey-l:#A1A1A1;
+    --line:#E4E7EE;
+    --canvas:#F4F6FA;
+    --sticky-yellow:#FFF38C;
+    --sticky-yellow-2:#FFEC55;
+    --sticky-pink:#FFC9D3;
+    --sticky-green:#C4F0AE;
+    --sticky-blue:#B8DDF8;
+    --green:#4EB410;
+    --red:#ED3D3D;
+  }
+
+  /* ─── Deck ─── */
+  .deck{
+    display:flex;flex-direction:row;
+    height:100vh;width:100vw;
+    overflow-x:auto;overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;
+  }
+  .deck::-webkit-scrollbar{display:none}
+  .deck{-ms-overflow-style:none;scrollbar-width:none}
+
+  .slide{
+    flex:0 0 100vw;height:100vh;
+    scroll-snap-align:start;
+    position:relative;
+    padding:60px 80px 80px;
+    display:flex;flex-direction:column;
+    overflow:hidden;
+  }
+
+  /* Slide number + step indicator */
+  .slide-step{
+    position:absolute;top:32px;left:80px;
+    display:flex;align-items:baseline;gap:14px;
+    font-family:'Caveat',cursive;
+  }
+  .slide-num{
+    font-size:48px;font-weight:700;color:var(--blue);
+    line-height:1;letter-spacing:-.02em;
+  }
+  .slide-tag{
+    font-size:22px;font-weight:600;color:var(--grey);
+    line-height:1;
+  }
+
+  /* Slide title */
+  .slide-title{
+    font-size:56px;font-weight:800;line-height:1.0;letter-spacing:-.025em;
+    color:var(--ink);margin:60px 0 14px;max-width:1100px;
+  }
+  .slide-title .accent{color:var(--blue)}
+  .slide-title .strike{text-decoration:line-through;text-decoration-thickness:3px;color:var(--grey-l)}
+  .slide-title .hl{background:var(--sticky-yellow);padding:0 8px;border-radius:6px}
+
+  .slide-lede{
+    font-size:20px;line-height:1.5;color:var(--grey);
+    max-width:880px;margin-bottom:36px;
+  }
+  .slide-lede b{color:var(--ink);font-weight:600}
+
+  /* Content area — Miro-board style */
+  .canvas-area{
+    flex:1;display:flex;align-items:center;justify-content:flex-start;
+    gap:32px;flex-wrap:wrap;
+    padding-top:8px;position:relative;
+  }
+
+  /* Sticky note */
+  .sticky{
+    background:var(--sticky-yellow);
+    padding:24px 28px;border-radius:6px;
+    box-shadow:0 8px 24px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.06);
+    min-width:180px;max-width:280px;
+    font-family:'Caveat',cursive;font-size:24px;font-weight:600;
+    line-height:1.25;color:#5C4C00;
+    transform:rotate(-2deg);
+    transition:transform .2s;
+  }
+  .sticky:hover{transform:rotate(0deg) scale(1.03)}
+  .sticky.tilt-r{transform:rotate(2deg)}
+  .sticky.tilt-r:hover{transform:rotate(0deg) scale(1.03)}
+  .sticky.pink{background:var(--sticky-pink);color:#7A2A3C}
+  .sticky.green{background:var(--sticky-green);color:#2E5A14}
+  .sticky.blue{background:var(--sticky-blue);color:#1A4A75}
+  .sticky.yellow-2{background:var(--sticky-yellow-2)}
+  .sticky small{display:block;font-size:14px;font-family:'Inter',sans-serif;font-weight:600;color:inherit;opacity:.65;margin-top:6px}
+
+  /* Card (screenshot/reference) */
+  .card{
+    background:#fff;border-radius:14px;
+    box-shadow:0 14px 36px rgba(60,103,214,.10), 0 1px 4px rgba(0,0,0,.06);
+    padding:20px 22px;
+    min-width:240px;max-width:360px;
+    border:1px solid var(--line);
+    transform:rotate(-.5deg);
+    transition:transform .2s;
+  }
+  .card:hover{transform:rotate(0) scale(1.02)}
+  .card.tilt-r{transform:rotate(.5deg)}
+  .card h4{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:4px;letter-spacing:-.01em}
+  .card .meta{font-size:12px;color:var(--grey-l);font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:12px}
+  .card p{font-size:14px;color:var(--grey);line-height:1.45}
+  .card .ico{
+    width:46px;height:46px;border-radius:10px;
+    background:var(--blue-10);color:var(--blue);
+    display:flex;align-items:center;justify-content:center;
+    font-size:22px;margin-bottom:10px;
+  }
+  .card.danger .ico{background:#FDECEC;color:var(--red)}
+  .card.success .ico{background:#EDF7E7;color:var(--green)}
+
+  /* Pipeline (flow of steps) */
+  .pipeline{
+    display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+    padding:14px 0;
+  }
+  .pl-step{
+    background:#fff;border:1.5px solid var(--line);
+    border-radius:14px;padding:14px 20px;
+    font-size:14px;font-weight:700;color:var(--ink);
+    display:flex;align-items:center;gap:8px;
+    box-shadow:0 2px 8px rgba(0,0,0,.04);
+  }
+  .pl-step.old{border-color:#F5C5C5;background:#FFF6F6}
+  .pl-step.new{border-color:#C5E5C5;background:#F6FFF6}
+  .pl-step .ic{font-size:18px}
+  .pl-arrow{font-size:20px;color:var(--grey-l);font-weight:700}
+
+  /* Big number badge */
+  .big-badge{
+    background:var(--ink);color:#fff;
+    border-radius:18px;padding:24px 32px;
+    display:flex;flex-direction:column;align-items:center;gap:4px;
+    min-width:200px;
+    box-shadow:0 14px 36px rgba(14,27,54,.18);
+    transform:rotate(1deg);
+  }
+  .big-badge .v{font-size:60px;font-weight:900;letter-spacing:-.04em;line-height:1;color:var(--sticky-yellow)}
+  .big-badge .l{font-size:12px;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+
+  /* Arrow */
+  .arrow-line{
+    position:absolute;font-family:'Caveat',cursive;
+    font-size:80px;color:var(--blue);line-height:1;
+    user-select:none;pointer-events:none;
+  }
+
+  /* Step pill (timeline) */
+  .timeline{display:flex;align-items:flex-start;gap:0;flex-wrap:wrap;width:100%}
+  .tl-node{
+    background:#fff;border:2px solid var(--ink);
+    border-radius:16px;padding:18px 22px;
+    min-width:160px;text-align:center;
+    box-shadow:0 4px 14px rgba(0,0,0,.06);
+  }
+  .tl-node.was{border-color:#E0A0A0;background:#FFF6F6}
+  .tl-node.now{border-color:#A0C0E5;background:#F0F6FF}
+  .tl-node.fast{border-color:#C0E5A0;background:#F4FFE8}
+  .tl-node .ic{font-size:22px;margin-bottom:6px}
+  .tl-node .name{font-size:13px;font-weight:800;color:var(--ink);line-height:1.2;margin-bottom:3px}
+  .tl-node .dur{font-size:11px;color:var(--grey);font-weight:600}
+  .tl-arrow{
+    display:flex;align-items:center;justify-content:center;
+    width:24px;height:62px;color:var(--grey-l);font-size:18px;font-weight:700;
+    flex-shrink:0;
+  }
+
+  /* ─── Navigation ─── */
+  .nav-fixed{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+    display:flex;align-items:center;gap:14px;
+    background:#fff;border:1px solid var(--line);border-radius:100px;
+    padding:8px 14px;
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+    z-index:100;
+  }
+  .nav-btn{
+    width:40px;height:40px;border-radius:50%;
+    background:var(--canvas);color:var(--ink);border:none;cursor:pointer;
+    font-size:20px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .15s,transform .15s;
+  }
+  .nav-btn:hover{background:var(--blue);color:#fff;transform:scale(1.05)}
+  .nav-btn:disabled{opacity:.35;cursor:not-allowed}
+  .nav-dots{display:flex;gap:6px;align-items:center}
+  .nav-dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--line);cursor:pointer;
+    transition:background .15s,transform .15s;
+  }
+  .nav-dot.active{background:var(--blue);transform:scale(1.4)}
+  .nav-counter{
+    font-size:13px;font-weight:700;color:var(--grey);
+    font-variant-numeric:tabular-nums;
+    padding:0 6px;
+  }
+
+  /* Helpful arrow hint */
+  .scroll-hint{
+    position:fixed;top:50%;right:24px;transform:translateY(-50%);
+    background:var(--ink);color:#fff;padding:8px 14px;border-radius:100px;
+    font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+    box-shadow:0 6px 16px rgba(0,0,0,.15);opacity:.85;
+    pointer-events:none;animation:hintBounce 2s ease-in-out infinite;
+    z-index:99;
+  }
+  @keyframes hintBounce{0%,100%{transform:translateY(-50%) translateX(0)}50%{transform:translateY(-50%) translateX(-6px)}}
+
+  /* Cover (slide 1) special */
+  .slide.cover{
+    background:linear-gradient(135deg,#FAFAF7 0%,#F0F4FB 100%);
+    align-items:center;justify-content:center;text-align:center;
+    padding:60px 80px;
+  }
+  .slide.cover .slide-step{position:absolute;top:48px;left:50%;transform:translateX(-50%);left:auto;right:auto}
+  .cover-bigtitle{
+    font-size:96px;font-weight:900;line-height:.96;letter-spacing:-.04em;
+    color:var(--ink);margin-bottom:24px;max-width:1300px;
+  }
+  .cover-bigtitle .accent{color:var(--blue)}
+  .cover-bigtitle .hw{font-family:'Caveat',cursive;color:var(--blue);font-size:.7em;font-weight:700;letter-spacing:0}
+  .cover-sub{font-size:24px;color:var(--grey);max-width:780px;margin-bottom:36px;line-height:1.4}
+  .cover-stickers{display:flex;gap:32px;align-items:center;justify-content:center;flex-wrap:wrap}
+  .cover-author{
+    position:absolute;bottom:32px;left:80px;
+    font-size:14px;color:var(--grey);font-weight:500;
+  }
+  .cover-author b{color:var(--ink);font-weight:700}
+
+  /* End slide */
+  .slide.end{
+    background:var(--ink);color:#fff;
+    align-items:center;justify-content:center;text-align:center;
+  }
+  .slide.end .slide-num{color:var(--sticky-yellow)}
+  .slide.end .slide-tag{color:rgba(255,255,255,.6)}
+  .slide.end h2{font-size:80px;font-weight:900;line-height:.96;letter-spacing:-.03em;margin-bottom:24px;max-width:1200px}
+  .slide.end h2 .accent{color:var(--sticky-yellow)}
+  .slide.end p{font-size:22px;color:rgba(255,255,255,.8);max-width:720px;margin-bottom:36px;line-height:1.4}
+
+  /* Comparison row */
+  .compare-row{
+    display:grid;grid-template-columns:1fr 1fr;gap:32px;width:100%;align-items:start;
+  }
+  .compare-col{
+    background:#fff;border-radius:18px;padding:32px;
+    border:1.5px solid var(--line);
+    box-shadow:0 8px 24px rgba(0,0,0,.04);
+  }
+  .compare-col.was{background:#FFF6F6;border-color:#F0D0D0}
+  .compare-col.now{background:#F4FFE8;border-color:#C0E5A0}
+  .compare-col h3{font-size:20px;font-weight:800;color:var(--ink);margin-bottom:8px;letter-spacing:-.015em}
+  .compare-col .duration{
+    font-family:'Caveat',cursive;font-size:32px;font-weight:700;color:var(--red);
+    margin-bottom:18px;line-height:1;
+  }
+  .compare-col.now .duration{color:var(--green)}
+  .compare-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .compare-col li{
+    font-size:14px;line-height:1.45;color:var(--ink);
+    padding-left:22px;position:relative;
+  }
+  .compare-col li::before{
+    content:"";position:absolute;left:0;top:6px;
+    width:14px;height:14px;border-radius:50%;
+    background:var(--red-10,#FDECEC);
+  }
+  .compare-col li::after{
+    content:"–";position:absolute;left:3px;top:1px;
+    color:var(--red);font-weight:900;font-size:14px;
+  }
+  .compare-col.now li::before{background:#EDF7E7}
+  .compare-col.now li::after{content:"+";color:var(--green)}
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- SLIDE 1: COVER -->
+  <section class="slide cover">
+    <div class="slide-step">
+      <span class="slide-num">01</span>
+      <span class="slide-tag">cover</span>
+    </div>
+    <h1 class="cover-bigtitle">Эволюция дизайна лендингов <span class="hw">в Fitbase</span></h1>
+    <p class="cover-sub">Как за 2 года цикл «гипотеза → рабочий лендинг» сократился <b>с 2 недель до 2 часов</b> — и что это даёт бизнесу</p>
+    <div class="cover-stickers">
+      <div class="sticky">2 недели<small>было</small></div>
+      <div class="sticky pink tilt-r">2 часа<small>стало</small></div>
+      <div class="sticky green">×10 скорость<small>результат</small></div>
+    </div>
+    <div class="cover-author">
+      <b>Роман Семёнов</b> · Директор по маркетингу Fitbase · 2026
+    </div>
+  </section>
+
+  <!-- SLIDE 2: КАК БЫЛО — WAY 1 -->
+  <section class="slide">
+    <div class="slide-step">
+      <span class="slide-num">02</span>
+      <span class="slide-tag">как было</span>
+    </div>
+    <h2 class="slide-title">Раньше — <span class="strike">1-2 недели</span> на лендинг</h2>
+    <p class="slide-lede">8 шагов и каждый — блокирующий. Дизайнер ждал ТЗ, копирайтер — макет, я — итерации в Figma. Если лендинг большой — недели две.</p>
+
+    <div class="canvas-area">
+      <div class="timeline">
+        <div class="tl-node was">
+          <div class="ic">💡</div>
+          <div class="name">Идея</div>
+          <div class="dur">пара часов</div>
+        </div>
+        <div class="tl-arrow">→</div>
+        <div class="tl-node was">
+          <div class="ic">📝</div>
+          <div class="name">ТЗ в Miro/Doc</div>
+          <div class="dur">день</div>
+        </div>
+        <div class="tl-arrow">→</div>
+        <div class="tl-node was">
+          <div class="ic">🔍</div>
+          <div class="name">Референсы</div>
+          <div class="dur">полдня</div>
+        </div>
+        <div class="tl-arrow">→</div>
+        <div class="tl-node was">
+          <div class="ic">✍</div>
+          <div class="name">Копирайт</div>
+          <div class="dur">день</div>
+        </div>
+        <div class="tl-arrow">→</div>
+        <div class="tl-node was">
+          <div class="ic">🎨</div>
+          <div class="name">Дизайнер</div>
+          <div class="dur">5–7 дней</div>
+        </div>
+        <div class="tl-arrow">→</div>
+        <div class="tl-node was">
+          <div class="ic">🔄</div>
+          <div class="name">Итерации</div>
+          <div class="dur">2–3 дня</div>
+        </div>
+        <div class="tl-arrow">→</div>
+        <div class="tl-node was">
+          <div class="ic">🔗</div>
+          <div class="name">АМО + копирайт v2</div>
+          <div class="dur">день</div>
+        </div>
+        <div class="tl-arrow">→</div>
+        <div class="tl-node was">
+          <div class="ic">⚙</div>
+          <div class="name">Верстка</div>
+          <div class="dur">2–3 дня</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:24px;margin-top:32px;width:100%;align-items:center">
+        <div class="sticky pink">Каждый шаг<br>блокирующий<small>а сроки сдвигаются</small></div>
+        <div class="big-badge">
+          <div class="v">10–14</div>
+          <div class="l">дней на лендинг</div>
+        </div>
+        <div class="sticky">Дизайнер<br>был узким горлом<small>1-2 в месяц макс</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3: БОЛИ СТАРОГО ПРОЦЕССА -->
+  <section class="slide">
+    <div class="slide-step">
+      <span class="slide-num">03</span>
+      <span class="slide-tag">боли старого пути</span>
+    </div>
+    <h2 class="slide-title">Что <span class="accent">не работало</span></h2>
+    <p class="slide-lede">Это не про «дизайнер плохой» — это про процесс, где каждый шаг последовательный, без возможности параллелить.</p>
+
+    <div class="canvas-area">
+      <div class="card danger">
+        <div class="ico">⏰</div>
+        <h4>Дизайнер — блокер</h4>
+        <div class="meta">было</div>
+        <p>1 дизайнер делает 1-2 лендинга в месяц. Хочешь больше — нанимай ещё. Хочешь быстрее — никак.</p>
+      </div>
+      <div class="card danger">
+        <div class="ico">🔁</div>
+        <h4>Копирайт переписываем</h4>
+        <div class="meta">было</div>
+        <p>Сначала пишешь под ТЗ. Потом дизайн поменялся — переписываешь под макет. Потом верстка — снова поправки.</p>
+      </div>
+      <div class="card danger">
+        <div class="ico">🧪</div>
+        <h4>Гипотезы не тестим</h4>
+        <div class="meta">было</div>
+        <p>Каждый лендинг — 2 недели работы. Тестировать 5 гипотез — 10 недель. Дёшево не получится.</p>
+      </div>
+      <div class="card danger">
+        <div class="ico">📐</div>
+        <h4>Figma → Tilda</h4>
+        <div class="meta">было</div>
+        <p>Дизайн в Figma, потом верстальщик повторяет его в Tilda. Двойная работа, потери в деталях.</p>
+      </div>
+
+      <div class="sticky pink tilt-r" style="position:absolute;bottom:60px;right:80px">Хотелось<br>как у DTC-брендов<br>— гипотезу за день</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4: НОВЫЙ ПРОЦЕСС -->
+  <section class="slide">
+    <div class="slide-step">
+      <span class="slide-num">04</span>
+      <span class="slide-tag">как сейчас</span>
+    </div>
+    <h2 class="slide-title">Сейчас — <span class="accent">1-2 дня</span> от интервью до лендинга</h2>
+    <p class="slide-lede">Главные изменения: <b>Claude собирает черновик из расшифровки</b>, <b>правки в чате</b>, <b>автозалив в Figma</b>. Дизайнер — для финиша, не для черновика.</p>
+
+    <div class="canvas-area">
+      <div class="timeline">
+        <div class="tl-node now">
+          <div class="ic">🎙</div>
+          <div class="name">Интервью</div>
+          <div class="dur">час</div>
+        </div>
+        <div class="tl-arrow">→</div>
+        <div class="tl-node now">
+          <div class="ic">📝</div>
+          <div class="name">Whisper/МайМит</div>
+          <div class="dur">авто</div>
+        </div>
+        <div class="tl-arrow">→</div>
+        <div class="tl-node now">
+          <div class="ic">🤖</div>
+          <div class="name">Claude → HTML</div>
+          <div class="dur">час</div>
+        </div>
+        <div class="tl-arrow">→</div>
+        <div class="tl-node now">
+          <div class="ic">💬</div>
+          <div class="name">Правки в чате</div>
+          <div class="dur">2–3 часа</div>
+        </div>
+        <div class="tl-arrow">→</div>
+        <div class="tl-node now">
+          <div class="ic">🎨</div>
+          <div class="name">Auto → Figma</div>
+          <div class="dur">5 минут</div>
+        </div>
+        <div class="tl-arrow">→</div>
+        <div class="tl-node now">
+          <div class="ic">✨</div>
+          <div class="name">Диз докрашивает</div>
+          <div class="dur">опц. полдня</div>
+        </div>
+        <div class="tl-arrow">→</div>
+        <div class="tl-node now">
+          <div class="ic">⚙</div>
+          <div class="name">Верстка</div>
+          <div class="dur">день</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:24px;margin-top:32px;width:100%;align-items:center">
+        <div class="sticky green">Claude знает<br>джобы клиентов<small>из памяти интервью</small></div>
+        <div class="big-badge">
+          <div class="v">1–2</div>
+          <div class="l">дня на лендинг</div>
+        </div>
+        <div class="sticky blue tilt-r">Дизайнер<br>не блок<small>работает по желанию</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 5: САМЫЙ БЫСТРЫЙ ПУТЬ -->
+  <section class="slide">
+    <div class="slide-step">
+      <span class="slide-num">05</span>
+      <span class="slide-tag">самый быстрый путь</span>
+    </div>
+    <h2 class="slide-title">Гипотеза → трафик <span class="hl">за пару часов</span></h2>
+    <p class="slide-lede">Если нужно протестировать гипотезу — пропускаем верстку и дизайнера. Claude делает HTML — пушим на GitHub Pages — лендинг живёт по публичной ссылке. Можно гнать трафик в тот же день.</p>
+
+    <div class="canvas-area">
+      <div class="pipeline">
+        <div class="pl-step new"><span class="ic">💬</span>Идея → Claude</div>
+        <div class="pl-arrow">→</div>
+        <div class="pl-step new"><span class="ic">📄</span>HTML готов</div>
+        <div class="pl-arrow">→</div>
+        <div class="pl-step new"><span class="ic">📦</span>Push GitHub</div>
+        <div class="pl-arrow">→</div>
+        <div class="pl-step new"><span class="ic">🌐</span>Публичная ссылка</div>
+        <div class="pl-arrow">→</div>
+        <div class="pl-step new"><span class="ic">📊</span>Трафик из Директа</div>
+      </div>
+
+      <div style="display:flex;gap:24px;margin-top:48px;width:100%;align-items:center;flex-wrap:wrap">
+        <div class="card success">
+          <div class="ico">⚡</div>
+          <h4>2 часа</h4>
+          <div class="meta">от мысли до URL</div>
+          <p>Claude собирает HTML, тестирую в превью, пушу на GitHub Pages — публичная ссылка готова.</p>
+        </div>
+        <div class="card success">
+          <div class="ico">🧪</div>
+          <h4>10 гипотез / неделя</h4>
+          <div class="meta">тесты</div>
+          <p>Делаем десять вариантов лендинга для разных сегментов — смотрим CR, оставляем сильные.</p>
+        </div>
+        <div class="card success">
+          <div class="ico">💰</div>
+          <h4>0 ₽ на верстальщика</h4>
+          <div class="meta">пока тестируем</div>
+          <p>Сначала ищем сходящуюся гипотезу. Потом отдаём в нормальную верстку с интеграциями.</p>
+        </div>
+
+        <div class="sticky yellow-2 tilt-r" style="position:absolute;bottom:80px;right:80px">«Можно даже<br>не нанимать диза<br>и верстальщика<br>на этапе теста»</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 6: LOVABLE АЛЬТЕРНАТИВА -->
+  <section class="slide">
+    <div class="slide-step">
+      <span class="slide-num">06</span>
+      <span class="slide-tag">альтернативный путь</span>
+    </div>
+    <h2 class="slide-title">Lovable — <span class="accent">прод сразу с интеграциями</span></h2>
+    <p class="slide-lede">Когда гипотеза подтвердилась и нужен боевой лендинг с АМО/CRM — отдаём черновик из Claude в Lovable. Получаем готовый React-сайт с подключёнными формами, аналитикой и платежами.</p>
+
+    <div class="canvas-area">
+      <div class="pipeline">
+        <div class="pl-step new"><span class="ic">🤖</span>Claude → черновик</div>
+        <div class="pl-arrow">→</div>
+        <div class="pl-step new"><span class="ic">📋</span>ТЗ + HTML</div>
+        <div class="pl-arrow">→</div>
+        <div class="pl-step new"><span class="ic">💜</span>Lovable</div>
+        <div class="pl-arrow">→</div>
+        <div class="pl-step new"><span class="ic">⚙</span>АМО / Метрика</div>
+        <div class="pl-arrow">→</div>
+        <div class="pl-step new"><span class="ic">🚀</span>Прод-лендинг</div>
+      </div>
+
+      <div style="display:flex;gap:24px;margin-top:48px;width:100%;align-items:flex-start;flex-wrap:wrap">
+        <div class="card">
+          <div class="ico">🎯</div>
+          <h4>Под формат</h4>
+          <div class="meta">когда использовать</div>
+          <p>Тестовая гипотеза подтвердилась, нужно прокачать в нормальный лендинг с CRM, оплатами, рекуррентами.</p>
+        </div>
+        <div class="card">
+          <div class="ico">🔌</div>
+          <h4>Готовые интеграции</h4>
+          <div class="meta">что даёт</div>
+          <p>AmoCRM, Битрикс, Stripe/Тинькофф, Яндекс.Метрика, Facebook Pixel — подключается за пару кликов.</p>
+        </div>
+        <div class="card">
+          <div class="ico">⏳</div>
+          <h4>1-2 дня</h4>
+          <div class="meta">срок</div>
+          <p>От подтверждённого черновика — до боевого лендинга с интеграциями. В 3 раза быстрее классической верстки.</p>
+        </div>
+
+        <div class="sticky green tilt-r" style="position:absolute;bottom:80px;right:80px">Для<br>боевых запусков<br>— Lovable<small>не для тестов</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 7: СРАВНЕНИЕ -->
+  <section class="slide">
+    <div class="slide-step">
+      <span class="slide-num">07</span>
+      <span class="slide-tag">главное отличие</span>
+    </div>
+    <h2 class="slide-title">Было vs стало — <span class="accent">в цифрах</span></h2>
+    <p class="slide-lede">Не «дизайнер стал быстрее», а <b>процесс другой</b>. Больше нет последовательных шагов с блокерами — Claude собирает черновик из интервью, остальное параллельно.</p>
+
+    <div class="canvas-area">
+      <div class="compare-row">
+        <div class="compare-col was">
+          <h3>📉 Раньше</h3>
+          <div class="duration">10–14 дней</div>
+          <ul>
+            <li>1 дизайнер = 1-2 лендинга / месяц</li>
+            <li>Копирайт переписываем 2–3 раза</li>
+            <li>ТЗ → дизайн → верстка — каждый шаг блокер</li>
+            <li>Гипотезы дороже — реже тестируем</li>
+            <li>Figma → Tilda — двойная работа</li>
+            <li>Нужны: дизайнер + копирайтер + верстальщик</li>
+          </ul>
+        </div>
+        <div class="compare-col now">
+          <h3>📈 Сейчас</h3>
+          <div class="duration">1-2 дня (тест: часы)</div>
+          <ul>
+            <li>Дизайнер для финиша, не для черновика</li>
+            <li>Копирайт + дизайн рождаются вместе в Claude</li>
+            <li>Параллелим: гипотеза → HTML за час → правки</li>
+            <li>Тестируем 5+ гипотез в неделю</li>
+            <li>Auto-export в Figma — без двойной работы</li>
+            <li>Нужны: 1 человек с Claude + по желанию диз</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 8: ИТОГ / БУДУЩЕЕ -->
+  <section class="slide end">
+    <div class="slide-step">
+      <span class="slide-num">08</span>
+      <span class="slide-tag">итог</span>
+    </div>
+    <h2><span class="accent">×10 скорость.</span><br>×3 гипотез / месяц.<br>−70% бюджет на старте.</h2>
+    <p>Самое важное — больше не страшно начинать. Можем делать лендинг под каждый сегмент, под каждый канал, под каждый воркшоп. Не ждём «когда дизайнер освободится».</p>
+    <div style="display:flex;gap:24px;align-items:center;justify-content:center;margin-top:8px;flex-wrap:wrap">
+      <div class="big-badge" style="background:rgba(255,243,140,.15);border:1px solid rgba(255,243,140,.3)">
+        <div class="v">×10</div>
+        <div class="l">по скорости</div>
+      </div>
+      <div class="big-badge" style="background:rgba(196,240,174,.15);border:1px solid rgba(196,240,174,.3)">
+        <div class="v" style="color:#C4F0AE">×3</div>
+        <div class="l">гипотез в месяц</div>
+      </div>
+      <div class="big-badge" style="background:rgba(184,221,248,.15);border:1px solid rgba(184,221,248,.3)">
+        <div class="v" style="color:#B8DDF8">−70%</div>
+        <div class="l">бюджет на старте</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Navigation -->
+<nav class="nav-fixed">
+  <button class="nav-btn" id="prev">←</button>
+  <div class="nav-dots" id="dots"></div>
+  <span class="nav-counter" id="counter">1 / 8</span>
+  <button class="nav-btn" id="next">→</button>
+</nav>
+
+<div class="scroll-hint" id="hint">Скролл вправо или → стрелка</div>
+
+<script>
+  const deck = document.getElementById('deck');
+  const slides = deck.querySelectorAll('.slide');
+  const total = slides.length;
+  const prev = document.getElementById('prev');
+  const next = document.getElementById('next');
+  const counter = document.getElementById('counter');
+  const dotsRoot = document.getElementById('dots');
+  const hint = document.getElementById('hint');
+  let current = 0;
+  let hintShown = true;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => go(i));
+    dotsRoot.appendChild(d);
+  });
+
+  function updateUI() {
+    counter.textContent = `${current + 1} / ${total}`;
+    document.querySelectorAll('.nav-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+    prev.disabled = current === 0;
+    next.disabled = current === total - 1;
+  }
+
+  function go(i) {
+    current = Math.max(0, Math.min(total - 1, i));
+    deck.scrollTo({ left: current * window.innerWidth, behavior: 'smooth' });
+    updateUI();
+    if (hintShown) { hint.style.display = 'none'; hintShown = false; }
+  }
+
+  prev.addEventListener('click', () => go(current - 1));
+  next.addEventListener('click', () => go(current + 1));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(current + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); go(current - 1); }
+    if (e.key === 'Home') go(0);
+    if (e.key === 'End') go(total - 1);
+  });
+
+  // Sync current on manual scroll
+  let scrollTimer;
+  deck.addEventListener('scroll', () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      const idx = Math.round(deck.scrollLeft / window.innerWidth);
+      if (idx !== current) {
+        current = idx;
+        updateUI();
+        if (hintShown) { hint.style.display = 'none'; hintShown = false; }
+      }
+    }, 100);
+  });
+
+  // Hide hint after 4s anyway
+  setTimeout(() => { if (hintShown) { hint.style.opacity = '0'; hint.style.transition = 'opacity .5s'; setTimeout(() => hint.style.display = 'none', 500); }}, 4000);
+</script>
+
+</body>
+</html>
