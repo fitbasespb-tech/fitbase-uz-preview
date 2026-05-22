@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hero для студии танцев · фото + расписание</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Inter',-apple-system,sans-serif;
+    color:#0E1B36;background:#fff;
+    -webkit-font-smoothing:antialiased;line-height:1.5;
+  }
+
+  :root{
+    --blue:#3C67D6;
+    --blue-2:#3FABFF;
+    --blue-10:#ECF1FF;
+    --pink:#FF6B9D;
+    --pink-soft:#FFE5EE;
+    --purple:#8B5CF6;
+    --purple-soft:#EDE7FB;
+    --orange:#F4A82C;
+    --orange-soft:#FEF4E0;
+    --ink:#0E1B36;
+    --grey:#6B7589;
+    --grey-l:#9AA3B5;
+    --line:#E4E7EE;
+    --canvas:#F4F6FA;
+    --green:#4EB410;
+    --green-10:#EDF7E7;
+    --red:#ED3D3D;
+    --red-10:#FDECEC;
+  }
+
+  .container{max-width:1280px;margin:0 auto;padding:0 32px}
+
+  /* Variant label */
+  .var-label{
+    background:var(--ink);color:#fff;padding:24px 0;
+  }
+  .var-label-inner{max-width:1280px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .var-label .tag{display:inline-block;background:var(--orange);color:var(--ink);padding:6px 14px;border-radius:6px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+  .var-label h2{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.015em;margin-top:8px}
+  .var-label p{font-size:14px;color:rgba(255,255,255,.65);max-width:560px;text-align:right}
+
+  /* Nav */
+  .nav{padding:18px 0;background:#fff;border-bottom:1px solid var(--line)}
+  .nav-row{display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .nav-logo{font-size:26px;font-weight:900;color:var(--blue);letter-spacing:-.02em;text-decoration:none}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{font-size:14px;font-weight:500;color:var(--ink);text-decoration:none}
+  .nav-right{display:flex;align-items:center;gap:12px}
+  .nav-cta{background:var(--blue);color:#fff;padding:11px 22px;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 4px 14px rgba(60,103,214,.3)}
+  .nav-phone{font-size:14px;font-weight:700;color:var(--ink);text-decoration:none}
+
+  /* Hero */
+  .hero{padding:64px 0 88px;background:linear-gradient(180deg,#fff 0%,#F8FAFE 100%);position:relative;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--pink-soft);color:var(--pink);
+    padding:9px 18px;border-radius:100px;
+    font-size:14px;font-weight:600;margin-bottom:24px;
+  }
+  .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+
+  h1{font-size:60px;font-weight:800;line-height:1.04;letter-spacing:-.025em;color:var(--ink);margin-bottom:24px}
+  h1 .pink{color:var(--pink)}
+  h1 .accent{color:var(--blue)}
+  .lede{font-size:19px;line-height:1.55;color:var(--grey);margin-bottom:32px;max-width:560px}
+  .lede b{color:var(--ink);font-weight:600}
+
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:28px}
+  .btn-primary{background:var(--blue);color:#fff;padding:18px 30px;border-radius:12px;font-size:16px;font-weight:600;text-decoration:none;box-shadow:0 6px 20px rgba(60,103,214,.3)}
+  .btn-ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line);padding:17px 28px;border-radius:12px;font-size:16px;font-weight:600;text-decoration:none}
+
+  .bullets{display:flex;gap:22px;flex-wrap:wrap;font-size:13px;color:var(--grey)}
+  .bullets span{display:flex;align-items:center;gap:6px}
+  .bullets span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--pink)}
+
+  /* ─── Photo + overlay schedule ─── */
+  .photo-wrap{
+    position:relative;width:100%;
+    height:620px;border-radius:28px;overflow:hidden;
+    background:#0E1B36;
+    box-shadow:0 40px 80px -20px rgba(14,27,54,.3);
+  }
+  .photo-wrap img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    filter:saturate(1.05);
+  }
+  .photo-wrap::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 0%,rgba(14,27,54,.3) 100%);
+    pointer-events:none;
+  }
+
+  /* Floating schedule card */
+  .sched-card{
+    position:absolute;bottom:24px;right:24px;
+    width:340px;background:#fff;
+    border-radius:18px;padding:20px;
+    box-shadow:0 24px 48px rgba(14,27,54,.25),0 4px 12px rgba(0,0,0,.08);
+    border:1px solid rgba(255,255,255,.6);
+  }
+  .sched-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+  .sched-head .t{font-size:14px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+  .sched-head .day{font-size:11px;font-weight:700;color:var(--pink);background:var(--pink-soft);padding:4px 10px;border-radius:6px}
+  .sched-row{
+    padding:10px 0;display:flex;justify-content:space-between;align-items:center;
+    border-bottom:1px solid var(--line);
+  }
+  .sched-row:last-child{border-bottom:none}
+  .sched-row .l{display:flex;align-items:center;gap:12px}
+  .sched-row .time{font-size:13px;font-weight:800;color:var(--ink);width:48px;font-variant-numeric:tabular-nums}
+  .sched-row .info .nm{font-size:13px;font-weight:700;color:var(--ink);line-height:1.2}
+  .sched-row .info .tr{font-size:11px;color:var(--grey);margin-top:1px}
+  .sched-row .pill{
+    font-size:10px;font-weight:700;padding:4px 8px;border-radius:5px;
+    background:var(--green-10);color:var(--green);
+  }
+  .sched-row .pill.warn{background:var(--orange-soft);color:var(--orange)}
+  .sched-row .pill.full{background:var(--canvas);color:var(--grey)}
+
+  /* Live badge top-left */
+  .live-badge{
+    position:absolute;top:24px;left:24px;
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(20px);
+    color:var(--ink);
+    padding:10px 18px;border-radius:100px;
+    font-size:13px;font-weight:800;letter-spacing:-.01em;
+    display:flex;align-items:center;gap:10px;
+    box-shadow:0 8px 24px rgba(0,0,0,.18);
+  }
+  .live-badge .dot{width:10px;height:10px;border-radius:50%;background:var(--green);animation:pulse 1.5s infinite;box-shadow:0 0 0 4px rgba(78,180,16,.2)}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.3);opacity:.6}}
+  .live-badge .small{font-size:11px;font-weight:600;color:var(--grey);letter-spacing:0}
+
+  /* Stat badge top-right */
+  .stat-badge{
+    position:absolute;top:24px;right:24px;
+    background:rgba(14,27,54,.85);
+    backdrop-filter:blur(20px);
+    color:#fff;
+    padding:12px 18px;border-radius:14px;
+    box-shadow:0 8px 24px rgba(0,0,0,.18);
+  }
+  .stat-badge .lbl{font-size:10px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+  .stat-badge .v{font-size:18px;font-weight:800;letter-spacing:-.01em;line-height:1}
+  .stat-badge .v .accent{color:#A6F084}
+
+  /* Responsive */
+  @media (max-width:960px){
+    .hero{padding:36px 0 56px}
+    .hero-grid{grid-template-columns:1fr;gap:32px}
+    h1{font-size:36px}
+    .lede{font-size:16px}
+    .photo-wrap{height:480px;border-radius:20px}
+    .sched-card{width:280px;bottom:16px;right:16px;padding:16px}
+    .live-badge,.stat-badge{padding:8px 14px;font-size:12px;top:16px}
+    .live-badge{left:16px}
+    .stat-badge{right:16px}
+    .var-label-inner{flex-direction:column;text-align:center}
+    .var-label p{text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── ВАРИАНТ A — Танцовщица + расписание -->
+<div class="var-label">
+  <div class="var-label-inner">
+    <div>
+      <span class="tag">Вариант A</span>
+      <h2>Танцовщица в студии · расписание справа снизу</h2>
+    </div>
+    <p>Фото с движением, эмоция студии. Расписание парит в правом нижнем углу. Live-бейдж сверху + счётчик активных детей.</p>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="container nav-row">
+    <a href="#" class="nav-logo">FITBASE</a>
+    <div class="nav-links">
+      <a href="#">Возможности</a>
+      <a href="#">Приложение</a>
+      <a href="#">Тарифы</a>
+      <a href="#">Для сетей и франшиз</a>
+      <a href="#">Блог</a>
+    </div>
+    <div class="nav-right">
+      <a href="tel:+74947408449" class="nav-phone">+7 494 740-84-49</a>
+      <a href="#" class="nav-cta">Начать бесплатно</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>CRM для студии танцев и детской школы</span>
+        <h1>Студия танцев, где <span class="pink">всё расписание</span> — в одном экране</h1>
+        <p class="lede">Расписание по залам, абонементы детей и взрослых, родительские чаты, расчёт зарплат тренеров. <b>Без таблиц, без переписей, без «а кто сегодня вёл занятие?»</b></p>
+        <div class="cta-row">
+          <a href="#" class="btn-primary">Попробовать бесплатно</a>
+          <a href="#" class="btn-ghost">Забронировать демо</a>
+        </div>
+        <div class="bullets">
+          <span>7 дней без оплаты</span>
+          <span>Перенос базы — на нас</span>
+          <span>Личный менеджер первые 3 месяца</span>
+        </div>
+      </div>
+
+      <div class="photo-wrap">
+        <img src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=1200&q=80&auto=format&fit=crop" alt="Студия танцев">
+
+        <div class="live-badge">
+          <span class="dot"></span>
+          <span>Сейчас в зале <span class="small">· 8 из 12</span></span>
+        </div>
+
+        <div class="stat-badge">
+          <div class="lbl">Сегодня в студии</div>
+          <div class="v"><span class="accent">12</span> занятий</div>
+        </div>
+
+        <div class="sched-card">
+          <div class="sched-head">
+            <div class="t">Расписание</div>
+            <div class="day">Понедельник, 13 июля</div>
+          </div>
+          <div class="sched-row">
+            <div class="l">
+              <div class="time">15:00</div>
+              <div class="info">
+                <div class="nm">Хип-Хоп · подростки</div>
+                <div class="tr">Юлия Романова · зал «Большой»</div>
+              </div>
+            </div>
+            <span class="pill warn">1 место</span>
+          </div>
+          <div class="sched-row">
+            <div class="l">
+              <div class="time">16:00</div>
+              <div class="info">
+                <div class="nm">Контемпорари</div>
+                <div class="tr">Анастасия Шишкина</div>
+              </div>
+            </div>
+            <span class="pill">3 места</span>
+          </div>
+          <div class="sched-row">
+            <div class="l">
+              <div class="time">17:00</div>
+              <div class="info">
+                <div class="nm">Растяжка · взрослые</div>
+                <div class="tr">Юлия Романова</div>
+              </div>
+            </div>
+            <span class="pill">5 мест</span>
+          </div>
+          <div class="sched-row">
+            <div class="l">
+              <div class="time">18:30</div>
+              <div class="info">
+                <div class="nm">Хай Хилс</div>
+                <div class="tr">Анастасия Шишкина</div>
+              </div>
+            </div>
+            <span class="pill full">Закрыто</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ВАРИАНТ B — Балет/студия с зеркалом + расписание -->
+<div class="var-label">
+  <div class="var-label-inner">
+    <div>
+      <span class="tag">Вариант B</span>
+      <h2>Балетная студия · зеркало и движение</h2>
+    </div>
+    <p>Лиричная атмосфера балетной студии. Расписание над фото с разноцветными направлениями.</p>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="container nav-row">
+    <a href="#" class="nav-logo">FITBASE</a>
+    <div class="nav-links">
+      <a href="#">Возможности</a>
+      <a href="#">Приложение</a>
+      <a href="#">Тарифы</a>
+      <a href="#">Для сетей и франшиз</a>
+      <a href="#">Блог</a>
+    </div>
+    <div class="nav-right">
+      <a href="tel:+74947408449" class="nav-phone">+7 494 740-84-49</a>
+      <a href="#" class="nav-cta">Начать бесплатно</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>CRM для студии танцев</span>
+        <h1>Управляйте студией танцев — <span class="pink">не таблицами</span></h1>
+        <p class="lede">12 направлений, 40 групп, 300+ детей в одной системе. Расписание по залам, абонементы, родители, тренеры — всё связано. <b>Не теряете ребёнка в Excel.</b></p>
+        <div class="cta-row">
+          <a href="#" class="btn-primary">Попробовать бесплатно</a>
+          <a href="#" class="btn-ghost">Забронировать демо</a>
+        </div>
+        <div class="bullets">
+          <span>Связка родитель—ребёнок</span>
+          <span>Расписание по залам</span>
+          <span>ЗП тренеров автоматом</span>
+        </div>
+      </div>
+
+      <div class="photo-wrap">
+        <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=1200&q=80&auto=format&fit=crop" alt="Балетная студия">
+
+        <div class="live-badge">
+          <span class="dot"></span>
+          <span>Сейчас идёт <span class="small">· Балет, дети 8–10</span></span>
+        </div>
+
+        <div class="stat-badge">
+          <div class="lbl">Активных детей</div>
+          <div class="v"><span class="accent">284</span> в студии</div>
+        </div>
+
+        <div class="sched-card">
+          <div class="sched-head">
+            <div class="t">Сегодня · 4 занятия</div>
+            <div class="day" style="background:var(--purple-soft);color:var(--purple)">13 июля</div>
+          </div>
+          <div class="sched-row">
+            <div class="l">
+              <div class="time">14:00</div>
+              <div class="info">
+                <div class="nm">Балет · дети 6–8</div>
+                <div class="tr">Ольга Игнатова · зал «А»</div>
+              </div>
+            </div>
+            <span class="pill">2 места</span>
+          </div>
+          <div class="sched-row">
+            <div class="l">
+              <div class="time">15:30</div>
+              <div class="info">
+                <div class="nm">Современный танец</div>
+                <div class="tr">Кристина М. · зал «Б»</div>
+              </div>
+            </div>
+            <span class="pill warn">1 место</span>
+          </div>
+          <div class="sched-row">
+            <div class="l">
+              <div class="time">17:00</div>
+              <div class="info">
+                <div class="nm">Контемпорари</div>
+                <div class="tr">Юлия Романова · зал «А»</div>
+              </div>
+            </div>
+            <span class="pill">4 места</span>
+          </div>
+          <div class="sched-row">
+            <div class="l">
+              <div class="time">19:00</div>
+              <div class="info">
+                <div class="nm">Растяжка · взрослые</div>
+                <div class="tr">Анастасия Ш. · зал «А»</div>
+              </div>
+            </div>
+            <span class="pill full">Закрыто</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ВАРИАНТ C — Урок танцев / групповое занятие -->
+<div class="var-label">
+  <div class="var-label-inner">
+    <div>
+      <span class="tag">Вариант C</span>
+      <h2>Групповое занятие · энергия и команда</h2>
+    </div>
+    <p>Динамичное фото группы. Расписание показано более компактно, акцент на эмоции студии.</p>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="container nav-row">
+    <a href="#" class="nav-logo">FITBASE</a>
+    <div class="nav-links">
+      <a href="#">Возможности</a>
+      <a href="#">Приложение</a>
+      <a href="#">Тарифы</a>
+      <a href="#">Для сетей и франшиз</a>
+      <a href="#">Блог</a>
+    </div>
+    <div class="nav-right">
+      <a href="tel:+74947408449" class="nav-phone">+7 494 740-84-49</a>
+      <a href="#" class="nav-cta">Начать бесплатно</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>CRM для студии танцев</span>
+        <h1>Расписание, родители и абонементы — <span class="pink">в одном приложении</span></h1>
+        <p class="lede">Каждый родитель видит занятия ребёнка. Каждый тренер — своих учеников. Каждый администратор — свой зал. <b>Без хаоса, без потерянных оплат.</b></p>
+        <div class="cta-row">
+          <a href="#" class="btn-primary">Попробовать бесплатно</a>
+          <a href="#" class="btn-ghost">Забронировать демо</a>
+        </div>
+        <div class="bullets">
+          <span>Дети и взрослые</span>
+          <span>iOS + Android приложение</span>
+          <span>Click, СБП, банковская карта</span>
+        </div>
+      </div>
+
+      <div class="photo-wrap">
+        <img src="https://images.unsplash.com/photo-1517438476312-10d79c077509?w=1200&q=80&auto=format&fit=crop" alt="Урок танцев">
+
+        <div class="live-badge">
+          <span class="dot"></span>
+          <span>В студии сейчас <span class="small">· 32 человека</span></span>
+        </div>
+
+        <div class="stat-badge">
+          <div class="lbl">Загрузка дня</div>
+          <div class="v"><span class="accent">87%</span></div>
+        </div>
+
+        <div class="sched-card">
+          <div class="sched-head">
+            <div class="t">Расписание · сегодня</div>
+            <div class="day">Понедельник</div>
+          </div>
+          <div class="sched-row">
+            <div class="l">
+              <div class="time">15:00</div>
+              <div class="info">
+                <div class="nm">Хип-Хоп · дети 8–10</div>
+                <div class="tr">Юлия Р. · 8/12 в группе</div>
+              </div>
+            </div>
+            <span class="pill">4 места</span>
+          </div>
+          <div class="sched-row">
+            <div class="l">
+              <div class="time">16:30</div>
+              <div class="info">
+                <div class="nm">Контемпорари</div>
+                <div class="tr">Анастасия Ш. · 11/12</div>
+              </div>
+            </div>
+            <span class="pill warn">1 место</span>
+          </div>
+          <div class="sched-row">
+            <div class="l">
+              <div class="time">18:00</div>
+              <div class="info">
+                <div class="nm">Хай Хилс · продвинутые</div>
+                <div class="tr">Юлия Р. · 12/12</div>
+              </div>
+            </div>
+            <span class="pill full">Запись с 16.08</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
