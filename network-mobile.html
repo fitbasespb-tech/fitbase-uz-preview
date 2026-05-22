@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fitbase для сетей и франшиз — единый контроль над всеми точками</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:'Inter',-apple-system,sans-serif;
+    color:#0E1B36;background:#fff;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  img{max-width:100%;height:auto;display:block}
+
+  :root{
+    --blue:#3C67D6;
+    --blue-2:#3FABFF;
+    --blue-dk:#2A4FA8;
+    --blue-10:#ECF1FF;
+    --blue-20:#CAD9FF;
+    --ink:#0E1B36;
+    --ink-2:#1F2A47;
+    --grey:#6B7589;
+    --grey-l:#9AA3B5;
+    --line:#E4E7EE;
+    --canvas:#F4F6FA;
+    --canvas-2:#F8FAFE;
+    --green:#4EB410;
+    --green-10:#EDF7E7;
+    --gold:#F4A82C;
+    --gold-soft:#FEF4E0;
+    --red:#ED3D3D;
+    --red-10:#FDECEC;
+  }
+
+  .container{max-width:1280px;margin:0 auto;padding:0 32px}
+
+  /* ─── Nav ─── */
+  .nav{padding:18px 0;background:#fff;position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line)}
+  .nav-row{display:flex;justify-content:space-between;align-items:center;gap:32px}
+  .nav-left{display:flex;align-items:center;gap:36px}
+  .nav-logo{font-size:24px;font-weight:900;color:var(--blue);letter-spacing:-.02em;display:flex;align-items:center;gap:8px;text-decoration:none}
+  .nav-logo .tag{font-size:11px;font-weight:700;color:var(--blue-dk);background:var(--blue-10);padding:3px 8px;border-radius:6px;letter-spacing:.04em;text-transform:uppercase}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{font-size:14px;font-weight:500;color:var(--ink);text-decoration:none}
+  .nav-links a:hover{color:var(--blue)}
+  .nav-cta{
+    background:var(--blue);color:#fff;padding:11px 20px;
+    border-radius:10px;font-size:14px;font-weight:600;
+    text-decoration:none;letter-spacing:-.01em;
+    box-shadow:0 4px 14px rgba(60,103,214,.3);
+  }
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12px;font-weight:700;color:var(--blue);
+    background:var(--blue-10);padding:6px 12px;border-radius:100px;
+    text-transform:uppercase;letter-spacing:.06em;margin-bottom:18px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
+
+  .sec-head{margin-bottom:56px;max-width:920px}
+  .sec-head h2{
+    font-size:52px;font-weight:800;line-height:1.04;letter-spacing:-.025em;
+    color:var(--ink);margin-bottom:20px;
+  }
+  .sec-head h2 .accent{color:var(--blue)}
+  .sec-head .lede{font-size:19px;line-height:1.55;color:var(--grey);max-width:780px}
+
+  section{padding:96px 0}
+  section.canvas{background:var(--canvas)}
+
+  /* ─── HERO ─── */
+  .hero{
+    background:linear-gradient(180deg,#fff 0%,#F0F4FB 100%);
+    padding:60px 0 100px;position:relative;overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;top:-300px;right:-200px;
+    width:800px;height:800px;border-radius:50%;
+    background:radial-gradient(circle,rgba(60,103,214,.08) 0%,transparent 65%);
+    pointer-events:none;
+  }
+  .hero-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center;position:relative;z-index:1}
+  .hero h1{
+    font-size:62px;font-weight:800;line-height:1.02;letter-spacing:-.03em;
+    color:var(--ink);margin-bottom:24px;
+  }
+  .hero h1 .accent{color:var(--blue)}
+  .hero h1 .hw{font-family:'Caveat',cursive;font-weight:700;color:var(--blue-2);transform:rotate(-2deg);display:inline-block;margin:0 4px}
+  .hero .lede{font-size:21px;line-height:1.5;color:var(--grey);margin-bottom:36px;max-width:560px}
+  .hero .lede b{color:var(--ink);font-weight:600}
+  .hero-cta-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:44px}
+  .btn-primary{
+    background:var(--blue);color:#fff;padding:18px 28px;
+    border-radius:12px;font-size:16px;font-weight:600;letter-spacing:-.01em;
+    text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+    box-shadow:0 6px 20px rgba(60,103,214,.3);
+    transition:transform .15s;
+  }
+  .btn-primary:hover{transform:translateY(-2px)}
+  .btn-ghost{
+    background:#fff;color:var(--ink);border:1.5px solid var(--line);
+    padding:17px 26px;border-radius:12px;font-size:15px;font-weight:600;
+    text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-ghost:hover{border-color:var(--blue)}
+
+  .hero-stats{display:flex;gap:36px;border-top:1px solid var(--line);padding-top:28px}
+  .hero-stat .v{font-size:32px;font-weight:800;color:var(--ink);letter-spacing:-.02em;line-height:1}
+  .hero-stat .v .accent{color:var(--blue)}
+  .hero-stat .l{font-size:13px;color:var(--grey);margin-top:6px}
+
+  /* ─── Network infographic (hero right) ─── */
+  .net-vis{
+    position:relative;width:100%;aspect-ratio:1;max-width:600px;margin:0 auto;
+  }
+  .net-center{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:200px;height:200px;border-radius:24px;
+    background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dk) 100%);
+    color:#fff;padding:18px;
+    box-shadow:0 30px 60px -10px rgba(60,103,214,.4);
+    display:flex;flex-direction:column;justify-content:space-between;
+    z-index:5;
+  }
+  .net-center .label{font-size:11px;font-weight:700;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.06em}
+  .net-center .title{font-size:18px;font-weight:800;line-height:1.15;margin-top:3px}
+  .net-center .metrics{display:flex;flex-direction:column;gap:10px;margin-top:auto}
+  .net-center .mrow{display:flex;justify-content:space-between;align-items:center;font-size:12px}
+  .net-center .mrow .n{font-weight:500;color:rgba(255,255,255,.75)}
+  .net-center .mrow .v{font-weight:800;font-size:14px;letter-spacing:-.01em}
+  .net-center .mrow .v.green{color:#A6F084}
+  .net-center .live{
+    position:absolute;top:14px;right:14px;
+    background:rgba(166,240,132,.2);color:#A6F084;
+    font-size:10px;font-weight:700;padding:4px 8px;border-radius:100px;
+    display:flex;align-items:center;gap:5px;letter-spacing:.04em;text-transform:uppercase;
+  }
+  .net-center .live::before{content:"";width:6px;height:6px;border-radius:50%;background:#A6F084;animation:pulse 1.5s infinite}
+
+  .net-node{
+    position:absolute;width:130px;background:#fff;border-radius:14px;
+    padding:12px 14px;box-shadow:0 14px 36px rgba(60,103,214,.15);
+    border:1.5px solid var(--line);
+    z-index:4;animation:float 4s ease-in-out infinite;
+  }
+  .net-node.n1{top:5%;left:38%;animation-delay:0s}
+  .net-node.n2{top:18%;right:5%;animation-delay:.6s}
+  .net-node.n3{bottom:18%;right:2%;animation-delay:1.2s}
+  .net-node.n4{bottom:0%;left:40%;animation-delay:1.8s}
+  .net-node.n5{bottom:18%;left:0%;animation-delay:2.4s}
+  .net-node.n6{top:18%;left:0%;animation-delay:3s}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  .net-node .city{font-size:10px;font-weight:700;color:var(--grey);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+  .net-node .name{font-size:13px;font-weight:800;color:var(--ink);line-height:1.2;margin-bottom:8px}
+  .net-node .bar{height:5px;border-radius:100px;background:var(--canvas);overflow:hidden;margin-bottom:5px}
+  .net-node .bar .fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-2));border-radius:100px}
+  .net-node .bar .fill.gold{background:linear-gradient(90deg,var(--gold),#E89510)}
+  .net-node .bar .fill.green{background:linear-gradient(90deg,var(--green),#3A8F07)}
+  .net-node .bar .fill.red{background:linear-gradient(90deg,var(--red),#C72525)}
+  .net-node .bar-val{font-size:10px;font-weight:600;color:var(--grey);display:flex;justify-content:space-between}
+  .net-node .bar-val b{color:var(--ink);font-weight:800}
+
+  /* SVG lines from nodes to center */
+  .net-lines{position:absolute;inset:0;pointer-events:none;z-index:1}
+  .net-lines path{
+    stroke:var(--blue-20);stroke-width:1.5;fill:none;
+    stroke-dasharray:4 4;animation:dataFlow 2s linear infinite;
+  }
+  @keyframes dataFlow{from{stroke-dashoffset:8}to{stroke-dashoffset:0}}
+
+  /* ─── 3 power pillars ─── */
+  .pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .pillar{
+    background:#fff;border:1.5px solid var(--line);border-radius:20px;
+    padding:36px 32px;display:flex;flex-direction:column;gap:18px;
+    transition:border-color .2s,transform .2s,box-shadow .2s;
+  }
+  .pillar:hover{
+    border-color:var(--blue);transform:translateY(-3px);
+    box-shadow:0 24px 48px -16px rgba(60,103,214,.18);
+  }
+  .pillar-num{
+    font-family:'Caveat',cursive;font-size:56px;font-weight:700;
+    color:var(--blue-2);line-height:1;letter-spacing:-.03em;
+  }
+  .pillar h3{font-size:24px;font-weight:800;letter-spacing:-.015em;line-height:1.2;color:var(--ink)}
+  .pillar p{font-size:15px;line-height:1.55;color:var(--grey)}
+  .pillar-list{display:flex;flex-direction:column;gap:8px;margin-top:auto}
+  .pillar-li{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.45;color:var(--ink-2)}
+  .pillar-li::before{
+    content:"";flex-shrink:0;width:18px;height:18px;border-radius:50%;
+    background:var(--green-10);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.5L7.5 12L13 6.5' stroke='%234EB410' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size:contain;margin-top:1px;
+  }
+
+  /* ─── Pains row ─── */
+  .pains-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .pain-card{
+    background:var(--canvas-2);border:1.5px solid var(--line);
+    border-radius:18px;padding:28px 24px;
+    display:flex;flex-direction:column;gap:12px;
+    position:relative;overflow:hidden;
+  }
+  .pain-card::before{
+    content:"";position:absolute;top:0;left:0;width:100%;height:3px;
+    background:linear-gradient(90deg,var(--red),var(--gold));
+  }
+  .pain-card .ico{
+    width:48px;height:48px;border-radius:12px;
+    background:var(--red-10);color:var(--red);
+    display:flex;align-items:center;justify-content:center;font-size:22px;
+  }
+  .pain-card h4{font-size:17px;font-weight:800;color:var(--ink);letter-spacing:-.01em;line-height:1.25}
+  .pain-card p{font-size:14px;color:var(--grey);line-height:1.5}
+  .pain-card .quote{
+    font-style:italic;font-size:13px;color:var(--ink-2);
+    padding-top:12px;border-top:1px dashed var(--line);
+    line-height:1.5;
+  }
+
+  /* ─── Dashboard mockup (big, animated) ─── */
+  .dash-mock{
+    background:linear-gradient(180deg,var(--ink) 0%,#1A2A4F 100%);
+    border-radius:24px;padding:36px;color:#fff;
+    box-shadow:0 40px 80px -20px rgba(14,27,54,.4);
+    position:relative;overflow:hidden;
+  }
+  .dash-mock::before{
+    content:"";position:absolute;top:-200px;right:-100px;
+    width:500px;height:500px;border-radius:50%;
+    background:radial-gradient(circle,rgba(63,171,255,.12) 0%,transparent 60%);
+    pointer-events:none;
+  }
+  .dash-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;position:relative;z-index:1}
+  .dash-head h3{font-size:22px;font-weight:800;letter-spacing:-.015em}
+  .dash-head .filter{display:flex;gap:8px;align-items:center}
+  .dash-pill{
+    background:rgba(255,255,255,.08);color:#fff;
+    padding:6px 12px;border-radius:8px;
+    font-size:12px;font-weight:600;border:1px solid rgba(255,255,255,.1);
+  }
+  .dash-pill.active{background:var(--blue);border-color:var(--blue)}
+  .dash-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:18px;margin-bottom:18px;position:relative;z-index:1}
+  .dash-card{
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:14px;padding:18px 20px;
+  }
+  .dash-card .lbl{font-size:11px;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-bottom:8px}
+  .dash-card .v{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1;color:#fff}
+  .dash-card .v.green{color:#A6F084}
+  .dash-card .delta{font-size:12px;font-weight:700;color:#A6F084;margin-top:6px}
+  .dash-card .delta.red{color:#FF8B8B}
+  .dash-card .delta::before{content:"↑ ";font-weight:900}
+  .dash-card .delta.red::before{content:"↓ "}
+  .dash-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative;z-index:1}
+  .dash-point{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:12px;padding:14px 16px;
+    display:flex;flex-direction:column;gap:6px;
+    position:relative;
+  }
+  .dash-point .city{font-size:10px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+  .dash-point .name{font-size:13px;font-weight:800;color:#fff;line-height:1.2}
+  .dash-point .num{font-size:18px;font-weight:800;color:#fff;letter-spacing:-.01em;margin-top:4px}
+  .dash-point .num.warn{color:var(--gold)}
+  .dash-point .num.red{color:#FF8B8B}
+  .dash-point .meta{font-size:10px;color:rgba(255,255,255,.5);font-weight:500}
+  .dash-point .status{
+    position:absolute;top:14px;right:14px;
+    width:8px;height:8px;border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 0 4px rgba(78,180,16,.2);
+  }
+  .dash-point .status.warn{background:var(--gold);box-shadow:0 0 0 4px rgba(244,168,44,.2)}
+  .dash-point .status.red{background:var(--red);box-shadow:0 0 0 4px rgba(237,61,61,.2);animation:pulse 1.5s infinite}
+
+  /* ─── Modules grid ─── */
+  .modules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .module-card{
+    background:#fff;border:1.5px solid var(--line);
+    border-radius:18px;padding:32px 28px;
+    display:flex;flex-direction:column;gap:14px;
+    transition:border-color .2s,transform .2s;
+  }
+  .module-card:hover{border-color:var(--blue);transform:translateY(-2px)}
+  .module-card .ico{
+    width:54px;height:54px;border-radius:14px;
+    background:var(--blue-10);color:var(--blue);
+    display:flex;align-items:center;justify-content:center;font-size:24px;
+  }
+  .module-card h3{font-size:19px;font-weight:800;letter-spacing:-.015em;color:var(--ink)}
+  .module-card p{font-size:14px;line-height:1.55;color:var(--grey)}
+
+  /* ─── Formats strip ─── */
+  .formats-strip{
+    background:#fff;border:1.5px solid var(--line);
+    border-radius:24px;padding:32px 36px;
+    display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:24px;
+  }
+  .format-item{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;min-width:130px}
+  .format-item .ico{
+    width:64px;height:64px;border-radius:16px;
+    background:var(--blue-10);color:var(--blue);
+    display:flex;align-items:center;justify-content:center;font-size:30px;
+    transition:transform .2s,background .2s;
+  }
+  .format-item:hover .ico{transform:scale(1.1);background:var(--blue);color:#fff}
+  .format-item .name{font-size:14px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+  .format-item .meta{font-size:12px;color:var(--grey)}
+
+  /* ─── Cases ─── */
+  .cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .case-card{
+    background:#fff;border:1px solid var(--line);border-radius:20px;
+    padding:32px 28px;display:flex;flex-direction:column;gap:16px;
+    box-shadow:0 4px 14px rgba(14,27,54,.04);
+  }
+  .case-top{display:flex;align-items:center;gap:14px}
+  .case-avatar{
+    width:52px;height:52px;border-radius:50%;
+    background:linear-gradient(135deg,var(--blue),var(--blue-2));
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    font-size:17px;font-weight:800;letter-spacing:-.02em;flex-shrink:0;
+  }
+  .case-meta .nm{font-size:15px;font-weight:800;color:var(--ink)}
+  .case-meta .role{font-size:12px;color:var(--grey)}
+  .case-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .case-stat-box{
+    background:var(--blue-10);border-radius:10px;padding:10px 14px;
+  }
+  .case-stat-box .v{font-size:18px;font-weight:800;color:var(--blue-dk);letter-spacing:-.015em;line-height:1}
+  .case-stat-box .l{font-size:11px;color:var(--grey);margin-top:3px;line-height:1.3}
+  .case-quote{font-size:14px;line-height:1.55;color:var(--ink-2);font-style:italic}
+  .case-quote::before{content:"„";color:var(--blue);font-size:28px;font-weight:700;line-height:0;margin-right:4px;vertical-align:-10px}
+
+  /* ─── Big CTA ─── */
+  .cta-box{
+    background:linear-gradient(135deg,var(--ink) 0%,#1A2A4F 100%);
+    color:#fff;border-radius:32px;padding:64px;
+    position:relative;overflow:hidden;
+  }
+  .cta-box::before{
+    content:"";position:absolute;top:-200px;right:-100px;
+    width:500px;height:500px;border-radius:50%;
+    background:radial-gradient(circle,rgba(63,171,255,.2) 0%,transparent 65%);
+    pointer-events:none;
+  }
+  .cta-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;position:relative;z-index:1}
+  .cta-left h2{font-size:44px;font-weight:800;line-height:1.05;letter-spacing:-.025em;margin-bottom:20px}
+  .cta-left h2 .accent{color:#A6F084}
+  .cta-left p{font-size:17px;line-height:1.55;color:rgba(255,255,255,.75);margin-bottom:28px;max-width:520px}
+  .cta-perks{display:flex;flex-direction:column;gap:12px}
+  .cta-perk{display:flex;gap:12px;align-items:center;font-size:14px;color:rgba(255,255,255,.85)}
+  .cta-perk::before{content:"✓";color:#A6F084;font-weight:800;font-size:16px}
+  .cta-perk b{color:#fff;font-weight:700}
+
+  .cta-form{
+    background:#fff;color:var(--ink);
+    border-radius:24px;padding:36px;
+  }
+  .cta-form h3{font-size:24px;font-weight:800;color:var(--ink);margin-bottom:6px;letter-spacing:-.015em}
+  .cta-form .sub{font-size:14px;color:var(--grey);margin-bottom:22px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:11px;font-weight:700;color:var(--grey);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+  .field input,.field select{
+    width:100%;background:#fff;border:1.5px solid var(--line);
+    border-radius:10px;padding:13px 14px;color:var(--ink);
+    font-family:inherit;font-size:14px;
+  }
+  .field input:focus,.field select:focus{outline:none;border-color:var(--blue)}
+  .form-cta{
+    width:100%;background:var(--blue);color:#fff;border:none;cursor:pointer;
+    padding:16px;border-radius:12px;font-family:inherit;font-size:15px;font-weight:700;
+    letter-spacing:-.01em;margin-top:6px;
+    box-shadow:0 6px 20px rgba(60,103,214,.3);
+  }
+  .form-agree{font-size:11px;color:var(--grey);margin-top:12px;line-height:1.5;text-align:center}
+
+  /* ─── FAQ ─── */
+  .faq-list{display:flex;flex-direction:column;gap:14px;max-width:920px}
+  .faq-item{
+    background:#fff;border:1px solid var(--line);
+    border-radius:14px;padding:24px 28px;
+  }
+  .faq-item h4{font-size:17px;font-weight:700;letter-spacing:-.01em;color:var(--ink);margin-bottom:10px}
+  .faq-item p{font-size:14px;color:var(--grey);line-height:1.55}
+  .faq-item p b{color:var(--ink);font-weight:600}
+
+  /* ─── Footer ─── */
+  .footer{padding:48px 0 28px;background:var(--ink);color:#fff}
+  .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;margin-bottom:36px}
+  .footer-col h5{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--blue-2);margin-bottom:14px}
+  .footer-col p,.footer-col a{font-size:14px;color:rgba(255,255,255,.7);line-height:1.7;text-decoration:none;display:block}
+  .footer-col a:hover{color:#fff}
+  .footer-logo{font-size:22px;font-weight:900;color:#fff;margin-bottom:14px}
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,.1);padding-top:20px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;
+    font-size:12px;color:rgba(255,255,255,.5);
+  }
+
+  /* ─── Responsive ─── */
+  
+
+    .container{padding:0 20px}
+    .nav{padding:14px 0}
+    .nav-links{display:none}
+    .nav-logo .tag{display:none}
+    .nav-cta{padding:9px 14px;font-size:13px}
+    .nav-logo{font-size:20px}
+
+    .hero{padding:36px 0 56px}
+    .hero-grid{grid-template-columns:1fr;gap:40px}
+    .hero h1{font-size:34px}
+    .hero .lede{font-size:16px;margin-bottom:24px}
+    .hero-cta-row{flex-direction:column;align-items:stretch;margin-bottom:28px}
+    .btn-primary,.btn-ghost{justify-content:center;padding:16px 20px;font-size:15px}
+    .hero-stats{gap:18px;flex-wrap:wrap}
+    .hero-stat .v{font-size:22px}
+    .net-vis{max-width:340px;aspect-ratio:1}
+    .net-center{width:140px;height:140px;padding:12px}
+    .net-center .title{font-size:13px}
+    .net-center .mrow{font-size:10px}
+    .net-center .mrow .v{font-size:11px}
+    .net-node{width:96px;padding:8px 10px}
+    .net-node .name{font-size:11px;margin-bottom:5px}
+
+    section{padding:56px 0}
+    .sec-head{margin-bottom:32px}
+    .sec-head h2{font-size:30px;margin-bottom:14px}
+    .sec-head .lede{font-size:15px}
+
+    .pains-grid{grid-template-columns:1fr;gap:14px}
+    .pain-card{padding:22px 20px}
+
+    .pillars-grid{grid-template-columns:1fr;gap:16px}
+    .pillar{padding:28px 24px}
+    .pillar-num{font-size:42px}
+    .pillar h3{font-size:20px}
+
+    .dash-mock{padding:24px;border-radius:18px}
+    .dash-head{flex-direction:column;align-items:flex-start;gap:14px}
+    .dash-grid{grid-template-columns:1fr;gap:12px}
+    .dash-row{grid-template-columns:1fr 1fr;gap:12px}
+    .dash-card .v{font-size:22px}
+    .dash-point{padding:10px 12px}
+
+    .modules-grid{grid-template-columns:1fr;gap:12px}
+    .module-card{padding:24px 22px}
+
+    .formats-strip{padding:24px;gap:16px;justify-content:flex-start}
+    .format-item{min-width:90px}
+    .format-item .ico{width:48px;height:48px;font-size:22px}
+    .format-item .name{font-size:12px}
+
+    .cases-grid{grid-template-columns:1fr;gap:14px}
+    .case-card{padding:24px 22px}
+
+    .cta-box{padding:32px 24px;border-radius:24px}
+    .cta-grid{grid-template-columns:1fr;gap:32px}
+    .cta-left h2{font-size:30px;margin-bottom:14px}
+    .cta-left p{font-size:15px;margin-bottom:22px}
+    .cta-form{padding:24px;border-radius:18px}
+    .cta-form h3{font-size:20px}
+
+    .faq-item{padding:20px 22px;border-radius:12px}
+    .faq-item h4{font-size:15px}
+    .faq-item p{font-size:13px}
+
+    .footer{padding:32px 0 20px}
+    .footer-grid{grid-template-columns:1fr 1fr;gap:24px}
+  
+  /* Force mobile body width */
+  body{max-width:420px;margin:0 auto;border-left:1px solid #E4E6EB;border-right:1px solid #E4E6EB}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container nav-row">
+    <div class="nav-left">
+      <a href="/" class="nav-logo">Fitbase<span class="tag">для сети</span></a>
+      <div class="nav-links">
+        <a href="#why">Зачем</a>
+        <a href="#pillars">Контроль</a>
+        <a href="#dash">Дашборд</a>
+        <a href="#price">Тарифы</a>
+        <a href="#faq">Вопросы</a>
+      </div>
+    </div>
+    <a href="#register" class="nav-cta">Демо для сети →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <span class="eyebrow"><span class="dot"></span>Для сетей фитнес-студий и франшиз</span>
+        <h1>Сеть студий <span class="hw">под вашим</span> <span class="accent">контролем</span> — каждая точка, каждая цифра</h1>
+        <p class="lede">Один дашборд для управляющей компании. Стандарты и контроль качества на удалёнке. Прозрачность для франчайзи — каждый видит свои показатели. <b>Без таблиц, без обзвонов точек, без двойных юрлиц в голове.</b></p>
+
+        <div class="hero-cta-row">
+          <a href="#register" class="btn-primary">Демо для сети →</a>
+          <a href="#dash" class="btn-ghost">Посмотреть дашборд</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="v"><span class="accent">80+</span></div>
+            <div class="l">сетей<br>в работе</div>
+          </div>
+          <div class="hero-stat">
+            <div class="v">600+</div>
+            <div class="l">точек<br>подключено</div>
+          </div>
+          <div class="hero-stat">
+            <div class="v">5</div>
+            <div class="l">стран<br>СНГ</div>
+          </div>
+          <div class="hero-stat">
+            <div class="v">0</div>
+            <div class="l">часов<br>на обзвон</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="net-vis">
+          <!-- Connecting lines (SVG) -->
+          <svg class="net-lines" viewBox="0 0 600 600" preserveAspectRatio="none">
+            <path d="M300 300 Q280 220 285 100"/>
+            <path d="M300 300 Q400 230 510 160"/>
+            <path d="M300 300 Q450 380 540 480"/>
+            <path d="M300 300 Q320 480 320 580"/>
+            <path d="M300 300 Q150 380 60 480"/>
+            <path d="M300 300 Q200 230 60 160"/>
+          </svg>
+
+          <!-- Center: УК dashboard -->
+          <div class="net-center">
+            <div class="live">live · sync</div>
+            <div>
+              <div class="label">Управляющая компания</div>
+              <div class="title">Сеть из 6 точек</div>
+            </div>
+            <div class="metrics">
+              <div class="mrow"><span class="n">Выручка</span><span class="v green">4,2 М</span></div>
+              <div class="mrow"><span class="n">Маржа</span><span class="v">38%</span></div>
+              <div class="mrow"><span class="n">Активных</span><span class="v">1 240</span></div>
+            </div>
+          </div>
+
+          <!-- Nodes around -->
+          <div class="net-node n1">
+            <div class="city">Москва</div>
+            <div class="name">Пилатес-1</div>
+            <div class="bar"><div class="fill green" style="width:92%"></div></div>
+            <div class="bar-val"><span>загрузка</span><b>92%</b></div>
+          </div>
+          <div class="net-node n2">
+            <div class="city">Москва</div>
+            <div class="name">Пилатес-2</div>
+            <div class="bar"><div class="fill" style="width:78%"></div></div>
+            <div class="bar-val"><span>загрузка</span><b>78%</b></div>
+          </div>
+          <div class="net-node n3">
+            <div class="city">СПб</div>
+            <div class="name">Стретч-СПб</div>
+            <div class="bar"><div class="fill green" style="width:88%"></div></div>
+            <div class="bar-val"><span>загрузка</span><b>88%</b></div>
+          </div>
+          <div class="net-node n4">
+            <div class="city">Казань</div>
+            <div class="name">Студия КЗН</div>
+            <div class="bar"><div class="fill gold" style="width:62%"></div></div>
+            <div class="bar-val"><span>загрузка</span><b>62%</b></div>
+          </div>
+          <div class="net-node n5">
+            <div class="city">Минск</div>
+            <div class="name">Студия МСК-2</div>
+            <div class="bar"><div class="fill" style="width:81%"></div></div>
+            <div class="bar-val"><span>загрузка</span><b>81%</b></div>
+          </div>
+          <div class="net-node n6">
+            <div class="city">Алматы</div>
+            <div class="name">Франшиза-1</div>
+            <div class="bar"><div class="fill red" style="width:45%"></div></div>
+            <div class="bar-val"><span>загрузка</span><b>45%</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAINS — почему сейчас сложно -->
+<section class="canvas" id="why">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow"><span class="dot"></span>Почему сейчас сложно</span>
+      <h2>Сеть растёт. <span class="accent">Контроль теряется.</span></h2>
+      <p class="lede">Каждая новая точка — это +1 чат с управляющим, +1 Excel-таблица, +1 юрлицо в голове фаундера. Через 5-6 точек — невозможно держать всё под контролем. Цифры узнаёшь постфактум, регламенты выполняются по-разному, у франчайзи свои «понятия».</p>
+    </div>
+
+    <div class="pains-grid">
+      <div class="pain-card">
+        <div class="ico">📞</div>
+        <h4>Обзвоны точек по утрам</h4>
+        <p>Звонок управляющему в каждой точке — узнать выручку, заполняемость, новых клиентов. 30 минут × 6 точек = 3 часа.</p>
+        <div class="quote">«Каждое утро — звонки. К обеду только закончил собирать цифры»</div>
+      </div>
+      <div class="pain-card">
+        <div class="ico">📊</div>
+        <h4>Excel-сводник за неделю</h4>
+        <p>Каждая точка шлёт свою таблицу, сводишь руками. К пятнице видишь, что один в провале, а уже поздно реагировать.</p>
+        <div class="quote">«Цифры по сети — это всегда задним числом»</div>
+      </div>
+      <div class="pain-card">
+        <div class="ico">⚖️</div>
+        <h4>Стандарты «у каждого свои»</h4>
+        <p>Один тренер ведёт занятие по регламенту, другой импровизирует. У франчайзи свои методики. Качество не контролируется.</p>
+        <div class="quote">«Я уже не успеваю следить, как ведут занятия»</div>
+      </div>
+      <div class="pain-card">
+        <div class="ico">🤝</div>
+        <h4>Франчайзи в темноте</h4>
+        <p>Партнёр не видит свои метрики в реальном времени. Звонит спрашивать. Доверие падает — управляющая компания «что-то скрывает».</p>
+        <div class="quote">«Партнёры всё время в чате — что у меня сейчас?»</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 POWER PILLARS -->
+<section id="pillars">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow"><span class="dot"></span>Что меняет Fitbase для сети</span>
+      <h2>Три вещи, которые делают вас <span class="accent">владельцем сети</span>, а не диспетчером</h2>
+      <p class="lede">Контроль сверху без потери доверия партнёров. Стандарты не на бумаге, а в системе. Прозрачность вместо обзвонов.</p>
+    </div>
+
+    <div class="pillars-grid">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <h3>Единый дашборд по сети</h3>
+        <p>Все точки в одном экране — выручка, загрузка, активные клиенты, отток, конверсия. <b>Не задним числом — в реальном времени.</b> Сравнение точек, прогноз, алерты.</p>
+        <div class="pillar-list">
+          <div class="pillar-li">Реал-тайм метрики каждой точки</div>
+          <div class="pillar-li">Сравнение «лучшая vs худшая» по любому параметру</div>
+          <div class="pillar-li">Алерты на падение метрик в точке</div>
+          <div class="pillar-li">Прогноз выручки по сети на месяц</div>
+        </div>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <h3>Стандарты и контроль качества</h3>
+        <p>Единая база регламентов, методичек, скриптов. Каждый тренер видит «как правильно». <b>Видеоконтроль занятий выборочно</b> — управляющая компания пересматривает работу удалённо.</p>
+        <div class="pillar-list">
+          <div class="pillar-li">База регламентов и видеоматериалов</div>
+          <div class="pillar-li">Чек-листы выполнения для каждой точки</div>
+          <div class="pillar-li">Видеоконтроль занятий (опционально)</div>
+          <div class="pillar-li">Оценка тренеров через NPS клиентов</div>
+        </div>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <h3>Прозрачность для франчайзи</h3>
+        <p>Каждый партнёр видит свои метрики в личном кабинете — выручка, маржа, отток, KPI. <b>Никаких звонков «а сколько у меня сейчас?»</b> Все цифры открыты, конфликтов меньше.</p>
+        <div class="pillar-list">
+          <div class="pillar-li">Личный кабинет франчайзи с метриками</div>
+          <div class="pillar-li">Финансы по партнёру — открыто и прозрачно</div>
+          <div class="pillar-li">Управляющая компания видит больше, чем партнёр</div>
+          <div class="pillar-li">Чёткое разделение ролей и доступов</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD MOCKUP -->
+<section class="canvas" id="dash">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow"><span class="dot"></span>Дашборд управляющей компании</span>
+      <h2>Сеть на <span class="accent">одном экране</span> — без таблиц и обзвонов</h2>
+      <p class="lede">Каждая точка отчитывается автоматически. Вы открываете дашборд — видите состояние всей сети. На что обратить внимание, где проблема, кому позвонить — система подсказывает сама.</p>
+    </div>
+
+    <div class="dash-mock">
+      <div class="dash-head">
+        <h3>Сеть · сегодня · live</h3>
+        <div class="filter">
+          <span class="dash-pill active">Все точки</span>
+          <span class="dash-pill">Москва</span>
+          <span class="dash-pill">Регионы</span>
+          <span class="dash-pill">Франшизы</span>
+        </div>
+      </div>
+
+      <div class="dash-grid">
+        <div class="dash-card">
+          <div class="lbl">Выручка по сети · сегодня</div>
+          <div class="v green">4 247 800 ₽</div>
+          <div class="delta">+12% к прошлой неделе</div>
+        </div>
+        <div class="dash-card">
+          <div class="lbl">Активных клиентов</div>
+          <div class="v">1 240</div>
+          <div class="delta">+38 за неделю</div>
+        </div>
+        <div class="dash-card">
+          <div class="lbl">Средняя загрузка</div>
+          <div class="v">74%</div>
+          <div class="delta red">−4% по сети</div>
+        </div>
+      </div>
+
+      <div class="dash-row">
+        <div class="dash-point">
+          <div class="status"></div>
+          <div class="city">Москва</div>
+          <div class="name">Пилатес-1</div>
+          <div class="num">92%</div>
+          <div class="meta">загрузка · 84 клиента</div>
+        </div>
+        <div class="dash-point">
+          <div class="status"></div>
+          <div class="city">Москва</div>
+          <div class="name">Пилатес-2</div>
+          <div class="num">78%</div>
+          <div class="meta">загрузка · 72 клиента</div>
+        </div>
+        <div class="dash-point">
+          <div class="status warn"></div>
+          <div class="city">Казань</div>
+          <div class="name">Студия КЗН</div>
+          <div class="num warn">62%</div>
+          <div class="meta">внимание · отток ↑</div>
+        </div>
+        <div class="dash-point">
+          <div class="status red"></div>
+          <div class="city">Алматы</div>
+          <div class="name">Франшиза-1</div>
+          <div class="num red">45%</div>
+          <div class="meta">падение · нужен разбор</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATS -->
+<section>
+  <div class="container">
+    <div class="sec-head" style="text-align:center;margin:0 auto 48px;max-width:760px">
+      <span class="eyebrow" style="margin:0 auto 16px"><span class="dot"></span>Подходит для разных форматов</span>
+      <h2>Сетям и франшизам <span class="accent">любого направления</span></h2>
+    </div>
+
+    <div class="formats-strip">
+      <div class="format-item">
+        <div class="ico">🧘</div>
+        <div class="name">Пилатес</div>
+        <div class="meta">2–10 точек</div>
+      </div>
+      <div class="format-item">
+        <div class="ico">🤸</div>
+        <div class="name">Стретчинг</div>
+        <div class="meta">франшиза 5+</div>
+      </div>
+      <div class="format-item">
+        <div class="ico">🧎</div>
+        <div class="name">Йога</div>
+        <div class="meta">сети 2–8</div>
+      </div>
+      <div class="format-item">
+        <div class="ico">🏋</div>
+        <div class="name">Клубы</div>
+        <div class="meta">франшиза + сеть</div>
+      </div>
+      <div class="format-item">
+        <div class="ico">🥊</div>
+        <div class="name">Единоборства</div>
+        <div class="meta">сети 3+</div>
+      </div>
+      <div class="format-item">
+        <div class="ico">💃</div>
+        <div class="name">Танцы</div>
+        <div class="meta">франшиза</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section class="canvas">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow"><span class="dot"></span>Кейсы сетей</span>
+      <h2>Сети, которые <span class="accent">выросли с Fitbase</span></h2>
+      <p class="lede">Не одиночные клубы — именно сети и франшизы. Как они масштабировались без потери контроля.</p>
+    </div>
+
+    <div class="cases-grid">
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-avatar">SH</div>
+          <div class="case-meta">
+            <div class="nm">Stretch House</div>
+            <div class="role">Франшиза · 12 точек, 4 города</div>
+          </div>
+        </div>
+        <div class="case-stats">
+          <div class="case-stat-box">
+            <div class="v">4 → 12</div>
+            <div class="l">точек за 2 года</div>
+          </div>
+          <div class="case-stat-box">
+            <div class="v">−70%</div>
+            <div class="l">времени на отчёты</div>
+          </div>
+        </div>
+        <p class="case-quote">Раньше каждый франчайзи присылал свою таблицу. Я сводил их три дня. Теперь открываю один экран и вижу всю сеть. Освободил 3 рабочих дня в неделю на стратегию.</p>
+        <span style="font-size:11px;color:var(--grey-l);text-transform:uppercase;letter-spacing:.06em;font-weight:600">— заглушка кейса —</span>
+      </div>
+
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-avatar">ПС</div>
+          <div class="case-meta">
+            <div class="nm">Пилатес-Студия</div>
+            <div class="role">Сеть · 5 точек, Москва</div>
+          </div>
+        </div>
+        <div class="case-stats">
+          <div class="case-stat-box">
+            <div class="v">+42%</div>
+            <div class="l">прирост выручки сети</div>
+          </div>
+          <div class="case-stat-box">
+            <div class="v">0</div>
+            <div class="l">обзвонов точек</div>
+          </div>
+        </div>
+        <p class="case-quote">Главное — мы видим точку «на грани оттока» за неделю до того, как там провалится. Управляющий приезжает и разбирается. Раньше узнавали через месяц.</p>
+        <span style="font-size:11px;color:var(--grey-l);text-transform:uppercase;letter-spacing:.06em;font-weight:600">— заглушка кейса —</span>
+      </div>
+
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-avatar">ФК</div>
+          <div class="case-meta">
+            <div class="nm">FlexClub</div>
+            <div class="role">Франшиза клубов · 8 точек</div>
+          </div>
+        </div>
+        <div class="case-stats">
+          <div class="case-stat-box">
+            <div class="v">+18%</div>
+            <div class="l">маржа франчайзи</div>
+          </div>
+          <div class="case-stat-box">
+            <div class="v">×2.5</div>
+            <div class="l">скорость отбора партнёров</div>
+          </div>
+        </div>
+        <p class="case-quote">Когда партнёр видит свои цифры в реал-тайме — нет конфликтов «УК что-то скрывает». Доверие выше, конфликтов на платежах нет, расти проще.</p>
+        <span style="font-size:11px;color:var(--grey-l);text-transform:uppercase;letter-spacing:.06em;font-weight:600">— заглушка кейса —</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section>
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow"><span class="dot"></span>6 модулей для сети</span>
+      <h2>Всё, что нужно <span class="accent">управляющей компании</span></h2>
+    </div>
+
+    <div class="modules-grid">
+      <div class="module-card">
+        <div class="ico">📊</div>
+        <h3>Дашборд по сети</h3>
+        <p>Все точки в одном экране, реал-тайм метрики, сравнение, алерты, прогноз. Никаких обзвонов и Excel.</p>
+      </div>
+      <div class="module-card">
+        <div class="ico">📋</div>
+        <h3>Стандарты и регламенты</h3>
+        <p>Единая база методичек, скриптов продаж, чек-листов. Каждый тренер видит «как правильно».</p>
+      </div>
+      <div class="module-card">
+        <div class="ico">🎥</div>
+        <h3>Видеоконтроль занятий</h3>
+        <p>Управляющая компания выборочно пересматривает занятия — контроль качества на удалёнке.</p>
+      </div>
+      <div class="module-card">
+        <div class="ico">🤝</div>
+        <h3>Личный кабинет франчайзи</h3>
+        <p>Партнёр видит свои метрики, отчёты, регламенты. Чёткие роли и доступы — без хаоса.</p>
+      </div>
+      <div class="module-card">
+        <div class="ico">💼</div>
+        <h3>Управление франшизами</h3>
+        <p>Воронка отбора партнёров, скоринг, договоры, выплаты роялти, контроль соблюдения стандартов.</p>
+      </div>
+      <div class="module-card">
+        <div class="ico">💰</div>
+        <h3>Финансы по сети + по точке</h3>
+        <p>Единый P&L по сети, отдельные финансы по каждой точке/юрлицу. Маржа, прогноз, кассовый разрыв.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="canvas" id="faq">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow"><span class="dot"></span>Частые вопросы</span>
+      <h2>Что спрашивают <span class="accent">владельцы сетей</span></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h4>Что если у точек разные юрлица — это работает?</h4>
+        <p>Да. <b>Мульти-юрлица из коробки</b> — каждая точка может работать на своё юрлицо, со своим расчётным счётом и платёжным провайдером. В дашборде УК — сводно. В личном кабинете партнёра — его юрлицо.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Как франчайзи видит только свои данные, а УК — всё?</h4>
+        <p>Через систему ролей. Партнёр — роль «франчайзи», видит свою точку. Управляющий партнёра — расширенная роль. УК — полный доступ ко всем точкам. <b>Конфликта доступов не происходит.</b></p>
+      </div>
+      <div class="faq-item">
+        <h4>Можно ли подключить только часть точек — на тест?</h4>
+        <p>Да. Можно начать с 1–2 точек, протестировать, потом масштабировать. Никакой обязательной подписки за всю сеть. <b>Контракт по точкам.</b></p>
+      </div>
+      <div class="faq-item">
+        <h4>Как Fitbase интегрируется с моей CRM (Bitrix24, amoCRM)?</h4>
+        <p>Через готовые коннекторы. Заявки, сделки, статусы синхронизируются автоматически. Если у вас нет CRM — Fitbase сам её заменяет.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Видеоконтроль занятий — это серьёзно? Тренеры согласятся?</h4>
+        <p>Это <b>опционально</b> и юридически обосновывается через NDA в трудовом договоре. Используется не для слежки, а для разбора инцидентов и обучения новых тренеров. Можно включить только в некоторых точках.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Сколько стоит для сети из 5 точек?</h4>
+        <p>Зависит от количества активных клиентов, нужных модулей и длительности контракта. <b>Обсчитываем индивидуально</b> со скидками для сетей. Оставьте заявку — пришлём расчёт в течение рабочего дня.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA + FORM -->
+<section id="register">
+  <div class="container">
+    <div class="cta-box">
+      <div class="cta-grid">
+        <div class="cta-left">
+          <h2>Запустим <span class="accent">дашборд для вашей сети</span> за неделю</h2>
+          <p>Оставьте контакт — посмотрим на вашу сеть, покажем демо под ваш кейс, подключим первые 1–2 точки бесплатно для теста.</p>
+          <div class="cta-perks">
+            <div class="cta-perk"><b>Демо под вашу сеть</b> — не общую</div>
+            <div class="cta-perk">Тест на 1–2 точках <b>бесплатно</b></div>
+            <div class="cta-perk">Расчёт <b>в течение рабочего дня</b></div>
+            <div class="cta-perk">Перенос баз клиентов и истории <b>под ключ</b></div>
+          </div>
+        </div>
+        <form class="cta-form">
+          <h3>Демо для сети</h3>
+          <div class="sub">Свяжемся в течение рабочего дня</div>
+          <div class="field">
+            <label>Имя</label>
+            <input type="text" placeholder="Как к вам обращаться">
+          </div>
+          <div class="field">
+            <label>Телефон</label>
+            <input type="tel" placeholder="+7 (000) 000-00-00">
+          </div>
+          <div class="field">
+            <label>Название сети</label>
+            <input type="text" placeholder="Например, Stretch House">
+          </div>
+          <div class="field">
+            <label>Количество точек</label>
+            <select>
+              <option>2–4 точки (растущая сеть)</option>
+              <option>5–10 точек (сеть)</option>
+              <option>10+ точек (зрелая сеть)</option>
+              <option>Франшиза — продаём партнёрам</option>
+              <option>Только планирую сеть</option>
+            </select>
+          </div>
+          <button type="button" class="form-cta">Получить демо →</button>
+          <p class="form-agree">Отправляя форму, вы соглашаетесь с <a href="#" style="color:var(--blue);text-decoration:underline">политикой конфиденциальности</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">Fitbase</div>
+        <p>Программа управления сетью фитнес-студий и франшизой</p>
+        <p style="margin-top:8px">80+ сетей · 600+ точек · 5 стран СНГ</p>
+      </div>
+      <div class="footer-col">
+        <h5>Контакты</h5>
+        <a href="tel:+78005553535">8 800 555-35-35</a>
+        <a href="mailto:network@fitbase.io">network@fitbase.io</a>
+        <a href="https://t.me/fitbase_team">@fitbase_team</a>
+      </div>
+      <div class="footer-col">
+        <h5>Возможности</h5>
+        <a href="#pillars">Контроль сети</a>
+        <a href="#dash">Дашборд УК</a>
+        <a href="#why">Боли сетей</a>
+        <a href="#faq">Вопросы</a>
+      </div>
+      <div class="footer-col">
+        <h5>Документы</h5>
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Договор-оферта</a>
+        <a href="#">Реквизиты</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2020–2026 Fitbase · Все права защищены</span>
+      <span>ООО «Фитбейс» · ИНН XXXXXXXXXX</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
