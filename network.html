@@ -287,6 +287,159 @@
   .dash-point .status.warn{background:var(--gold);box-shadow:0 0 0 4px rgba(244,168,44,.2)}
   .dash-point .status.red{background:var(--red);box-shadow:0 0 0 4px rgba(237,61,61,.2);animation:pulse 1.5s infinite}
 
+  /* ─── One-program / studio features ─── */
+  .one-banner{
+    background:linear-gradient(135deg,var(--blue-10) 0%,var(--blue-20) 100%);
+    border:1.5px solid var(--blue-20);
+    border-radius:20px;padding:28px 36px;
+    display:flex;align-items:center;gap:32px;
+    margin-bottom:48px;flex-wrap:wrap;
+  }
+  .one-banner .ico-wrap{
+    width:64px;height:64px;border-radius:16px;
+    background:var(--blue);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:28px;flex-shrink:0;
+    box-shadow:0 8px 24px rgba(60,103,214,.28);
+  }
+  .one-banner .text{flex:1;min-width:280px}
+  .one-banner .text h3{font-size:22px;font-weight:800;color:var(--ink);margin-bottom:6px;letter-spacing:-.015em}
+  .one-banner .text p{font-size:15px;color:var(--ink-2);line-height:1.5}
+  .one-banner .text p b{color:var(--blue-dk);font-weight:700}
+  .one-banner .pill-list{display:flex;gap:10px;flex-wrap:wrap}
+  .one-banner .pill{
+    background:#fff;color:var(--blue-dk);
+    padding:7px 14px;border-radius:100px;
+    font-size:12px;font-weight:700;
+    border:1px solid rgba(60,103,214,.18);
+  }
+
+  .stu-feat{
+    display:grid;grid-template-columns:1fr 1fr;gap:24px;
+  }
+  .stu-card{
+    background:#fff;border:1.5px solid var(--line);border-radius:22px;
+    padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:24px;
+    align-items:start;
+    transition:border-color .2s,transform .2s,box-shadow .2s;
+  }
+  .stu-card:hover{
+    border-color:var(--blue);transform:translateY(-2px);
+    box-shadow:0 24px 48px -16px rgba(60,103,214,.15);
+  }
+  .stu-card .stu-info{display:flex;flex-direction:column;gap:14px}
+  .stu-card .stu-num{
+    font-family:'Caveat',cursive;font-size:42px;font-weight:700;
+    color:var(--blue-2);line-height:.9;letter-spacing:-.02em;
+  }
+  .stu-card h3{font-size:22px;font-weight:800;letter-spacing:-.015em;line-height:1.2;color:var(--ink)}
+  .stu-card .job{
+    font-style:italic;font-size:13.5px;color:var(--ink-2);line-height:1.5;
+    padding:12px 16px;background:var(--canvas);border-radius:10px;
+    border-left:3px solid var(--blue);
+  }
+  .stu-card .job b{color:var(--ink);font-style:normal;font-weight:700}
+  .stu-card .stu-result{
+    display:flex;align-items:center;gap:10px;
+    font-size:13px;color:var(--grey);font-weight:600;
+    padding-top:6px;
+  }
+  .stu-card .stu-result .v{
+    font-size:22px;font-weight:800;color:var(--green);letter-spacing:-.015em;
+  }
+
+  /* Studio mini mocks */
+  .stu-mock{
+    background:var(--canvas);border-radius:14px;padding:18px;
+    display:flex;flex-direction:column;gap:8px;
+    min-height:180px;
+  }
+  .stu-mock-head{
+    font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;
+    color:var(--grey);margin-bottom:6px;
+  }
+  .stu-mock-row{
+    background:#fff;border-radius:8px;padding:10px 12px;
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:12px;border:1px solid var(--line);
+  }
+  .stu-mock-row .l .nm{font-weight:700;color:var(--ink);font-size:12px}
+  .stu-mock-row .l .sub{font-size:10px;color:var(--grey);margin-top:1px}
+  .stu-mock-row .pill-mini{
+    font-size:10px;font-weight:700;padding:3px 7px;border-radius:5px;
+  }
+  .stu-mock-row .pill-mini.green{background:var(--green-10);color:var(--green)}
+  .stu-mock-row .pill-mini.warn{background:var(--orange-soft);color:var(--orange)}
+  .stu-mock-row .pill-mini.red{background:var(--red-10);color:var(--red)}
+  .stu-mock-row .pill-mini.blue{background:var(--blue-10);color:var(--blue-dk)}
+
+  /* Phone mock */
+  .stu-phone{
+    width:140px;height:280px;background:#0E1B36;border-radius:24px;
+    padding:8px;margin:0 auto;
+    box-shadow:0 20px 40px rgba(14,27,54,.3);
+    flex-shrink:0;
+  }
+  .stu-phone-screen{
+    width:100%;height:100%;background:#F4F6FA;border-radius:18px;
+    overflow:hidden;display:flex;flex-direction:column;
+  }
+  .stu-phone-head{
+    background:linear-gradient(135deg,var(--blue),var(--blue-2));
+    padding:14px 12px;color:#fff;
+  }
+  .stu-phone-head .greet{font-size:9px;opacity:.85}
+  .stu-phone-head .name{font-size:13px;font-weight:800;margin-top:2px}
+  .stu-phone-content{padding:10px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .stu-phone-card{background:#fff;border-radius:8px;padding:8px 10px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  .stu-phone-card .t{font-size:10px;font-weight:700;color:var(--ink)}
+  .stu-phone-card .s{font-size:8px;color:var(--grey);margin-top:1px}
+  .stu-phone-card .pill-mp{font-size:7px;font-weight:700;padding:2px 5px;border-radius:3px;display:inline-block;margin-top:4px}
+  .stu-phone-card .pill-mp.green{background:var(--green-10);color:var(--green)}
+  .stu-phone-card .pill-mp.gold{background:var(--orange-soft);color:var(--orange)}
+  .stu-phone-cta{
+    background:var(--blue);color:#fff;border-radius:6px;
+    text-align:center;padding:8px;font-size:10px;font-weight:700;margin-top:auto;
+  }
+
+  /* Schedule grid mock */
+  .stu-grid-mock{
+    background:#fff;border-radius:10px;padding:10px;border:1px solid var(--line);
+  }
+  .stu-grid-head{display:grid;grid-template-columns:30px repeat(3,1fr);gap:4px;margin-bottom:4px}
+  .stu-grid-head .cell{font-size:9px;font-weight:800;text-align:center;color:var(--grey);padding:3px 0}
+  .stu-grid-row{display:grid;grid-template-columns:30px repeat(3,1fr);gap:4px;margin-bottom:3px}
+  .stu-grid-row .time{font-size:9px;color:var(--grey);font-weight:600;text-align:right;padding-right:4px;line-height:24px}
+  .stu-grid-row .cell{
+    height:24px;border-radius:4px;font-size:8px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;padding:0 4px;
+  }
+  .stu-grid-row .cell.blue{background:var(--blue)}
+  .stu-grid-row .cell.green{background:var(--green)}
+  .stu-grid-row .cell.gold{background:var(--gold)}
+  .stu-grid-row .cell.empty{background:var(--canvas);color:var(--grey-l);border:1px dashed var(--line)}
+
+  /* KPI bar mock */
+  .stu-kpi-mock{display:flex;flex-direction:column;gap:8px}
+  .stu-kpi-row{
+    background:#fff;border-radius:8px;padding:10px 12px;
+    border:1px solid var(--line);display:flex;flex-direction:column;gap:4px;
+  }
+  .stu-kpi-name{display:flex;justify-content:space-between;font-size:11px}
+  .stu-kpi-name .nm{font-weight:700;color:var(--ink)}
+  .stu-kpi-name .v{font-weight:800;color:var(--blue-dk)}
+  .stu-kpi-bar{height:5px;border-radius:100px;background:var(--canvas);overflow:hidden}
+  .stu-kpi-bar .fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--blue),var(--blue-2))}
+  .stu-kpi-bar .fill.green{background:linear-gradient(90deg,var(--green),#3A8F07)}
+  .stu-kpi-sum{
+    background:linear-gradient(135deg,var(--blue),var(--blue-dk));color:#fff;
+    border-radius:8px;padding:10px 12px;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .stu-kpi-sum .lbl{font-size:10px;font-weight:700;opacity:.8;text-transform:uppercase;letter-spacing:.04em}
+  .stu-kpi-sum .v{font-size:16px;font-weight:800;letter-spacing:-.01em}
+
   /* ─── Modules grid ─── */
   .modules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
   .module-card{
@@ -456,6 +609,21 @@
     .dash-row{grid-template-columns:1fr 1fr;gap:12px}
     .dash-card .v{font-size:22px}
     .dash-point{padding:10px 12px}
+
+    .one-banner{padding:20px 22px;flex-direction:column;align-items:flex-start;gap:18px}
+    .one-banner .ico-wrap{width:48px;height:48px;font-size:22px}
+    .one-banner .text h3{font-size:18px}
+    .one-banner .text p{font-size:14px}
+    .stu-feat{grid-template-columns:1fr;gap:14px}
+    .stu-card{grid-template-columns:1fr;gap:18px;padding:24px;border-radius:18px}
+    .stu-card .stu-num{font-size:36px}
+    .stu-card h3{font-size:19px}
+    .stu-card .job{font-size:13px;padding:10px 14px}
+    .stu-card .stu-result .v{font-size:18px}
+    .stu-mock{min-height:auto;padding:14px}
+    .stu-phone{width:120px;height:240px;border-radius:20px;padding:6px}
+    .stu-phone-screen{border-radius:14px}
+    .stu-kpi-sum .v{font-size:14px}
 
     .modules-grid{grid-template-columns:1fr;gap:12px}
     .module-card{padding:24px 22px}
@@ -761,6 +929,218 @@
           <div class="meta">падение · нужен разбор</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ONE PROGRAM — для УК и для каждой студии -->
+<section>
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow"><span class="dot"></span>Одна программа · одна подписка</span>
+      <h2>Не два продукта. <span class="accent">Одна Fitbase</span> — и для контроля сети, и для операционки каждой студии</h2>
+      <p class="lede">УК получает дашборд по сети. Каждая студия — рабочую CRM с мобильным приложением, учётом клиентов, расписанием и расчётом ЗП. <b>Одна подписка, один контракт, общая база — никаких костылей и интеграций между «системой для УК» и «системой для студий».</b></p>
+    </div>
+
+    <div class="one-banner">
+      <div class="ico-wrap">⚡</div>
+      <div class="text">
+        <h3>Внутри студии — полная операционка из коробки</h3>
+        <p>Не нужно докупать отдельную CRM, отдельную мобилку для клиентов, отдельный модуль для ЗП и отдельный сервис для рассылок. <b>Всё работает в одной системе</b> — клиент, абонемент, оплата, тренировка, тренер, выплата — связано без интеграций.</p>
+      </div>
+      <div class="pill-list">
+        <span class="pill">CRM</span>
+        <span class="pill">Мобильное приложение</span>
+        <span class="pill">Расписание</span>
+        <span class="pill">ЗП тренеров</span>
+        <span class="pill">Аналитика</span>
+      </div>
+    </div>
+
+    <div class="stu-feat">
+
+      <!-- Feature 1 — Учёт клиентов -->
+      <div class="stu-card">
+        <div class="stu-info">
+          <div class="stu-num">01</div>
+          <h3>Учёт клиентов и абонементов</h3>
+          <p class="job">«Когда у меня 400 клиентов на разных тарифах — хочу видеть, <b>кто активен, кто заморозил, кто на грани оттока</b>, чтобы возвращать до того, как уйдёт навсегда»</p>
+          <p style="font-size:14px;color:var(--grey);line-height:1.55">Единая база клиентов с историей визитов, статусом абонемента, авто-тегами «спящий», «вернётся», «отвалился». Администратор открывает один экран — видит весь клуб.</p>
+          <div class="stu-result">
+            <span>В среднем</span>
+            <span class="v">−40%</span>
+            <span>оттока за 6 месяцев</span>
+          </div>
+        </div>
+        <div class="stu-mock">
+          <div class="stu-mock-head">Клиенты · на грани оттока</div>
+          <div class="stu-mock-row">
+            <div class="l">
+              <div class="nm">Анна К.</div>
+              <div class="sub">не была 14 дн · абонемент действует</div>
+            </div>
+            <span class="pill-mini warn">верните</span>
+          </div>
+          <div class="stu-mock-row">
+            <div class="l">
+              <div class="nm">Мария П.</div>
+              <div class="sub">не была 18 дн · возможен возврат</div>
+            </div>
+            <span class="pill-mini warn">верните</span>
+          </div>
+          <div class="stu-mock-row">
+            <div class="l">
+              <div class="nm">Елена С.</div>
+              <div class="sub">вернулась после звонка ✓</div>
+            </div>
+            <span class="pill-mini green">вернулась</span>
+          </div>
+          <div class="stu-mock-row">
+            <div class="l">
+              <div class="nm">Олеся М.</div>
+              <div class="sub">абонемент истёк, нет ответа</div>
+            </div>
+            <span class="pill-mini red">отвалилась</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 2 — Мобильное приложение -->
+      <div class="stu-card">
+        <div class="stu-info">
+          <div class="stu-num">02</div>
+          <h3>Мобильное приложение для клиентов</h3>
+          <p class="job">«Когда клиент хочет записаться вечером — хочу, чтобы он мог сделать это <b>сам, в приложении, без звонка администратору</b>. И оплатить тоже сам»</p>
+          <p style="font-size:14px;color:var(--grey);line-height:1.55">Брендированное приложение iOS + Android. Запись 24/7, оплата абонемента через Click/СБП/карту, история тренировок, чат с клубом, push-напоминания о тренировках.</p>
+          <div class="stu-result">
+            <span>В среднем</span>
+            <span class="v">−60%</span>
+            <span>звонков администратору</span>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:center">
+          <div class="stu-phone">
+            <div class="stu-phone-screen">
+              <div class="stu-phone-head">
+                <div class="greet">Привет,</div>
+                <div class="name">Анна!</div>
+              </div>
+              <div class="stu-phone-content">
+                <div class="stu-phone-card">
+                  <div class="t">Пилатес Reformer</div>
+                  <div class="s">сегодня · 18:30 · Мария К.</div>
+                  <span class="pill-mp green">Записана</span>
+                </div>
+                <div class="stu-phone-card">
+                  <div class="t">Стретчинг</div>
+                  <div class="s">ср · 19:00 · Юлия Р.</div>
+                  <span class="pill-mp gold">Лист ожидания</span>
+                </div>
+                <div class="stu-phone-card">
+                  <div class="t">Абонемент · 18 занятий</div>
+                  <div class="s">до 12 марта · продлить</div>
+                </div>
+                <div class="stu-phone-cta">Записаться →</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 3 — Расписание и запись -->
+      <div class="stu-card">
+        <div class="stu-info">
+          <div class="stu-num">03</div>
+          <h3>Расписание и запись по залам</h3>
+          <p class="job">«Когда нужно поменять расписание или заменить тренера — хочу делать это в одном окне, чтобы <b>все клиенты автоматом узнали через приложение</b> и тренеры тоже»</p>
+          <p style="font-size:14px;color:var(--grey);line-height:1.55">Drag-and-drop расписание по залам и тренерам. Замены, отмены, переносы — авто-уведомления клиентам. Лист ожидания, контроль вместимости, повтор расписания.</p>
+          <div class="stu-result">
+            <span>В среднем</span>
+            <span class="v">0</span>
+            <span>пропущенных занятий из-за неучтённой замены</span>
+          </div>
+        </div>
+        <div class="stu-mock">
+          <div class="stu-mock-head">Расписание · понедельник</div>
+          <div class="stu-grid-mock">
+            <div class="stu-grid-head">
+              <div class="cell"></div>
+              <div class="cell">Зал А</div>
+              <div class="cell">Зал Б</div>
+              <div class="cell">Зал В</div>
+            </div>
+            <div class="stu-grid-row">
+              <div class="time">15:00</div>
+              <div class="cell blue">Пилатес</div>
+              <div class="cell green">Йога</div>
+              <div class="cell empty">—</div>
+            </div>
+            <div class="stu-grid-row">
+              <div class="time">16:00</div>
+              <div class="cell blue">Контемп</div>
+              <div class="cell green">Растяж.</div>
+              <div class="cell gold">Хип-хоп</div>
+            </div>
+            <div class="stu-grid-row">
+              <div class="time">17:00</div>
+              <div class="cell gold">Хай Хилс</div>
+              <div class="cell blue">Пилатес</div>
+              <div class="cell green">Йога</div>
+            </div>
+            <div class="stu-grid-row">
+              <div class="time">18:00</div>
+              <div class="cell empty">—</div>
+              <div class="cell blue">Контемп</div>
+              <div class="cell gold">Растяж.</div>
+            </div>
+            <div class="stu-grid-row">
+              <div class="time">19:00</div>
+              <div class="cell blue">Пилатес</div>
+              <div class="cell green">Йога</div>
+              <div class="cell empty">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 4 — Зарплаты тренеров -->
+      <div class="stu-card">
+        <div class="stu-info">
+          <div class="stu-num">04</div>
+          <h3>Зарплаты тренеров на KPI</h3>
+          <p class="job">«Когда тренеры спрашивают за зарплату — хочу, чтобы они <b>сами видели свою формулу и сумму в моменте</b>, без споров и пересчёта вручную каждый месяц»</p>
+          <p style="font-size:14px;color:var(--grey);line-height:1.55">Настраиваемые KPI — посещения × ставка + бонусы за видео-отзывы, выполнение плана, рейтинг занятий. Личный кабинет тренера с реалтайм-расчётом и историей.</p>
+          <div class="stu-result">
+            <span>В среднем</span>
+            <span class="v">0</span>
+            <span>споров о ЗП за месяц</span>
+          </div>
+        </div>
+        <div class="stu-mock">
+          <div class="stu-mock-head">ЗП Юлия Романова · март</div>
+          <div class="stu-kpi-mock">
+            <div class="stu-kpi-row">
+              <div class="stu-kpi-name"><span class="nm">Посещения</span><span class="v">87 × 600 ₽</span></div>
+              <div class="stu-kpi-bar"><div class="fill" style="width:87%"></div></div>
+            </div>
+            <div class="stu-kpi-row">
+              <div class="stu-kpi-name"><span class="nm">Видео-отзывы</span><span class="v">+6 000 ₽</span></div>
+              <div class="stu-kpi-bar"><div class="fill green" style="width:60%"></div></div>
+            </div>
+            <div class="stu-kpi-row">
+              <div class="stu-kpi-name"><span class="nm">План +10%</span><span class="v">+5 220 ₽</span></div>
+              <div class="stu-kpi-bar"><div class="fill green" style="width:100%"></div></div>
+            </div>
+            <div class="stu-kpi-sum">
+              <div>
+                <div class="lbl">Итого к выплате</div>
+              </div>
+              <div class="v">63 420 ₽</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
