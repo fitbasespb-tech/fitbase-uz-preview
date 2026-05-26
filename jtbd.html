@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JTBD-карта Fitbase — 95 работ из интервью</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Inter',-apple-system,sans-serif;
+    color:#0E1B36;background:#F4F6FA;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+
+  :root{
+    --blue:#3C67D6;
+    --blue-2:#3FABFF;
+    --blue-10:#ECF1FF;
+    --ink:#0E1B36;
+    --grey:#6B7589;
+    --grey-l:#9AA3B5;
+    --line:#E4E7EE;
+    --canvas:#F4F6FA;
+    --green:#4EB410;
+    --green-10:#EDF7E7;
+    --gold:#FFE5A0;
+    --gold-soft:#FFF6D8;
+    --red:#ED3D3D;
+    --sticky:#FFF38C;
+  }
+
+  .container{max-width:1400px;margin:0 auto;padding:0 32px}
+
+  /* Header */
+  .header{
+    background:#fff;border-bottom:1px solid var(--line);
+    padding:40px 0 32px;
+  }
+  .header-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+  .logo{font-size:22px;font-weight:900;color:var(--blue);letter-spacing:-.02em;text-decoration:none}
+  .lab-info{display:flex;gap:14px;align-items:center;font-size:13px;color:var(--grey)}
+  .lab-info a{color:var(--blue);text-decoration:none;font-weight:600}
+  .lab-info a:hover{text-decoration:underline}
+
+  h1{font-size:44px;font-weight:800;letter-spacing:-.025em;line-height:1.05;color:var(--ink);margin-bottom:14px}
+  h1 .accent{color:var(--blue)}
+  .sub{font-size:17px;color:var(--grey);line-height:1.55;max-width:840px;margin-bottom:24px}
+  .sub b{color:var(--ink);font-weight:600}
+
+  .stats{display:flex;gap:32px;border-top:1px solid var(--line);padding-top:24px}
+  .stat{display:flex;flex-direction:column;gap:4px}
+  .stat .v{font-size:26px;font-weight:800;color:var(--ink);letter-spacing:-.02em;line-height:1}
+  .stat .v .blue{color:var(--blue)}
+  .stat .l{font-size:12px;color:var(--grey);font-weight:500}
+
+  /* Filters */
+  .filters{
+    background:#fff;border-bottom:1px solid var(--line);
+    padding:20px 0;position:sticky;top:0;z-index:10;
+    box-shadow:0 4px 14px rgba(14,27,54,.04);
+  }
+  .filters-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .filter-search{
+    flex:1;min-width:240px;max-width:360px;position:relative;
+  }
+  .filter-search input{
+    width:100%;background:var(--canvas);border:1.5px solid transparent;
+    border-radius:10px;padding:12px 14px 12px 40px;
+    font-family:inherit;font-size:14px;color:var(--ink);font-weight:500;
+  }
+  .filter-search input:focus{outline:none;border-color:var(--blue);background:#fff}
+  .filter-search::before{
+    content:"";position:absolute;left:14px;top:50%;transform:translateY(-50%);
+    width:16px;height:16px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Ccircle cx='7' cy='7' r='5' stroke='%236B7589' stroke-width='1.5'/%3E%3Cpath d='M11 11L14 14' stroke='%236B7589' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size:contain;background-repeat:no-repeat;
+  }
+  .filter-group{display:flex;gap:6px;align-items:center}
+  .filter-label{font-size:12px;font-weight:700;color:var(--grey);text-transform:uppercase;letter-spacing:.06em;margin-right:6px}
+  .filter-btn{
+    background:#fff;border:1.5px solid var(--line);color:var(--ink);
+    padding:9px 14px;border-radius:8px;font-family:inherit;
+    font-size:12px;font-weight:700;cursor:pointer;
+    transition:all .15s;letter-spacing:.02em;
+  }
+  .filter-btn:hover{border-color:var(--blue);color:var(--blue)}
+  .filter-btn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .filter-btn.active.big{background:#3C67D6;border-color:#3C67D6}
+  .filter-btn.active.mid{background:#9C7300;border-color:#9C7300;color:#fff}
+  .filter-btn.active.hot{background:var(--gold);color:#5C4C00;border-color:var(--gold)}
+  .count-badge{
+    margin-left:auto;font-size:13px;color:var(--grey);font-weight:600;
+  }
+  .count-badge b{color:var(--ink)}
+
+  /* Table */
+  .table-wrap{padding:24px 0 80px}
+  .jtbd-table-wrap{
+    background:#fff;border-radius:14px;
+    border:1.5px solid var(--line);
+    overflow:hidden;
+    box-shadow:0 4px 14px rgba(14,27,54,.04);
+  }
+  .jtbd-table{width:100%;border-collapse:collapse;font-size:14px}
+  .jtbd-table thead{
+    position:sticky;top:64px;background:var(--ink);color:#fff;z-index:5;
+  }
+  .jtbd-table th{
+    padding:14px 18px;text-align:left;font-size:11px;font-weight:800;
+    text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.85);
+  }
+  .jtbd-table tbody tr{
+    border-bottom:1px solid var(--line);transition:background .15s;
+  }
+  .jtbd-table tbody tr:last-child{border-bottom:none}
+  .jtbd-table tbody tr:hover{background:var(--canvas)}
+  .jtbd-table tbody tr.hot{background:rgba(255,243,140,.25)}
+  .jtbd-table tbody tr.hot:hover{background:rgba(255,243,140,.45)}
+  .jtbd-table tbody tr.hidden{display:none}
+  .jtbd-table td{padding:14px 18px;line-height:1.4;color:var(--ink);vertical-align:top}
+  .jtbd-table td.size{width:90px}
+  .jtbd-table td.block-col{width:160px;font-size:12px;color:var(--grey);font-weight:600}
+  .jtbd-table td.trend{width:80px;font-family:'SF Mono',monospace;font-weight:800;text-align:center}
+  .jtbd-table td.segments{width:240px;font-size:12.5px;color:var(--grey)}
+  .jtbd-table td.name{font-weight:600;font-size:14.5px}
+  .size-pill{
+    display:inline-block;padding:4px 10px;border-radius:6px;
+    font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;
+  }
+  .size-pill.big{background:#3C67D6;color:#fff}
+  .size-pill.mid{background:#FFE5A0;color:#9C7300}
+  .size-pill.sml{background:var(--canvas);color:var(--grey)}
+  .trend-up{color:var(--green)}
+  .trend-up-strong{color:#2E8B0A}
+  .trend-flat{color:var(--grey-l)}
+  .trend-down{color:var(--red)}
+  .hot-badge{
+    display:inline-block;background:var(--sticky);color:#5C4C00;
+    font-size:9px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;
+    padding:2px 6px;border-radius:4px;margin-left:8px;vertical-align:middle;
+  }
+  .empty-row{
+    padding:60px 32px;text-align:center;color:var(--grey);
+  }
+  .empty-row b{color:var(--ink);font-size:16px;display:block;margin-bottom:6px}
+
+  /* Block headers */
+  .block-divider{
+    background:var(--canvas);
+    border-top:2px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .block-divider td{
+    padding:12px 18px;font-size:11px;font-weight:800;
+    text-transform:uppercase;letter-spacing:.06em;color:var(--blue);
+  }
+
+  /* Responsive */
+  @media (max-width:768px){
+    .container{padding:0 16px}
+    h1{font-size:30px}
+    .sub{font-size:14px}
+    .stats{gap:20px;flex-wrap:wrap}
+    .stat .v{font-size:20px}
+    .filters-row{gap:8px}
+    .filter-search{min-width:100%}
+    .filter-btn{padding:7px 10px;font-size:11px}
+    .jtbd-table{font-size:12px}
+    .jtbd-table th{padding:10px 12px;font-size:10px}
+    .jtbd-table td{padding:10px 12px;font-size:12px}
+    .jtbd-table td.block-col{display:none}
+    .jtbd-table td.size{width:64px}
+    .jtbd-table td.segments{display:none}
+    .jtbd-table td.trend{width:48px}
+    .size-pill{padding:3px 7px;font-size:9px}
+    .hot-badge{display:none}
+    .block-divider td{padding:8px 12px;font-size:10px}
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="header-top">
+      <a href="/" class="logo">Fitbase</a>
+      <div class="lab-info">
+        <span>Внутренний документ маркетинга Fitbase</span>
+        <a href="process.html">← к презентации</a>
+      </div>
+    </div>
+    <h1>JTBD-карта Fitbase — <span class="accent">95 работ</span> из интервью</h1>
+    <p class="sub">Каждое интервью с клиентом — Whisper → разбор по гайду Замесина (AJTBD v3.3) → работы в общую карту. Сейчас 30+ интервью разобрано, 95 работ собрано. Claude видит всю карту целиком: какие работы критичные, в каком сегменте, какой тренд. <b>Когда нужен лендинг — берёт релевантные джобы и собирает копирайт под них.</b></p>
+    <div class="stats">
+      <div class="stat"><div class="v"><span class="blue">95</span></div><div class="l">работ всего</div></div>
+      <div class="stat"><div class="v">7 / 37 / 51</div><div class="l">Big / Middle / Small</div></div>
+      <div class="stat"><div class="v">8</div><div class="l">критических</div></div>
+      <div class="stat"><div class="v">11</div><div class="l">тематических блоков</div></div>
+      <div class="stat"><div class="v">30+</div><div class="l">интервью в основе</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="filters">
+  <div class="container">
+    <div class="filters-row">
+      <div class="filter-search">
+        <input id="search" type="text" placeholder="Поиск по работам, сегментам, блокам...">
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Размер</span>
+        <button class="filter-btn active" data-size="all">Все</button>
+        <button class="filter-btn" data-size="big">Big</button>
+        <button class="filter-btn" data-size="mid">Middle</button>
+        <button class="filter-btn" data-size="sml">Small</button>
+      </div>
+      <div class="filter-group">
+        <button class="filter-btn" data-hot="1">⭐ Только критические</button>
+      </div>
+      <div class="count-badge"><b id="visible">95</b> из <b>95</b> работ</div>
+    </div>
+  </div>
+</div>
+
+<div class="table-wrap">
+  <div class="container">
+    <div class="jtbd-table-wrap">
+      <table class="jtbd-table" id="jtbd">
+        <thead>
+          <tr>
+            <th class="size">Размер</th>
+            <th class="block-col">Блок</th>
+            <th>Работа клиента (Job to be Done)</th>
+            <th class="segments">Ключевые сегменты</th>
+            <th class="trend">Тренд</th>
+          </tr>
+        </thead>
+        <tbody id="tbody">
+          <!-- Filled by JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  // All 95 jobs from CLAUDE.md
+  const JOBS = [
+    // --- Блок 1 — Финансы и учёт ---
+    {block:"Финансы и учёт", size:"big", name:"Контролировать финансы и продажи", segments:"Все", trend:"up-strong", trendSym:"↑↑"},
+    {block:"Финансы и учёт", size:"mid", name:"Видеть реальную прибыль, а не кассу (реализация vs касса)", segments:"Каталина, Сеть", trend:"up-strong", trendSym:"↑↑", hot:true},
+    {block:"Финансы и учёт", size:"mid", name:"Контролировать продажи и выручку (план-факт, задолженности)", segments:"Все", trend:"up-strong", trendSym:"↑↑"},
+    {block:"Финансы и учёт", size:"mid", name:"Автоматизировать управление подписками и рекуррентами", segments:"Unmanned, Сеть", trend:"up-strong", trendSym:"↑↑", hot:true},
+    {block:"Финансы и учёт", size:"sml", name:"Отслеживать задолженности клиентов", segments:"Танцы, все", trend:"up", trendSym:"↑"},
+    {block:"Финансы и учёт", size:"sml", name:"Проверять оплату и возвраты", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Финансы и учёт", size:"sml", name:"Пересчитывать активных абонементов автоматически", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Финансы и учёт", size:"sml", name:"Видеть остатки по абонементам в моменте", segments:"Каталина", trend:"flat", trendSym:"↔"},
+    {block:"Финансы и учёт", size:"sml", name:"Хранить сканы договоров в системе", segments:"Танцы, все", trend:"up", trendSym:"↑"},
+
+    // --- Блок 2 — Персонал и зарплаты ---
+    {block:"Персонал и зарплаты", size:"big", name:"Автоматизировать зарплаты тренеров", segments:"Танцы, Сеть", trend:"up-strong", trendSym:"↑↑"},
+    {block:"Персонал и зарплаты", size:"mid", name:"Считать зарплату по KPI без Excel и ошибок", segments:"Каталина, Дмитрий, Lime", trend:"up-strong", trendSym:"↑↑", hot:true},
+    {block:"Персонал и зарплаты", size:"mid", name:"Мотивировать тренеров оплатой по факту посещений", segments:"Все", trend:"up-strong", trendSym:"↑↑"},
+    {block:"Персонал и зарплаты", size:"mid", name:"Управлять доступами и ролями сотрудников", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Персонал и зарплаты", size:"mid", name:"Делегировать продажи и сервис администраторам", segments:"Каталина, J2", trend:"up-strong", trendSym:"↑↑", hot:true},
+    {block:"Персонал и зарплаты", size:"sml", name:"Видеть рейтинг тренеров по посещаемости", segments:"Каталина", trend:"flat", trendSym:"↔"},
+    {block:"Персонал и зарплаты", size:"sml", name:"Упростить работу тренеров (приложение, задачи)", segments:"Дмитрий, Ярослава", trend:"flat", trendSym:"↔"},
+    {block:"Персонал и зарплаты", size:"sml", name:"Настраивать расчёт зарплаты с разными схемами", segments:"Lime, Танцы", trend:"up", trendSym:"↑"},
+    {block:"Персонал и зарплаты", size:"sml", name:"Ограничивать доступ админов к данным", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Персонал и зарплаты", size:"sml", name:"Создавать задачи для администраторов", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Персонал и зарплаты", size:"sml", name:"Защитить базу клиентов от тренеров (NDA, доступы)", segments:"Каталина", trend:"up", trendSym:"↑"},
+
+    // --- Блок 3 — Клиенты и удержание ---
+    {block:"Клиенты и удержание", size:"big", name:"Увеличивать прибыль через удержание клиентов", segments:"Все", trend:"up-strong", trendSym:"↑↑", hot:true},
+    {block:"Клиенты и удержание", size:"mid", name:"Видеть кто «засыпает» и возвращать до отмены", segments:"Каталина, Растущие", trend:"up-strong", trendSym:"↑↑", hot:true},
+    {block:"Клиенты и удержание", size:"mid", name:"Удерживать клиентов через коммуникации и рассылки", segments:"Все", trend:"up-strong", trendSym:"↑↑"},
+    {block:"Клиенты и удержание", size:"mid", name:"Привлечь и удержать через уведомления и геймификацию", segments:"Ярослава, Дмитрий", trend:"flat", trendSym:"↔"},
+    {block:"Клиенты и удержание", size:"mid", name:"Контролировать клиентов ушедших (история, фильтры)", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Клиенты и удержание", size:"sml", name:"Управлять бонусами, промокодами, сертификатами", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Клиенты и удержание", size:"sml", name:"Вносить клиентов задним числом", segments:"Танцы, все", trend:"flat", trendSym:"↔"},
+    {block:"Клиенты и удержание", size:"sml", name:"Фильтровать клиентов по параметрам для рассылок", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Клиенты и удержание", size:"sml", name:"Получать и обрабатывать отзывы клиентов", segments:"Lime, Opening", trend:"flat", trendSym:"↔"},
+    {block:"Клиенты и удержание", size:"sml", name:"Программа «Приведи друга» с автобонусами", segments:"Lime", trend:"flat", trendSym:"↔"},
+    {block:"Клиенты и удержание", size:"sml", name:"Уведомления о важных событиях (ДР, отток)", segments:"Lime, Танцы", trend:"flat", trendSym:"↔"},
+    {block:"Клиенты и удержание", size:"sml", name:"Связать аккаунты родителя и ребёнка", segments:"Каталина, Танцы", trend:"up", trendSym:"↑"},
+
+    // --- Блок 4 — Расписание и запись ---
+    {block:"Расписание и запись", size:"mid", name:"Гибко управлять расписанием (группы, индивидуальные)", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Расписание и запись", size:"mid", name:"Тренеры меняют расписание ежедневно без нагрузки на систему", segments:"Дмитрий (сеть)", trend:"flat", trendSym:"↔"},
+    {block:"Расписание и запись", size:"mid", name:"Тренеры самостоятельно отмечают посещения и ведут запись", segments:"Ярослава, Дмитрий", trend:"flat", trendSym:"↔"},
+    {block:"Расписание и запись", size:"mid", name:"Управлять расписанием персональных занятий прозрачно", segments:"Lime Fitness", trend:"flat", trendSym:"↔"},
+    {block:"Расписание и запись", size:"sml", name:"Копировать расписание на длительный срок", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Расписание и запись", size:"sml", name:"Вести расписание с учётом вместимости и листа ожидания", segments:"Ярослава", trend:"flat", trendSym:"↔"},
+    {block:"Расписание и запись", size:"sml", name:"Контролировать посещаемость и списания (QR, карты)", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Расписание и запись", size:"sml", name:"Отмечать посещения после занятия", segments:"Танцы, все", trend:"flat", trendSym:"↔"},
+    {block:"Расписание и запись", size:"sml", name:"Управлять загрузкой в часы пик (бронирование слотов)", segments:"Unmanned", trend:"flat", trendSym:"↔"},
+    {block:"Расписание и запись", size:"sml", name:"Учитывать аренду залов и кабинетов", segments:"Все", trend:"flat", trendSym:"↔"},
+
+    // --- Блок 5 — Коммуникации и маркетинг ---
+    {block:"Коммуникации и маркетинг", size:"mid", name:"Интегрировать все каналы коммуникации в одно окно", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Коммуникации и маркетинг", size:"mid", name:"Автоматизировать коммуникации с клиентами", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Коммуникации и маркетинг", size:"mid", name:"Коммуникация через мессенджеры (WA, TG, ВК)", segments:"Ярослава, Lime", trend:"flat", trendSym:"↔"},
+    {block:"Коммуникации и маркетинг", size:"mid", name:"Лидогенерация — заявки из всех каналов в CRM", segments:"Все", trend:"up", trendSym:"↑"},
+    {block:"Коммуникации и маркетинг", size:"mid", name:"Автоматизация маркетинга (рассылки, триггеры)", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Коммуникации и маркетинг", size:"sml", name:"Подключить несколько номеров WhatsApp", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Коммуникации и маркетинг", size:"sml", name:"Вести историю коммуникаций с клиентом", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Коммуникации и маркетинг", size:"sml", name:"Отслеживать скорость ответа на заявки", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Коммуникации и маркетинг", size:"sml", name:"Подключить IP-телефонию", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Коммуникации и маркетинг", size:"sml", name:"Публиковать новости в соцсетях", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Коммуникации и маркетинг", size:"sml", name:"Анализировать эффективность продаж через воронку", segments:"Lime, Танцы", trend:"flat", trendSym:"↔"},
+
+    // --- Блок 6 — Аналитика и управление ---
+    {block:"Аналитика и управление", size:"mid", name:"Аналитика и отчёты (BI-дашборд)", segments:"Все", trend:"up-strong", trendSym:"↑↑"},
+    {block:"Аналитика и управление", size:"mid", name:"Обзор по сети — один экран без ручной сборки", segments:"Сеть, Дмитрий", trend:"up", trendSym:"↑"},
+    {block:"Аналитика и управление", size:"mid", name:"Сравнивать точки по показателям", segments:"Сеть", trend:"up", trendSym:"↑"},
+    {block:"Аналитика и управление", size:"sml", name:"Получать аналитику через Telegram-бота (кастомно)", segments:"Дмитрий", trend:"flat", trendSym:"↔"},
+    {block:"Аналитика и управление", size:"sml", name:"Делать отчёты по продажам и посещаемости", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Аналитика и управление", size:"sml", name:"Выгружать отчёты в Excel", segments:"Все", trend:"flat", trendSym:"↔"},
+
+    // --- Блок 7 — СКУД и доступ ---
+    {block:"СКУД и доступ", size:"mid", name:"Автоматический вход по QR без участия человека", segments:"Unmanned", trend:"up-strong", trendSym:"↑↑"},
+    {block:"СКУД и доступ", size:"mid", name:"Внедрить свободное посещение с кодовым доступом", segments:"Дмитрий, Unmanned", trend:"up", trendSym:"↑"},
+    {block:"СКУД и доступ", size:"mid", name:"Интегрировать СКУД (доступ по QR, карты)", segments:"Сеть, все", trend:"flat", trendSym:"↔"},
+    {block:"СКУД и доступ", size:"sml", name:"Безопасность (видео + СКУД, контроль «зайцев»)", segments:"Unmanned", trend:"flat", trendSym:"↔"},
+    {block:"СКУД и доступ", size:"sml", name:"Снизить стоимость оборудования СКУД (12к vs 40к)", segments:"Unmanned", trend:"up", trendSym:"↑"},
+
+    // --- Блок 8 — Операционка ---
+    {block:"Операционка", size:"big", name:"Управлять студией централизованно — не быть узким местом", segments:"Все", trend:"up-strong", trendSym:"↑↑", hot:true},
+    {block:"Операционка", size:"big", name:"Управлять фитнес-клубом автономно", segments:"Unmanned, J6", trend:"up", trendSym:"↑"},
+    {block:"Операционка", size:"mid", name:"Вести учёт клиентской базы (полная история клиента)", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Операционка", size:"mid", name:"Нанять и контролировать правильных сотрудников", segments:"Сеть, Каталина", trend:"up-strong", trendSym:"↑↑", hot:true},
+    {block:"Операционка", size:"mid", name:"Контролировать работу администраторов", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Операционка", size:"sml", name:"Обзвоны по спискам", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Операционка", size:"sml", name:"Открытое API для кастомных интеграций", segments:"Сеть, Дмитрий", trend:"flat", trendSym:"↔"},
+
+    // --- Блок 9 — Запуск и переход ---
+    {block:"Запуск и переход", size:"big", name:"Запустить студию с нуля с готовыми процессами", segments:"Opening (Ярослава)", trend:"up", trendSym:"↑"},
+    {block:"Запуск и переход", size:"mid", name:"Получить качественную поддержку и обучение при переходе", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Запуск и переход", size:"sml", name:"Перенести базу клиентов без потерь", segments:"Все (Switch)", trend:"flat", trendSym:"↔"},
+    {block:"Запуск и переход", size:"sml", name:"Обучить сотрудников при переходе на новую систему", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Запуск и переход", size:"sml", name:"Подписывать договоры через СМС (электронно)", segments:"Каталина, Ярослава", trend:"up", trendSym:"↑"},
+    {block:"Запуск и переход", size:"sml", name:"Вести договоры через оферту в приложении", segments:"Ярослава, Unmanned", trend:"flat", trendSym:"↔"},
+
+    // --- Блок 10 — Клиентский опыт и приложение ---
+    {block:"Клиентский опыт", size:"big", name:"Удобство для клиентов и лояльность", segments:"Все", trend:"up", trendSym:"↑"},
+    {block:"Клиентский опыт", size:"mid", name:"Дать клиентам мобильное приложение", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Клиентский опыт", size:"sml", name:"Брендировать приложение под студию", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Клиентский опыт", size:"sml", name:"Покупка без скачивания приложения (через сайт)", segments:"Ярослава", trend:"flat", trendSym:"↔"},
+    {block:"Клиентский опыт", size:"sml", name:"Выдавать электронные сертификаты", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Клиентский опыт", size:"sml", name:"Геймификация — прозрачная система баллов и лиг", segments:"Дмитрий", trend:"flat", trendSym:"↔"},
+    {block:"Клиентский опыт", size:"sml", name:"Убрать раздражающие уведомления / спам от бота", segments:"Дмитрий", trend:"flat", trendSym:"↔"},
+
+    // --- Блок 11 — Интеграции и техническое ---
+    {block:"Интеграции и техническое", size:"mid", name:"Интегрировать бухгалтерию", segments:"Сеть, Клубы", trend:"up", trendSym:"↑"},
+    {block:"Интеграции и техническое", size:"mid", name:"Учёт спортпита и товаров (склад, кассы)", segments:"Клубы", trend:"flat", trendSym:"↔"},
+    {block:"Интеграции и техническое", size:"sml", name:"Управлять задачами со статусами (задачник)", segments:"Все", trend:"flat", trendSym:"↔"},
+    {block:"Интеграции и техническое", size:"sml", name:"Фото клиентов для идентификации", segments:"Все", trend:"flat", trendSym:"↔"},
+  ];
+
+  const sizeLabel = {big:'Big', mid:'Middle', sml:'Small'};
+
+  function render(jobs) {
+    const tbody = document.getElementById('tbody');
+    if (!jobs.length) {
+      tbody.innerHTML = '<tr><td colspan="5" class="empty-row"><b>Ничего не найдено</b>Попробуйте изменить фильтры или поиск</td></tr>';
+      return;
+    }
+    let html = '';
+    let lastBlock = '';
+    for (const j of jobs) {
+      if (j.block !== lastBlock) {
+        html += `<tr class="block-divider"><td colspan="5">${j.block}</td></tr>`;
+        lastBlock = j.block;
+      }
+      html += `<tr class="${j.hot?'hot':''}" data-size="${j.size}" data-hot="${j.hot?1:0}">
+        <td class="size"><span class="size-pill ${j.size}">${sizeLabel[j.size]}</span></td>
+        <td class="block-col">${j.block}</td>
+        <td class="name">${j.name}${j.hot?'<span class="hot-badge">критический</span>':''}</td>
+        <td class="segments">${j.segments}</td>
+        <td class="trend trend-${j.trend}">${j.trendSym}</td>
+      </tr>`;
+    }
+    tbody.innerHTML = html;
+    document.getElementById('visible').textContent = jobs.length;
+  }
+
+  // Filter state
+  let sizeFilter = 'all';
+  let hotOnly = false;
+  let searchQ = '';
+
+  function apply() {
+    const q = searchQ.trim().toLowerCase();
+    let filtered = JOBS.filter(j => {
+      if (sizeFilter !== 'all' && j.size !== sizeFilter) return false;
+      if (hotOnly && !j.hot) return false;
+      if (q) {
+        const text = `${j.name} ${j.segments} ${j.block}`.toLowerCase();
+        if (!text.includes(q)) return false;
+      }
+      return true;
+    });
+    render(filtered);
+  }
+
+  // Wire up
+  document.querySelectorAll('[data-size]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-size]').forEach(b => {
+        b.classList.remove('active','big','mid','sml');
+      });
+      btn.classList.add('active');
+      const s = btn.dataset.size;
+      if (s === 'big') btn.classList.add('big');
+      else if (s === 'mid') btn.classList.add('mid');
+      sizeFilter = s;
+      apply();
+    });
+  });
+  document.querySelector('[data-hot]').addEventListener('click', (e) => {
+    hotOnly = !hotOnly;
+    e.currentTarget.classList.toggle('hot', hotOnly);
+    e.currentTarget.classList.toggle('active', hotOnly);
+    apply();
+  });
+  document.getElementById('search').addEventListener('input', (e) => {
+    searchQ = e.target.value;
+    apply();
+  });
+
+  // Initial render
+  render(JOBS);
+</script>
+
+</body>
+</html>
