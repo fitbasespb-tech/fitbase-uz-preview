@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Fitbase для залов без персонала — управляйте автономным клубом 30 минут в день</title>
+<meta name="description" content="Fitbase помогает запустить и вести фитнес-зал без админов и тренеров: брендированное приложение, доступ через QR, слоты с лимитом, пуш-рассылки и видеонаблюдение. Реальный кейс — 506 регистраций и 81% удержания за первые 2,5 месяца."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#3C67D6;
+  --blue-2:#3FABFF;
+  --blue-dk:#2A4FA8;
+  --blue-10:#ECF1FF;
+  --blue-20:#CAD9FF;
+  --ink:#0E1B36;
+  --ink-2:#1F2A47;
+  --grey:#6B7589;
+  --grey-l:#9AA3B5;
+  --line:#E4E7EE;
+  --canvas:#F4F6FA;
+  --canvas-2:#F8FAFE;
+  --green:#4EB410;
+  --green-10:#EDF7E7;
+  --gold:#F4A82C;
+  --gold-soft:#FEF4E0;
+  --red:#ED3D3D;
+  --red-10:#FDECEC;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#fff;color:var(--ink);font-family:'Golos Text',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+img{max-width:100%;display:block}
+a{color:inherit}
+
+.container{max-width:1280px;margin:0 auto;padding:0 32px}
+
+/* ─── Nav ─── */
+.nav{padding:18px 0;background:#fff;position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line)}
+.nav-row{display:flex;justify-content:space-between;align-items:center;gap:32px}
+.nav-left{display:flex;align-items:center;gap:36px}
+.nav-logo{font-size:24px;font-weight:900;color:var(--blue);letter-spacing:-.02em;display:flex;align-items:center;gap:8px;text-decoration:none}
+.nav-logo .tag{font-size:11px;font-weight:700;color:var(--blue-dk);background:var(--blue-10);padding:3px 8px;border-radius:6px;letter-spacing:.04em;text-transform:uppercase}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:14px;font-weight:500;color:var(--ink);text-decoration:none}
+.nav-links a:hover{color:var(--blue)}
+.nav-cta{background:var(--blue);color:#fff;padding:11px 20px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;box-shadow:0 4px 14px rgba(60,103,214,.3);}
+.nav-cta:hover{background:var(--blue-dk)}
+
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--blue);background:var(--blue-10);padding:6px 12px;border-radius:100px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:18px;}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
+
+.sec-head{margin-bottom:56px;max-width:920px}
+.sec-head h2{font-size:52px;font-weight:800;line-height:1.04;letter-spacing:-.025em;color:var(--ink);margin-bottom:20px;}
+.sec-head h2 .accent{color:var(--blue)}
+.sec-head h2 .hw{font-family:'Caveat',cursive;color:var(--blue);font-weight:700;display:inline-block;margin:0 4px;transform:rotate(-2deg);}
+.sec-head .lede{font-size:19px;line-height:1.55;color:var(--grey);max-width:780px}
+
+section{padding:96px 0}
+section.canvas{background:var(--canvas)}
+
+/* ─── HERO ─── */
+.hero{background:linear-gradient(180deg,#fff 0%,#F0F4FB 100%);padding:60px 0 100px;position:relative;overflow:hidden;}
+.hero::before{content:"";position:absolute;top:-300px;right:-200px;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(60,103,214,.08) 0%,transparent 65%);pointer-events:none;}
+.hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;position:relative;z-index:1}
+.hero h1{font-size:60px;font-weight:800;line-height:1.02;letter-spacing:-.03em;color:var(--ink);margin-bottom:24px;}
+.hero h1 .accent{color:var(--blue)}
+.hero h1 .hw{font-family:'Caveat',cursive;font-weight:700;color:var(--blue-2);transform:rotate(-2deg);display:inline-block;margin:0 4px}
+.hero .lede{font-size:20px;line-height:1.5;color:var(--grey);margin-bottom:36px;max-width:540px}
+.hero .lede b{color:var(--ink);font-weight:600}
+.hero-cta-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:44px}
+.btn-pri{background:var(--blue);color:#fff;padding:17px 30px;border-radius:14px;font-size:16px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;box-shadow:0 6px 24px rgba(60,103,214,.35);}
+.btn-pri:hover{background:var(--blue-dk)}
+.btn-pri::after{content:"→";font-size:18px;transition:.2s}
+.btn-pri:hover::after{transform:translateX(4px)}
+.btn-sec{background:transparent;color:var(--ink);padding:17px 26px;border-radius:14px;font-size:16px;font-weight:600;text-decoration:none;border:1.5px solid var(--line);display:inline-flex;align-items:center;gap:8px;}
+.btn-sec:hover{border-color:var(--blue);color:var(--blue)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;border-top:1px solid var(--line);padding-top:28px}
+.hero-stat .v{font-size:30px;font-weight:800;color:var(--ink);letter-spacing:-.02em;line-height:1}
+.hero-stat .v .accent{color:var(--blue)}
+.hero-stat .l{font-size:13px;color:var(--grey);margin-top:6px;line-height:1.35}
+
+/* Hero phone mockup */
+.phone-stage{position:relative;display:flex;justify-content:center;align-items:center;perspective:1200px;}
+.phone{width:280px;height:570px;background:linear-gradient(160deg,#1a253f 0%,#0c1428 100%);border-radius:42px;padding:14px;box-shadow:0 30px 80px -20px rgba(20,30,60,.35),0 0 0 2px rgba(255,255,255,.06) inset;position:relative;transform:rotate(-3deg);}
+.phone::before{content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);width:90px;height:24px;background:#000;border-radius:14px;z-index:2;}
+.phone-scr{width:100%;height:100%;background:#fff;border-radius:30px;overflow:hidden;display:flex;flex-direction:column;}
+.phone-bar{background:#fff;padding:38px 18px 14px;display:flex;justify-content:space-between;align-items:center;}
+.phone-brand{font-weight:800;font-size:15px;color:var(--blue);letter-spacing:-.01em;}
+.phone-brand small{color:var(--grey);font-weight:500;}
+.phone-avatar{width:30px;height:30px;border-radius:50%;background:var(--blue-10);display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:var(--blue);}
+.phone-hello{padding:8px 18px 14px;}
+.phone-hello h3{margin:0 0 4px;font-size:18px;font-weight:800;letter-spacing:-.01em;}
+.phone-hello p{margin:0;font-size:12px;color:var(--grey);}
+.phone-card{margin:8px 18px;background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dk) 100%);color:#fff;border-radius:16px;padding:14px;display:flex;justify-content:space-between;align-items:center;}
+.phone-card-l small{display:block;font-size:10px;opacity:.7;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;}
+.phone-card-l b{font-size:18px;font-weight:800;display:block;line-height:1;}
+.phone-card-l span{font-size:11px;opacity:.8;display:block;margin-top:4px;}
+.phone-card-r{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.18);display:inline-flex;align-items:center;justify-content:center;}
+.phone-section{padding:14px 18px 6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--grey);display:flex;justify-content:space-between;align-items:center;}
+.phone-section a{color:var(--blue);text-transform:none;text-decoration:none;font-weight:600;letter-spacing:0;}
+.phone-slot{margin:6px 18px;padding:12px 14px;border:1px solid var(--line);border-radius:14px;display:flex;justify-content:space-between;align-items:center;}
+.phone-slot-l b{display:block;font-size:13px;font-weight:700;}
+.phone-slot-l span{display:block;font-size:11px;color:var(--grey);}
+.phone-slot-r{font-size:11px;font-weight:700;color:var(--green);background:var(--green-10);padding:5px 10px;border-radius:8px;}
+.phone-slot-r.busy{color:var(--red);background:var(--red-10);}
+.phone-action{margin:14px 18px 18px;background:var(--ink);color:#fff;padding:14px;border-radius:14px;font-weight:700;text-align:center;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.phone-action::before{content:"";width:14px;height:14px;border-radius:3px;background:#fff;display:inline-block;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='18' rx='2'/%3E%3Cpath d='M9 12l2 2 4-4'/%3E%3C/svg%3E");mask-size:contain;mask-repeat:no-repeat;background:#fff;}
+
+/* Decorative floating badges */
+.float-badge{position:absolute;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 16px;box-shadow:0 12px 30px -10px rgba(20,30,60,.18);display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--ink);z-index:3;}
+.float-badge .ico{width:32px;height:32px;border-radius:10px;background:var(--blue-10);color:var(--blue);display:inline-flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;}
+.float-badge.b1{top:14%;left:-8%;}
+.float-badge.b2{bottom:18%;right:-4%;}
+.float-badge.b3{top:48%;left:-10%;background:var(--ink);color:#fff;border-color:var(--ink);}
+.float-badge.b3 .ico{background:rgba(255,255,255,.15);color:#fff;}
+.float-badge b{color:var(--blue);font-weight:800;display:block;font-size:16px;line-height:1;}
+.float-badge.b3 b{color:var(--blue-2);}
+.float-badge span{display:block;font-size:11px;color:var(--grey);font-weight:500;}
+.float-badge.b3 span{color:rgba(255,255,255,.6);}
+
+/* ─── Trust / case bar ─── */
+.trust{background:var(--ink);color:#fff;padding:54px 0;}
+.trust-grid{display:grid;grid-template-columns:1fr 2fr;gap:48px;align-items:center;}
+.trust-head{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue-2);margin-bottom:10px;}
+.trust h3{font-size:28px;font-weight:800;letter-spacing:-.02em;line-height:1.15;margin:0;}
+.trust-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+.trust-n .v{font-size:42px;font-weight:800;letter-spacing:-.02em;color:var(--blue-2);line-height:1;}
+.trust-n .l{font-size:13px;color:rgba(255,255,255,.65);margin-top:8px;line-height:1.35;}
+
+/* ─── Features ─── */
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.feat{background:#fff;border:1px solid var(--line);border-radius:22px;padding:32px 28px;transition:.2s;display:flex;flex-direction:column;gap:14px;}
+.feat:hover{border-color:var(--blue-20);box-shadow:0 14px 40px -20px rgba(60,103,214,.25);transform:translateY(-3px);}
+.feat-ico{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--blue-10),#fff);display:inline-flex;align-items:center;justify-content:center;color:var(--blue);}
+.feat-ico svg{width:28px;height:28px;}
+.feat h3{margin:0;font-size:21px;font-weight:800;letter-spacing:-.015em;}
+.feat p{margin:0;color:var(--grey);font-size:15px;line-height:1.55;}
+.feat-job{margin-top:6px;font-size:13px;font-style:italic;color:var(--blue-dk);background:var(--blue-10);padding:10px 14px;border-radius:10px;border-left:3px solid var(--blue);}
+
+/* ─── Funnel ─── */
+.funnel{display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:center;}
+.funnel-bars{display:flex;flex-direction:column;gap:14px;}
+.funnel-bar{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;position:relative;overflow:hidden;}
+.funnel-bar::before{content:"";position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--blue-10),#fff);z-index:0;}
+.funnel-bar.b1::before{width:100%;}
+.funnel-bar.b2::before{width:49%;}
+.funnel-bar.b3::before{width:36%;}
+.funnel-bar.b4::before{width:25%;background:linear-gradient(90deg,var(--green-10),#fff);}
+.funnel-bar > *{position:relative;z-index:1;}
+.funnel-bar-l b{display:block;font-size:24px;font-weight:800;color:var(--ink);line-height:1;letter-spacing:-.01em;}
+.funnel-bar-l span{display:block;font-size:13px;color:var(--grey);margin-top:4px;}
+.funnel-bar-r{font-size:13px;font-weight:700;color:var(--blue);background:var(--blue-10);padding:6px 12px;border-radius:8px;}
+.funnel-bar.b4 .funnel-bar-r{color:var(--green);background:var(--green-10);}
+.funnel-side h3{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:0 0 16px;}
+.funnel-side p{color:var(--grey);font-size:16px;line-height:1.6;margin:0 0 24px;}
+.funnel-side ul{margin:0;padding:0;list-style:none;display:grid;gap:10px;}
+.funnel-side li{padding-left:28px;position:relative;font-size:15px;color:var(--ink);font-weight:500;}
+.funnel-side li::before{content:"";position:absolute;left:0;top:8px;width:16px;height:16px;background:var(--blue);border-radius:50%;}
+.funnel-side li::after{content:"";position:absolute;left:4px;top:12px;width:8px;height:4px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg);}
+
+/* ─── Marketing channels ─── */
+.chan{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.chan-c{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px;position:relative;}
+.chan-c.win{border-color:var(--green);background:linear-gradient(180deg,#fff,#F5FBF0);}
+.chan-c.lose{opacity:.7;}
+.chan-c-tag{position:absolute;top:-10px;right:14px;background:var(--green);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:8px;text-transform:uppercase;letter-spacing:.04em;}
+.chan-c.lose .chan-c-tag{background:var(--grey-l);}
+.chan-c h4{margin:0;font-size:18px;font-weight:800;}
+.chan-c .res{font-size:15px;color:var(--grey);font-weight:500;}
+.chan-c .res b{color:var(--ink);font-weight:700;}
+
+/* ─── Finance ─── */
+.fin{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.fin-card{background:#fff;border:1.5px solid var(--line);border-radius:22px;padding:36px;}
+.fin-card h3{margin:0 0 8px;font-size:22px;font-weight:800;}
+.fin-card .sub{font-size:14px;color:var(--grey);margin-bottom:24px;}
+.fin-rows{display:grid;gap:10px;}
+.fin-row{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px dashed var(--line);}
+.fin-row:last-child{border-bottom:none;}
+.fin-row .k{font-size:14px;color:var(--ink);font-weight:500;}
+.fin-row .v{font-weight:700;color:var(--blue-dk);}
+.fin-row.tot{border-bottom:none;border-top:2px solid var(--ink);padding-top:14px;margin-top:6px;}
+.fin-row.tot .k{font-weight:800;font-size:16px;color:var(--ink);}
+.fin-row.tot .v{font-weight:800;color:var(--blue);font-size:18px;}
+.fin-summary{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dk) 100%);color:#fff;border-radius:22px;padding:32px 36px;margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.fin-sum-c .v{font-size:32px;font-weight:800;line-height:1;letter-spacing:-.02em;color:#fff;}
+.fin-sum-c .l{font-size:13px;opacity:.7;margin-top:6px;}
+
+/* ─── FAQ ─── */
+.faq{display:grid;gap:14px;max-width:880px;margin:0 auto;}
+.q{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:24px 28px;cursor:pointer;transition:.2s;}
+.q:hover{border-color:var(--blue-20);}
+.q[open]{border-color:var(--blue);box-shadow:0 14px 40px -20px rgba(60,103,214,.22);}
+.q summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:18px;font-size:18px;font-weight:700;letter-spacing:-.01em;color:var(--ink);}
+.q summary::-webkit-details-marker{display:none;}
+.q-ico{width:32px;height:32px;border-radius:50%;background:var(--blue-10);color:var(--blue);display:inline-flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;transition:.2s;}
+.q[open] .q-ico{background:var(--blue);color:#fff;transform:rotate(45deg);}
+.q-ico::before{content:"+";font-size:18px;line-height:1;}
+.q-body{margin-top:14px;color:var(--grey);font-size:15.5px;line-height:1.6;}
+.q-body b{color:var(--ink);}
+
+/* ─── CTA ─── */
+.cta{background:linear-gradient(135deg,var(--ink) 0%,#1a2752 60%,var(--blue-dk) 100%);color:#fff;padding:96px 0;position:relative;overflow:hidden;}
+.cta::before{content:"";position:absolute;right:-150px;bottom:-150px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(60,171,255,.25) 0%,transparent 70%);pointer-events:none;}
+.cta-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:64px;align-items:center;position:relative;z-index:1;}
+.cta h2{font-size:48px;font-weight:800;letter-spacing:-.025em;line-height:1.05;margin:0 0 20px;}
+.cta h2 .hw{font-family:'Caveat',cursive;color:var(--blue-2);font-weight:700;}
+.cta p{font-size:18px;opacity:.8;margin:0 0 36px;max-width:580px;line-height:1.55;}
+.cta-form{background:#fff;color:var(--ink);border-radius:24px;padding:36px;box-shadow:0 30px 80px -20px rgba(0,0,0,.4);}
+.cta-form h3{margin:0 0 6px;font-size:22px;font-weight:800;letter-spacing:-.015em;}
+.cta-form p.sub{font-size:14px;color:var(--grey);margin:0 0 22px;}
+.cta-form label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--ink-2);}
+.cta-form input,.cta-form select{width:100%;padding:14px 16px;border:1.5px solid var(--line);border-radius:12px;font:inherit;font-size:15px;background:var(--canvas-2);margin-bottom:14px;color:var(--ink);}
+.cta-form input:focus,.cta-form select:focus{outline:none;border-color:var(--blue);background:#fff;}
+.cta-form button{width:100%;background:var(--blue);color:#fff;border:0;padding:16px;border-radius:12px;font:inherit;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 6px 24px rgba(60,103,214,.35);}
+.cta-form button:hover{background:var(--blue-dk);}
+.cta-form .leg{font-size:11px;color:var(--grey-l);margin:14px 0 0;text-align:center;line-height:1.5;}
+
+/* ─── Footer ─── */
+footer{background:var(--ink);color:rgba(255,255,255,.65);padding:54px 0;font-size:14px;}
+.foot-row{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+.foot-logo{font-size:22px;font-weight:900;color:#fff;letter-spacing:-.02em;}
+.foot-logo span{color:var(--blue-2);}
+footer a{color:#fff;text-decoration:none;font-weight:500;opacity:.7;}
+footer a:hover{opacity:1;}
+
+/* ─── Mobile ─── */
+@media (max-width:980px){
+  .container{padding:0 20px;}
+  section{padding:64px 0;}
+  .sec-head{margin-bottom:32px;}
+  .sec-head h2{font-size:34px;}
+  .sec-head .lede{font-size:16px;}
+  .nav-links{display:none;}
+  .nav-cta{padding:10px 14px;font-size:13px;white-space:nowrap;}
+  .nav-logo{font-size:20px;}
+  .nav-logo .tag{display:none;}
+  .hero{padding:36px 0 60px;}
+  .hero-grid{grid-template-columns:1fr;gap:48px;}
+  .hero h1{font-size:36px;}
+  .hero .lede{font-size:17px;margin-bottom:24px;}
+  .hero-cta-row{flex-direction:column;align-items:stretch;}
+  .hero-stats{grid-template-columns:1fr 1fr;gap:18px;padding-top:20px;}
+  .hero-stat .v{font-size:24px;}
+  .phone{width:240px;height:490px;}
+  .float-badge{display:none;}
+  .trust-grid{grid-template-columns:1fr;gap:24px;}
+  .trust h3{font-size:22px;}
+  .trust-nums{grid-template-columns:1fr 1fr;gap:20px;}
+  .trust-n .v{font-size:30px;}
+  .feats{grid-template-columns:1fr;gap:14px;}
+  .feat{padding:24px;}
+  .funnel{grid-template-columns:1fr;gap:32px;}
+  .funnel-side h3{font-size:22px;}
+  .chan{grid-template-columns:1fr 1fr;}
+  .fin{grid-template-columns:1fr;}
+  .fin-card{padding:24px;}
+  .fin-summary{grid-template-columns:1fr;text-align:center;padding:24px;}
+  .fin-sum-c .v{font-size:26px;}
+  .q{padding:18px 20px;}
+  .q summary{font-size:15px;}
+  .cta{padding:60px 0;}
+  .cta-grid{grid-template-columns:1fr;gap:36px;}
+  .cta h2{font-size:30px;}
+  .cta p{font-size:15px;}
+  .cta-form{padding:24px;}
+  .foot-row{flex-direction:column;align-items:flex-start;text-align:left;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container nav-row">
+    <div class="nav-left">
+      <a class="nav-logo" href="#">Fitbase <span class="tag">для залов без персонала</span></a>
+      <div class="nav-links">
+        <a href="#how">Как работает</a>
+        <a href="#case">Реальный кейс</a>
+        <a href="#money">Финмодель</a>
+        <a href="#faq">Вопросы</a>
+      </div>
+    </div>
+    <a class="nav-cta" href="#cta">Получить консультацию</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span>Новый формат фитнеса</div>
+      <h1>Управляйте залом <span class="hw">без админов</span> и тренеров — <span class="accent">30 минут в день</span></h1>
+      <p class="lede">Fitbase даёт всё, что нужно автономному клубу: <b>брендированное приложение, доступ через QR, слоты с лимитом, пуш-рассылки и аналитику.</b> Клиент сам записывается, оплачивает и проходит — вы только смотрите цифры.</p>
+      <div class="hero-cta-row">
+        <a class="btn-pri" href="#cta">Бесплатная консультация по запуску</a>
+        <a class="btn-sec" href="#case">Смотреть реальный кейс</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="v"><span class="accent">30</span> мин/день</div><div class="l">время владельца на управление</div></div>
+        <div class="hero-stat"><div class="v"><span class="accent">81–85%</span></div><div class="l">удержание клиентов после 2,5 мес</div></div>
+        <div class="hero-stat"><div class="v">от <span class="accent">9 000</span> ₽</div><div class="l">стоимость Fitbase в месяц</div></div>
+        <div class="hero-stat"><div class="v">до <span class="accent">50%</span></div><div class="l">маржинальность при полной загрузке</div></div>
+      </div>
+    </div>
+
+    <div class="phone-stage">
+      <div class="float-badge b1"><div class="ico">✓</div><div><b>506 регистраций</b><span>за 2,5 месяца</span></div></div>
+      <div class="float-badge b2"><div class="ico">★</div><div><b>0 краж</b><span>за всё время работы</span></div></div>
+      <div class="float-badge b3"><div class="ico">⚡</div><div><b>QR-доступ</b><span>дверь открывается с телефона</span></div></div>
+      <div class="phone">
+        <div class="phone-scr">
+          <div class="phone-bar">
+            <div class="phone-brand">Мой зал <small>· у дома</small></div>
+            <div class="phone-avatar">А</div>
+          </div>
+          <div class="phone-hello">
+            <h3>Привет, Анна</h3>
+            <p>Месячная подписка активна</p>
+          </div>
+          <div class="phone-card">
+            <div class="phone-card-l">
+              <small>Активный абонемент</small>
+              <b>Месячный · 3 299 ₽</b>
+              <span>До 27 июня · 23 дня</span>
+            </div>
+            <div class="phone-card-r">⌧</div>
+          </div>
+          <div class="phone-section"><span>Ближайшие слоты</span><a href="#">все →</a></div>
+          <div class="phone-slot">
+            <div class="phone-slot-l"><b>Сегодня · 19:00</b><span>Свободно 8 из 15</span></div>
+            <div class="phone-slot-r">записаться</div>
+          </div>
+          <div class="phone-slot">
+            <div class="phone-slot-l"><b>Сегодня · 20:00</b><span>Свободно 3 из 15</span></div>
+            <div class="phone-slot-r busy">мало мест</div>
+          </div>
+          <div class="phone-action">Открыть дверь</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="container trust-grid">
+    <div>
+      <div class="trust-head">Кейс действующего клиента</div>
+      <h3>133 м², один владелец, 2,5 месяца с открытия</h3>
+    </div>
+    <div class="trust-nums">
+      <div class="trust-n"><div class="v">506</div><div class="l">регистраций в приложении</div></div>
+      <div class="trust-n"><div class="v">249</div><div class="l">платных клиентов · конверсия 49%</div></div>
+      <div class="trust-n"><div class="v">127</div><div class="l">активных абонементов</div></div>
+      <div class="trust-n"><div class="v">81%</div><div class="l">удержание подписчиков</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="how">
+  <div class="container">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="dot"></span>Что внутри</div>
+      <h2>Шесть инструментов, которые <span class="hw">заменяют</span><br/>команду <span class="accent">из 5 человек</span></h2>
+      <p class="lede">Один владелец вместо администратора, кассира, тренера-консультанта, маркетолога и охранника. Каждая роль закрыта продуктом — не людьми.</p>
+    </div>
+
+    <div class="feats">
+      <div class="feat">
+        <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><circle cx="12" cy="17.5" r="1.5"/></svg></div>
+        <h3>Брендированное приложение</h3>
+        <p>Клиент скачивает приложение под вашим логотипом, регистрируется, выбирает тариф и оплачивает картой. Без админа на входе.</p>
+        <div class="feat-job">Работа клиента: «Хочу записаться и оплатить в 23:00 со смартфона, без звонков»</div>
+      </div>
+
+      <div class="feat">
+        <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3z M17 17h4v4h-4z"/></svg></div>
+        <h3>Доступ по QR и через приложение</h3>
+        <p>Дверь открывается одним нажатием в приложении или сканом QR на входе. Интеграция с домофонами и СКУД — экономия 200+ тыс ₽ против классической СКУД.</p>
+        <div class="feat-job">Работа клиента: «Прийти, открыть дверь, потренироваться — без ключей»</div>
+      </div>
+
+      <div class="feat">
+        <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><circle cx="8" cy="15" r="1" fill="currentColor"/></svg></div>
+        <h3>Слоты с лимитом мест</h3>
+        <p>Время делится на сеансы (например, по 15 человек). Когда слот занят — записаться нельзя. Никакой давки и автоматический контроль загрузки.</p>
+        <div class="feat-job">Работа владельца: «Не пускать больше, чем может комфортно тренироваться»</div>
+      </div>
+
+      <div class="feat">
+        <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4z M3 12l9 4 9-4 M3 17l9 4 9-4"/></svg></div>
+        <h3>Пуш, СМС и рассылки</h3>
+        <p>Возвращайте «уснувших» клиентов и держите контакт с базой автоматически: триггеры при окончании подписки, акциях, новых слотах.</p>
+        <div class="feat-job">Работа владельца: «Видеть, кто перестал ходить — и возвращать до отмены»</div>
+      </div>
+
+      <div class="feat">
+        <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M22 8l-6 4 6 4z"/></svg></div>
+        <h3>Видеонаблюдение и контроль</h3>
+        <p>Связка с камерами клуба. Видите кто и когда пришёл — даже без админа. По кейсу клиента: 9 камер, ноль краж за 2,5 месяца работы, единичные нарушения закрываются звонком.</p>
+        <div class="feat-job">Работа владельца: «Спать спокойно ночью, не приезжать в клуб без повода»</div>
+      </div>
+
+      <div class="feat">
+        <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V11M11 21V7M17 21V14"/></svg></div>
+        <h3>Воронка и аналитика</h3>
+        <p>Регистрации → пробные → подписки → удержание. Видите, где люди теряются и сколько реально приносит каждый канал привлечения.</p>
+        <div class="feat-job">Работа владельца: «Не гнать новый трафик в дырявое ведро»</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNNEL -->
+<section id="case" class="canvas">
+  <div class="container">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="dot"></span>Воронка действующего клиента</div>
+      <h2>За 2,5 месяца — <span class="accent">506 регистраций</span> и <span class="accent">127 активных подписчиков</span></h2>
+      <p class="lede">Реальные цифры одного зала на 133 м² без админа на ресепшене и без тренера-консультанта. Только продукт.</p>
+    </div>
+
+    <div class="funnel">
+      <div class="funnel-bars">
+        <div class="funnel-bar b1">
+          <div class="funnel-bar-l"><b>506</b><span>Регистрации в приложении</span></div>
+          <div class="funnel-bar-r">100%</div>
+        </div>
+        <div class="funnel-bar b2">
+          <div class="funnel-bar-l"><b>249</b><span>Платных покупок · из них пробное и подписки</span></div>
+          <div class="funnel-bar-r">49%</div>
+        </div>
+        <div class="funnel-bar b3">
+          <div class="funnel-bar-l"><b>183</b><span>Купили пробное занятие</span></div>
+          <div class="funnel-bar-r">73% от платных</div>
+        </div>
+        <div class="funnel-bar b4">
+          <div class="funnel-bar-l"><b>127</b><span>Активный подписчик прямо сейчас</span></div>
+          <div class="funnel-bar-r">удержание 81–85%</div>
+        </div>
+      </div>
+      <div class="funnel-side">
+        <h3>Что видно из цифр</h3>
+        <p>Половина зашедших в приложение оплачивает уже на первом шаге. Из тех, кто берёт пробное — 45% переходит в месячную подписку. Удержание выше среднеотраслевого.</p>
+        <ul>
+          <li>Пробное за 399 ₽ — главный конверсионный инструмент</li>
+          <li>45% из пробного покупают месяц за 3 299 ₽</li>
+          <li>3-месячная подписка 8 990 ₽ — апсейл для лояльных</li>
+          <li>Удержание 81–85% против среднеотраслевых 60–70%</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKETING CHANNELS -->
+<section>
+  <div class="container">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="dot"></span>Маркетинг</div>
+      <h2>Запуск без рекламного бюджета — <span class="hw">15–20 тыс</span> в месяц</h2>
+      <p class="lede">Зал без персонала не требует громких кампаний. По кейсу клиента, четыре канала закрывают первичную загрузку. Один из них — практически бесплатный.</p>
+    </div>
+
+    <div class="chan">
+      <div class="chan-c win">
+        <div class="chan-c-tag">⭐ топ-канал</div>
+        <h4>Чаты ЖК</h4>
+        <p class="res"><b>10 регистраций</b> за один пост в чате на 3 500 жителей. Бесплатно.</p>
+      </div>
+      <div class="chan-c win">
+        <div class="chan-c-tag">работает</div>
+        <h4>Яндекс.Карты</h4>
+        <p class="res">Органический трафик «у дома», люди приходят пешком.</p>
+      </div>
+      <div class="chan-c win">
+        <div class="chan-c-tag">работает</div>
+        <h4>Сарафан и соседи</h4>
+        <p class="res">Первые 2 недели зал заполнялся без платной рекламы.</p>
+      </div>
+      <div class="chan-c lose">
+        <div class="chan-c-tag">не работает</div>
+        <h4>Промоутер с листовками</h4>
+        <p class="res">Конверсия 1%. Не стоит сил и денег.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCE -->
+<section id="money" class="canvas">
+  <div class="container">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="dot"></span>Финмодель</div>
+      <h2><span class="accent">Окупаемость с 5 месяца</span><br/>и маржинальность <span class="hw">до 50%</span></h2>
+      <p class="lede">Реальные расходы и тарифы зала на 133 м². Точка безубыточности — 250–300 подписок за 4–6 месяцев. После выхода в плюс каждый новый клиент идёт в маржу непропорционально быстрее.</p>
+    </div>
+
+    <div class="fin">
+      <div class="fin-card">
+        <h3>Операционные расходы</h3>
+        <div class="sub">Сейчас (неполная загрузка)</div>
+        <div class="fin-rows">
+          <div class="fin-row"><span class="k">Аренда</span><span class="v">110 000 ₽</span></div>
+          <div class="fin-row"><span class="k">Клининг</span><span class="v">20 000 ₽</span></div>
+          <div class="fin-row"><span class="k">Маркетинг</span><span class="v">15–20 000 ₽</span></div>
+          <div class="fin-row"><span class="k">Fitbase + приложение</span><span class="v">от 9 000 ₽</span></div>
+          <div class="fin-row tot"><span class="k">Итого в месяц</span><span class="v">~160–170 000 ₽</span></div>
+        </div>
+      </div>
+
+      <div class="fin-card">
+        <h3>Тарифы для клиента</h3>
+        <div class="sub">Подписочная модель</div>
+        <div class="fin-rows">
+          <div class="fin-row"><span class="k">Пробное занятие</span><span class="v">399 ₽</span></div>
+          <div class="fin-row"><span class="k">Разовое посещение</span><span class="v">799 ₽</span></div>
+          <div class="fin-row"><span class="k">Месячная подписка</span><span class="v">3 299 ₽</span></div>
+          <div class="fin-row"><span class="k">3-месячная подписка</span><span class="v">8 990 ₽</span></div>
+          <div class="fin-row tot"><span class="k">Цель к концу года</span><span class="v">300 подписчиков</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fin-summary">
+      <div class="fin-sum-c"><div class="v">5 мес</div><div class="l">Срок выхода в безубыточность</div></div>
+      <div class="fin-sum-c"><div class="v">~990 000 ₽</div><div class="l">Выручка при 300 подписчиках</div></div>
+      <div class="fin-sum-c"><div class="v">~50–55%</div><div class="l">Маржинальность при полной загрузке</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="sec-head" style="text-align:center;margin:0 auto 48px;">
+      <div class="eyebrow" style="margin-left:auto;margin-right:auto;"><span class="dot"></span>Что обычно спрашивают</div>
+      <h2 style="margin-left:auto;margin-right:auto;">Открытые <span class="accent">вопросы</span> практику</h2>
+    </div>
+
+    <div class="faq">
+      <details class="q">
+        <summary>А что если всё украдут — без админа же?<span class="q-ico"></span></summary>
+        <div class="q-body">За первые 2,5 месяца работы зала по нашему кейсу — <b>ноль случаев краж</b>. Помогает связка: 9 камер с высоким разрешением, договор с клиентом и саморегуляция сообщества. На редких нарушителей — звонок + ссылка на договор. Повторов не было.</div>
+      </details>
+      <details class="q">
+        <summary>А как же порядок без дежурного?<span class="q-ico"></span></summary>
+        <div class="q-body">Сообщество клиентов саморегулируется. Клиенты сами убирают за собой, сообщают о нарушениях в чате. Уборщик приходит 1–2 раза в день — этого достаточно при пиковой загрузке.</div>
+      </details>
+      <details class="q">
+        <summary>Если человек открыл дверь, и с ним прошёл кто-то ещё?<span class="q-ico"></span></summary>
+        <div class="q-body">Договором запрещено. Видеонаблюдение фиксирует. Звонок клиенту со ссылкой на пункт договора — нарушений больше не повторяется. По кейсу клиента — один такой случай за всю историю работы, разрешён за один звонок.</div>
+      </details>
+      <details class="q">
+        <summary>Подходит ли формат для студии пилатеса / йоги?<span class="q-ico"></span></summary>
+        <div class="q-body">Да. В таких залах обычно есть тренер на занятии, но <b>административных функций нет</b> — Fitbase закрывает запись, оплату, доступ и контроль. Принцип тот же: владелец не сидит на ресепшене.</div>
+      </details>
+      <details class="q">
+        <summary>Сколько стоит Fitbase?<span class="q-ico"></span></summary>
+        <div class="q-body">Стоимость ПО с приложением — <b>от 9 000 ₽ в месяц</b> для зала без персонала. В стоимость входит брендированное приложение, управление доступом, слоты, рассылки и аналитика. Точная цифра зависит от объёма функций — рассчитаем на консультации.</div>
+      </details>
+      <details class="q">
+        <summary>Какая аудитория покупает абонемент в автономный зал?<span class="q-ico"></span></summary>
+        <div class="q-body">По наблюдениям клиента — <b>20–35 лет, студенты, молодые специалисты</b>. Уже привычны к каршерингу, доставке, отелям без админа. У этой аудитории нет психологического барьера перед автономным форматом.</div>
+      </details>
+      <details class="q">
+        <summary>Какой минимальный бюджет на запуск?<span class="q-ico"></span></summary>
+        <div class="q-body">По нашему кейсу зала на 133 м² — <b>10–11 млн ₽ CAPEX</b>: оборудование, инженерка, ремонт, видеонаблюдение, СКУД. Существенно меньше типового клуба за счёт отсутствия зон с обслуживанием (бар, рецепция, раздевалки на десятки шкафов).</div>
+      </details>
+      <details class="q">
+        <summary>Сколько времени уходит у владельца в день?<span class="q-ico"></span></summary>
+        <div class="q-body">По кейсу клиента — <b>~30 минут в день</b>. Проверка камер, ответы на сообщения, реакция на единичные нарушения. Без выездов и без присутствия на территории.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" class="cta">
+  <div class="container cta-grid">
+    <div>
+      <h2>Готовы открыть зал <span class="hw">без персонала?</span></h2>
+      <p>Бесплатная консультация — 40 минут с экспертом Fitbase. Разберём вашу локацию, финмодель, инженерку и формат запуска. Покажем, как цифры реального кейса применимы к вашей ситуации.</p>
+      <p style="font-size:14px;opacity:.6;">Без обязательств. По итогам — конкретные шаги для старта.</p>
+    </div>
+    <form class="cta-form" onsubmit="event.preventDefault();alert('Спасибо! Свяжемся в течение дня.');">
+      <h3>Получить консультацию</h3>
+      <p class="sub">Ответим в течение рабочего дня — пн–пт, 9:00–21:00</p>
+      <label>Имя</label>
+      <input type="text" required placeholder="Как к вам обращаться"/>
+      <label>Телефон</label>
+      <input type="tel" required placeholder="+7 ___ ___ __ __"/>
+      <label>На какой стадии вы сейчас?</label>
+      <select required>
+        <option value="">Выберите вариант</option>
+        <option>Только думаю — изучаю формат</option>
+        <option>Выбираю помещение</option>
+        <option>Готовлю запуск, идёт ремонт</option>
+        <option>Уже работаю — хочу перейти на Fitbase</option>
+      </select>
+      <button type="submit">Записаться на консультацию</button>
+      <p class="leg">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container foot-row">
+    <div class="foot-logo">Fit<span>base</span> · для залов без персонала</div>
+    <div><a href="https://fitbase.io">fitbase.io</a> · <a href="https://help.fitbase.io">База знаний</a> · <a href="#cta">Консультация</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
