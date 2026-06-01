@@ -3,619 +3,688 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Fitbase для залов без персонала — управляйте автономным клубом 30 минут в день</title>
-<meta name="description" content="Fitbase помогает запустить и вести фитнес-зал без админов и тренеров: брендированное приложение, доступ через QR, слоты с лимитом, пуш-рассылки и видеонаблюдение. Реальный кейс — 506 регистраций и 81% удержания за первые 2,5 месяца."/>
+<title>Зал без персонала — новый маржинальный фитнес-бизнес | Fitbase</title>
+<meta name="description" content="Маржа до 55%, окупаемость от 5 месяцев, 2–4 часа владельца в неделю. Расчёт юнит-экономики под вашу локацию.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --blue:#3C67D6;
-  --blue-2:#3FABFF;
-  --blue-dk:#2A4FA8;
+  --blue-2:#2A4FBF;
+  --blue-light:#3FABFF;
   --blue-10:#ECF1FF;
   --blue-20:#CAD9FF;
-  --ink:#0E1B36;
-  --ink-2:#1F2A47;
-  --grey:#6B7589;
-  --grey-l:#9AA3B5;
-  --line:#E4E7EE;
-  --canvas:#F4F6FA;
-  --canvas-2:#F8FAFE;
-  --green:#4EB410;
-  --green-10:#EDF7E7;
-  --gold:#F4A82C;
-  --gold-soft:#FEF4E0;
-  --red:#ED3D3D;
-  --red-10:#FDECEC;
+  --green:#26B99A;
+  --green-soft:#E7F7F4;
+  --ink:#252525;
+  --text:#333333;
+  --muted:#757885;
+  --grey-light:#9898A5;
+  --line:#E4E6EB;
+  --canvas:#F3F5F8;
+  --card:#F8F9FB;
+  --gold:#F0A733;
+  --gold-soft:#FEF4E7;
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:#fff;color:var(--ink);font-family:'Golos Text',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+html,body{margin:0;padding:0;background:#fff;color:var(--text);font-family:'Golos Text',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 img{max-width:100%;display:block}
-a{color:inherit}
+a{color:var(--blue);text-decoration:none}
 
-.container{max-width:1280px;margin:0 auto;padding:0 32px}
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line);}
+.nav-in{max-width:1200px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.logo{font-weight:800;font-size:20px;letter-spacing:-.02em;color:var(--ink);}
+.logo span{color:var(--blue);}
+.nav-cta{background:var(--ink);color:#fff;padding:10px 18px;border-radius:12px;font-weight:600;font-size:14px;letter-spacing:-.01em;border:0;cursor:pointer;}
+.nav-cta:hover{background:var(--blue);}
 
-/* ─── Nav ─── */
-.nav{padding:18px 0;background:#fff;position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line)}
-.nav-row{display:flex;justify-content:space-between;align-items:center;gap:32px}
-.nav-left{display:flex;align-items:center;gap:36px}
-.nav-logo{font-size:24px;font-weight:900;color:var(--blue);letter-spacing:-.02em;display:flex;align-items:center;gap:8px;text-decoration:none}
-.nav-logo .tag{font-size:11px;font-weight:700;color:var(--blue-dk);background:var(--blue-10);padding:3px 8px;border-radius:6px;letter-spacing:.04em;text-transform:uppercase}
-.nav-links{display:flex;gap:28px;align-items:center}
-.nav-links a{font-size:14px;font-weight:500;color:var(--ink);text-decoration:none}
-.nav-links a:hover{color:var(--blue)}
-.nav-cta{background:var(--blue);color:#fff;padding:11px 20px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;box-shadow:0 4px 14px rgba(60,103,214,.3);}
-.nav-cta:hover{background:var(--blue-dk)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px;}
+section{padding:96px 0;position:relative;}
+section.tight{padding:64px 0;}
 
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--blue);background:var(--blue-10);padding:6px 12px;border-radius:100px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:18px;}
-.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
+.eyebrow{display:inline-block;background:var(--blue-10);color:var(--blue);font-weight:700;font-size:13px;padding:7px 14px;border-radius:999px;letter-spacing:.04em;text-transform:uppercase;}
 
-.sec-head{margin-bottom:56px;max-width:920px}
-.sec-head h2{font-size:52px;font-weight:800;line-height:1.04;letter-spacing:-.025em;color:var(--ink);margin-bottom:20px;}
-.sec-head h2 .accent{color:var(--blue)}
-.sec-head h2 .hw{font-family:'Caveat',cursive;color:var(--blue);font-weight:700;display:inline-block;margin:0 4px;transform:rotate(-2deg);}
-.sec-head .lede{font-size:19px;line-height:1.55;color:var(--grey);max-width:780px}
+.hero{background:linear-gradient(180deg,#fff 0%,var(--canvas) 100%);padding-top:48px;padding-bottom:80px;position:relative;overflow:hidden;}
+.hero::before{content:"";position:absolute;right:-200px;top:-100px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--blue-10) 0%,transparent 70%);pointer-events:none;}
+.hero-in{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;}
+.hero h1{font-size:64px;line-height:1.04;letter-spacing:-.03em;margin:18px 0 24px;font-weight:700;color:var(--ink);}
+.hero h1 em{font-style:normal;font-family:'Caveat',cursive;color:var(--blue);font-weight:700;font-size:1.05em;}
+.hero p.lead{font-size:19px;color:var(--muted);max-width:560px;margin:0 0 32px;line-height:1.55;}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:36px 0 32px;}
+.hero-stat{background:#fff;border:1.5px solid var(--blue-20);border-radius:18px;padding:18px 16px;}
+.hero-stat b{display:block;font-size:30px;font-weight:800;color:var(--blue);letter-spacing:-.02em;line-height:1;margin-bottom:6px;}
+.hero-stat span{font-size:13px;color:var(--muted);line-height:1.3;}
+.hero-cta-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+.btn-primary{background:var(--blue);color:#fff;border:0;padding:18px 28px;border-radius:14px;font:inherit;font-weight:700;font-size:16px;letter-spacing:-.01em;cursor:pointer;display:inline-flex;align-items:center;gap:10px;box-shadow:0 4px 14px rgba(60,103,214,.35);transition:.2s;}
+.btn-primary:hover{background:var(--blue-2);transform:translateY(-1px);box-shadow:0 8px 22px rgba(60,103,214,.45);}
+.btn-primary::after{content:"→";font-size:18px;}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);padding:16px 22px;border-radius:14px;font:inherit;font-weight:600;font-size:15px;cursor:pointer;}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue);}
 
-section{padding:96px 0}
-section.canvas{background:var(--canvas)}
+.hero-visual{position:relative;height:560px;}
+.hv-card{position:absolute;background:#fff;border:1.5px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 30px 60px -20px rgba(60,103,214,.18);}
+.hv-card.main{top:0;right:0;width:420px;background:linear-gradient(135deg,#0E1320 0%,#1B2746 70%,#2A4FBF 100%);border-color:transparent;color:#fff;padding:28px;}
+.hv-card.main .hv-title{font-size:14px;opacity:.7;text-transform:uppercase;letter-spacing:.06em;font-weight:600;}
+.hv-card.main .hv-big{font-size:48px;font-weight:800;letter-spacing:-.02em;margin:14px 0 8px;line-height:1;}
+.hv-card.main .hv-sub{font-size:14px;opacity:.8;}
+.hv-card.main .hv-bar{display:flex;gap:6px;margin-top:24px;align-items:flex-end;height:80px;}
+.hv-card.main .hv-bar i{flex:1;background:rgba(255,255,255,.15);border-radius:4px;}
+.hv-card.main .hv-bar i.hi{background:var(--blue-light);}
+.hv-card.payback{bottom:60px;left:0;width:300px;}
+.hv-card.payback .hv-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600;}
+.hv-card.payback .hv-month{font-family:'Caveat',cursive;font-size:60px;font-weight:700;color:var(--green);line-height:1;margin:8px 0 4px;}
+.hv-card.payback .hv-text{font-size:14px;color:var(--text);font-weight:500;}
+.hv-card.payback svg{margin-top:16px;width:100%;height:50px;}
+.hv-card.activity{top:120px;left:-20px;width:240px;}
+.hv-card.activity .hv-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);}
+.hv-card.activity .hv-row:last-child{border-bottom:0;}
+.hv-card.activity .hv-row .dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;}
+.hv-card.activity .hv-row span{font-size:13px;color:var(--text);font-weight:500;flex:1;}
+.hv-card.activity .hv-row time{font-size:11px;color:var(--muted);}
 
-/* ─── HERO ─── */
-.hero{background:linear-gradient(180deg,#fff 0%,#F0F4FB 100%);padding:60px 0 100px;position:relative;overflow:hidden;}
-.hero::before{content:"";position:absolute;top:-300px;right:-200px;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(60,103,214,.08) 0%,transparent 65%);pointer-events:none;}
-.hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;position:relative;z-index:1}
-.hero h1{font-size:60px;font-weight:800;line-height:1.02;letter-spacing:-.03em;color:var(--ink);margin-bottom:24px;}
-.hero h1 .accent{color:var(--blue)}
-.hero h1 .hw{font-family:'Caveat',cursive;font-weight:700;color:var(--blue-2);transform:rotate(-2deg);display:inline-block;margin:0 4px}
-.hero .lede{font-size:20px;line-height:1.5;color:var(--grey);margin-bottom:36px;max-width:540px}
-.hero .lede b{color:var(--ink);font-weight:600}
-.hero-cta-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:44px}
-.btn-pri{background:var(--blue);color:#fff;padding:17px 30px;border-radius:14px;font-size:16px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;box-shadow:0 6px 24px rgba(60,103,214,.35);}
-.btn-pri:hover{background:var(--blue-dk)}
-.btn-pri::after{content:"→";font-size:18px;transition:.2s}
-.btn-pri:hover::after{transform:translateX(4px)}
-.btn-sec{background:transparent;color:var(--ink);padding:17px 26px;border-radius:14px;font-size:16px;font-weight:600;text-decoration:none;border:1.5px solid var(--line);display:inline-flex;align-items:center;gap:8px;}
-.btn-sec:hover{border-color:var(--blue);color:var(--blue)}
-.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;border-top:1px solid var(--line);padding-top:28px}
-.hero-stat .v{font-size:30px;font-weight:800;color:var(--ink);letter-spacing:-.02em;line-height:1}
-.hero-stat .v .accent{color:var(--blue)}
-.hero-stat .l{font-size:13px;color:var(--grey);margin-top:6px;line-height:1.35}
+.tag-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:#fff;border:1px solid var(--blue-20);border-radius:999px;font-size:13px;font-weight:600;color:var(--blue);}
+.tag-pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);}
 
-/* Hero phone mockup */
-.phone-stage{position:relative;display:flex;justify-content:center;align-items:center;perspective:1200px;}
-.phone{width:280px;height:570px;background:linear-gradient(160deg,#1a253f 0%,#0c1428 100%);border-radius:42px;padding:14px;box-shadow:0 30px 80px -20px rgba(20,30,60,.35),0 0 0 2px rgba(255,255,255,.06) inset;position:relative;transform:rotate(-3deg);}
-.phone::before{content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);width:90px;height:24px;background:#000;border-radius:14px;z-index:2;}
-.phone-scr{width:100%;height:100%;background:#fff;border-radius:30px;overflow:hidden;display:flex;flex-direction:column;}
-.phone-bar{background:#fff;padding:38px 18px 14px;display:flex;justify-content:space-between;align-items:center;}
-.phone-brand{font-weight:800;font-size:15px;color:var(--blue);letter-spacing:-.01em;}
-.phone-brand small{color:var(--grey);font-weight:500;}
-.phone-avatar{width:30px;height:30px;border-radius:50%;background:var(--blue-10);display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:var(--blue);}
-.phone-hello{padding:8px 18px 14px;}
-.phone-hello h3{margin:0 0 4px;font-size:18px;font-weight:800;letter-spacing:-.01em;}
-.phone-hello p{margin:0;font-size:12px;color:var(--grey);}
-.phone-card{margin:8px 18px;background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dk) 100%);color:#fff;border-radius:16px;padding:14px;display:flex;justify-content:space-between;align-items:center;}
-.phone-card-l small{display:block;font-size:10px;opacity:.7;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;}
-.phone-card-l b{font-size:18px;font-weight:800;display:block;line-height:1;}
-.phone-card-l span{font-size:11px;opacity:.8;display:block;margin-top:4px;}
-.phone-card-r{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.18);display:inline-flex;align-items:center;justify-content:center;}
-.phone-section{padding:14px 18px 6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--grey);display:flex;justify-content:space-between;align-items:center;}
-.phone-section a{color:var(--blue);text-transform:none;text-decoration:none;font-weight:600;letter-spacing:0;}
-.phone-slot{margin:6px 18px;padding:12px 14px;border:1px solid var(--line);border-radius:14px;display:flex;justify-content:space-between;align-items:center;}
-.phone-slot-l b{display:block;font-size:13px;font-weight:700;}
-.phone-slot-l span{display:block;font-size:11px;color:var(--grey);}
-.phone-slot-r{font-size:11px;font-weight:700;color:var(--green);background:var(--green-10);padding:5px 10px;border-radius:8px;}
-.phone-slot-r.busy{color:var(--red);background:var(--red-10);}
-.phone-action{margin:14px 18px 18px;background:var(--ink);color:#fff;padding:14px;border-radius:14px;font-weight:700;text-align:center;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;}
-.phone-action::before{content:"";width:14px;height:14px;border-radius:3px;background:#fff;display:inline-block;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='18' rx='2'/%3E%3Cpath d='M9 12l2 2 4-4'/%3E%3C/svg%3E");mask-size:contain;mask-repeat:no-repeat;background:#fff;}
+.sec-head{max-width:740px;margin:0 0 56px;}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+.sec-head h2{font-size:48px;line-height:1.08;letter-spacing:-.025em;margin:14px 0 18px;font-weight:700;color:var(--ink);}
+.sec-head h2 em{font-style:normal;font-family:'Caveat',cursive;color:var(--blue);font-weight:700;}
+.sec-head p{font-size:18px;color:var(--muted);line-height:1.55;margin:0;}
 
-/* Decorative floating badges */
-.float-badge{position:absolute;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 16px;box-shadow:0 12px 30px -10px rgba(20,30,60,.18);display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--ink);z-index:3;}
-.float-badge .ico{width:32px;height:32px;border-radius:10px;background:var(--blue-10);color:var(--blue);display:inline-flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;}
-.float-badge.b1{top:14%;left:-8%;}
-.float-badge.b2{bottom:18%;right:-4%;}
-.float-badge.b3{top:48%;left:-10%;background:var(--ink);color:#fff;border-color:var(--ink);}
-.float-badge.b3 .ico{background:rgba(255,255,255,.15);color:#fff;}
-.float-badge b{color:var(--blue);font-weight:800;display:block;font-size:16px;line-height:1;}
-.float-badge.b3 b{color:var(--blue-2);}
-.float-badge span{display:block;font-size:11px;color:var(--grey);font-weight:500;}
-.float-badge.b3 span{color:rgba(255,255,255,.6);}
+.why{background:var(--canvas);}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.why-card{background:#fff;border-radius:24px;padding:32px;border:1px solid var(--line);}
+.why-card .icon{width:56px;height:56px;border-radius:16px;background:var(--blue-10);display:flex;align-items:center;justify-content:center;margin-bottom:24px;}
+.why-card .icon svg{width:28px;height:28px;color:var(--blue);}
+.why-card h3{font-size:22px;line-height:1.25;letter-spacing:-.01em;margin:0 0 12px;font-weight:700;color:var(--ink);}
+.why-card p{font-size:15px;color:var(--muted);line-height:1.55;margin:0;}
 
-/* ─── Trust / case bar ─── */
-.trust{background:var(--ink);color:#fff;padding:54px 0;}
-.trust-grid{display:grid;grid-template-columns:1fr 2fr;gap:48px;align-items:center;}
-.trust-head{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue-2);margin-bottom:10px;}
-.trust h3{font-size:28px;font-weight:800;letter-spacing:-.02em;line-height:1.15;margin:0;}
-.trust-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
-.trust-n .v{font-size:42px;font-weight:800;letter-spacing:-.02em;color:var(--blue-2);line-height:1;}
-.trust-n .l{font-size:13px;color:rgba(255,255,255,.65);margin-top:8px;line-height:1.35;}
+.how{background:#fff;}
+.how-flow{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;position:relative;margin-top:48px;}
+.how-step{background:var(--canvas);border-radius:24px;padding:28px;position:relative;}
+.how-step .num{position:absolute;top:-20px;left:24px;background:var(--blue);color:#fff;width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Caveat',cursive;font-size:24px;font-weight:700;box-shadow:0 6px 16px rgba(60,103,214,.35);}
+.how-step h4{font-size:18px;line-height:1.3;letter-spacing:-.01em;margin:16px 0 12px;font-weight:700;color:var(--ink);}
+.how-step p{font-size:14.5px;color:var(--muted);margin:0;line-height:1.55;}
+.how-step .pic{height:160px;background:linear-gradient(135deg,var(--blue-10),var(--blue-20));border-radius:16px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;}
+.how-step .pic svg{width:60px;height:60px;color:var(--blue);}
 
-/* ─── Features ─── */
-.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-.feat{background:#fff;border:1px solid var(--line);border-radius:22px;padding:32px 28px;transition:.2s;display:flex;flex-direction:column;gap:14px;}
-.feat:hover{border-color:var(--blue-20);box-shadow:0 14px 40px -20px rgba(60,103,214,.25);transform:translateY(-3px);}
-.feat-ico{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--blue-10),#fff);display:inline-flex;align-items:center;justify-content:center;color:var(--blue);}
-.feat-ico svg{width:28px;height:28px;}
-.feat h3{margin:0;font-size:21px;font-weight:800;letter-spacing:-.015em;}
-.feat p{margin:0;color:var(--grey);font-size:15px;line-height:1.55;}
-.feat-job{margin-top:6px;font-size:13px;font-style:italic;color:var(--blue-dk);background:var(--blue-10);padding:10px 14px;border-radius:10px;border-left:3px solid var(--blue);}
+.owner-line{margin-top:64px;background:linear-gradient(135deg,#0E1320 0%,#1B2746 60%,#243463 100%);color:#fff;border-radius:28px;padding:48px 56px;display:flex;align-items:center;gap:48px;position:relative;overflow:hidden;}
+.owner-line::before{content:"";position:absolute;right:-100px;top:-100px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(123,153,232,.25) 0%,transparent 70%);pointer-events:none;}
+.owner-line-big{font-family:'Caveat',cursive;font-size:120px;line-height:.9;color:var(--blue-light);font-weight:700;flex-shrink:0;position:relative;z-index:1;}
+.owner-line-text{position:relative;z-index:1;}
+.owner-line-text h3{font-size:28px;line-height:1.15;letter-spacing:-.015em;margin:0 0 12px;font-weight:700;}
+.owner-line-text p{font-size:16px;line-height:1.55;color:rgba(255,255,255,.75);margin:0;max-width:560px;}
 
-/* ─── Funnel ─── */
-.funnel{display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:center;}
-.funnel-bars{display:flex;flex-direction:column;gap:14px;}
-.funnel-bar{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;position:relative;overflow:hidden;}
-.funnel-bar::before{content:"";position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--blue-10),#fff);z-index:0;}
-.funnel-bar.b1::before{width:100%;}
-.funnel-bar.b2::before{width:49%;}
-.funnel-bar.b3::before{width:36%;}
-.funnel-bar.b4::before{width:25%;background:linear-gradient(90deg,var(--green-10),#fff);}
-.funnel-bar > *{position:relative;z-index:1;}
-.funnel-bar-l b{display:block;font-size:24px;font-weight:800;color:var(--ink);line-height:1;letter-spacing:-.01em;}
-.funnel-bar-l span{display:block;font-size:13px;color:var(--grey);margin-top:4px;}
-.funnel-bar-r{font-size:13px;font-weight:700;color:var(--blue);background:var(--blue-10);padding:6px 12px;border-radius:8px;}
-.funnel-bar.b4 .funnel-bar-r{color:var(--green);background:var(--green-10);}
-.funnel-side h3{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:0 0 16px;}
-.funnel-side p{color:var(--grey);font-size:16px;line-height:1.6;margin:0 0 24px;}
-.funnel-side ul{margin:0;padding:0;list-style:none;display:grid;gap:10px;}
-.funnel-side li{padding-left:28px;position:relative;font-size:15px;color:var(--ink);font-weight:500;}
-.funnel-side li::before{content:"";position:absolute;left:0;top:8px;width:16px;height:16px;background:var(--blue);border-radius:50%;}
-.funnel-side li::after{content:"";position:absolute;left:4px;top:12px;width:8px;height:4px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg);}
+.econ{background:linear-gradient(180deg,var(--canvas) 0%,#fff 100%);}
+.econ-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:stretch;}
+.econ-card{background:#fff;border:1.5px solid var(--line);border-radius:28px;padding:36px;}
+.econ-h{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:22px;}
+.econ-h h3{margin:0;font-size:20px;font-weight:700;letter-spacing:-.01em;color:var(--ink);}
+.econ-h .pill{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--blue-10);color:var(--blue);text-transform:uppercase;letter-spacing:.04em;}
+.econ-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px dashed var(--line);}
+.econ-row:last-child{border-bottom:0;font-weight:700;}
+.econ-row span{font-size:15px;color:var(--text);}
+.econ-row b{font-size:15px;font-weight:700;color:var(--ink);}
+.econ-total{margin-top:22px;background:var(--blue-10);border-radius:16px;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;}
+.econ-total span{font-size:14px;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.04em;}
+.econ-total b{font-size:24px;font-weight:800;color:var(--blue);letter-spacing:-.02em;}
+.econ-margin{background:linear-gradient(135deg,var(--green),#1FA88B);color:#fff;border-radius:28px;padding:40px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;}
+.econ-margin::before{content:"";position:absolute;right:-80px;bottom:-80px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.1);}
+.econ-margin h3{font-size:18px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin:0 0 14px;opacity:.9;}
+.econ-margin .big{font-size:96px;font-weight:800;letter-spacing:-.04em;line-height:1;margin:0 0 8px;position:relative;z-index:1;}
+.econ-margin .big small{font-size:36px;font-weight:700;}
+.econ-margin .sub{font-size:16px;opacity:.85;margin-bottom:24px;line-height:1.5;position:relative;z-index:1;}
+.econ-margin .note{background:rgba(255,255,255,.18);border-radius:14px;padding:14px 18px;font-size:13px;line-height:1.5;position:relative;z-index:1;backdrop-filter:blur(10px);}
+.econ-margin .note b{font-weight:700;display:block;margin-bottom:4px;}
 
-/* ─── Marketing channels ─── */
-.chan{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
-.chan-c{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px;position:relative;}
-.chan-c.win{border-color:var(--green);background:linear-gradient(180deg,#fff,#F5FBF0);}
-.chan-c.lose{opacity:.7;}
-.chan-c-tag{position:absolute;top:-10px;right:14px;background:var(--green);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:8px;text-transform:uppercase;letter-spacing:.04em;}
-.chan-c.lose .chan-c-tag{background:var(--grey-l);}
-.chan-c h4{margin:0;font-size:18px;font-weight:800;}
-.chan-c .res{font-size:15px;color:var(--grey);font-weight:500;}
-.chan-c .res b{color:var(--ink);font-weight:700;}
+.payback-chart{margin-top:48px;background:#fff;border:1.5px solid var(--line);border-radius:28px;padding:40px;}
+.payback-chart h3{font-size:24px;font-weight:700;letter-spacing:-.015em;margin:0 0 8px;color:var(--ink);}
+.payback-chart p.s{font-size:15px;color:var(--muted);margin:0 0 28px;}
+.chart-wrap{position:relative;height:280px;}
+.chart-wrap svg{width:100%;height:100%;overflow:visible;}
+.chart-y{position:absolute;left:-8px;top:0;bottom:30px;display:flex;flex-direction:column;justify-content:space-between;font-size:12px;color:var(--muted);font-weight:500;}
+.chart-x{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-weight:500;margin-top:8px;padding:0 4%;}
+.chart-x b{color:var(--green);font-weight:700;}
 
-/* ─── Finance ─── */
-.fin{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
-.fin-card{background:#fff;border:1.5px solid var(--line);border-radius:22px;padding:36px;}
-.fin-card h3{margin:0 0 8px;font-size:22px;font-weight:800;}
-.fin-card .sub{font-size:14px;color:var(--grey);margin-bottom:24px;}
-.fin-rows{display:grid;gap:10px;}
-.fin-row{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px dashed var(--line);}
-.fin-row:last-child{border-bottom:none;}
-.fin-row .k{font-size:14px;color:var(--ink);font-weight:500;}
-.fin-row .v{font-weight:700;color:var(--blue-dk);}
-.fin-row.tot{border-bottom:none;border-top:2px solid var(--ink);padding-top:14px;margin-top:6px;}
-.fin-row.tot .k{font-weight:800;font-size:16px;color:var(--ink);}
-.fin-row.tot .v{font-weight:800;color:var(--blue);font-size:18px;}
-.fin-summary{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dk) 100%);color:#fff;border-radius:22px;padding:32px 36px;margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-.fin-sum-c .v{font-size:32px;font-weight:800;line-height:1;letter-spacing:-.02em;color:#fff;}
-.fin-sum-c .l{font-size:13px;opacity:.7;margin-top:6px;}
+.case{background:#fff;}
+.case-hero{background:linear-gradient(135deg,#0E1320 0%,#1B2746 60%,#2A4FBF 100%);color:#fff;border-radius:32px;padding:60px;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.case-hero::before{content:"";position:absolute;right:-120px;top:-120px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(123,153,232,.3) 0%,transparent 70%);pointer-events:none;}
+.case-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);color:#fff;padding:8px 14px;border-radius:999px;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;backdrop-filter:blur(10px);}
+.case-hero h2{font-size:42px;line-height:1.08;letter-spacing:-.025em;margin:18px 0 24px;font-weight:700;}
+.case-hero h2 em{font-style:normal;font-family:'Caveat',cursive;color:var(--blue-light);font-weight:700;}
+.case-q{font-size:18px;line-height:1.55;font-style:italic;margin:0 0 20px;color:rgba(255,255,255,.9);border-left:3px solid var(--blue-light);padding-left:18px;}
+.case-author{display:flex;align-items:center;gap:14px;margin-top:24px;}
+.case-author .av{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#F4A82C,#D17F1A);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;color:#fff;flex-shrink:0;}
+.case-author b{display:block;font-size:15px;font-weight:700;}
+.case-author span{font-size:13px;opacity:.75;}
 
-/* ─── FAQ ─── */
-.faq{display:grid;gap:14px;max-width:880px;margin:0 auto;}
-.q{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:24px 28px;cursor:pointer;transition:.2s;}
-.q:hover{border-color:var(--blue-20);}
-.q[open]{border-color:var(--blue);box-shadow:0 14px 40px -20px rgba(60,103,214,.22);}
-.q summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:18px;font-size:18px;font-weight:700;letter-spacing:-.01em;color:var(--ink);}
-.q summary::-webkit-details-marker{display:none;}
-.q-ico{width:32px;height:32px;border-radius:50%;background:var(--blue-10);color:var(--blue);display:inline-flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;transition:.2s;}
-.q[open] .q-ico{background:var(--blue);color:#fff;transform:rotate(45deg);}
-.q-ico::before{content:"+";font-size:18px;line-height:1;}
-.q-body{margin-top:14px;color:var(--grey);font-size:15.5px;line-height:1.6;}
-.q-body b{color:var(--ink);}
+.case-photo{position:relative;z-index:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:24px;height:380px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;color:rgba(255,255,255,.6);font-size:14px;backdrop-filter:blur(10px);text-align:center;padding:30px;}
+.case-photo svg{width:80px;height:80px;opacity:.4;}
 
-/* ─── CTA ─── */
-.cta{background:linear-gradient(135deg,var(--ink) 0%,#1a2752 60%,var(--blue-dk) 100%);color:#fff;padding:96px 0;position:relative;overflow:hidden;}
-.cta::before{content:"";position:absolute;right:-150px;bottom:-150px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(60,171,255,.25) 0%,transparent 70%);pointer-events:none;}
-.cta-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:64px;align-items:center;position:relative;z-index:1;}
-.cta h2{font-size:48px;font-weight:800;letter-spacing:-.025em;line-height:1.05;margin:0 0 20px;}
-.cta h2 .hw{font-family:'Caveat',cursive;color:var(--blue-2);font-weight:700;}
-.cta p{font-size:18px;opacity:.8;margin:0 0 36px;max-width:580px;line-height:1.55;}
-.cta-form{background:#fff;color:var(--ink);border-radius:24px;padding:36px;box-shadow:0 30px 80px -20px rgba(0,0,0,.4);}
-.cta-form h3{margin:0 0 6px;font-size:22px;font-weight:800;letter-spacing:-.015em;}
-.cta-form p.sub{font-size:14px;color:var(--grey);margin:0 0 22px;}
-.cta-form label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--ink-2);}
-.cta-form input,.cta-form select{width:100%;padding:14px 16px;border:1.5px solid var(--line);border-radius:12px;font:inherit;font-size:15px;background:var(--canvas-2);margin-bottom:14px;color:var(--ink);}
-.cta-form input:focus,.cta-form select:focus{outline:none;border-color:var(--blue);background:#fff;}
-.cta-form button{width:100%;background:var(--blue);color:#fff;border:0;padding:16px;border-radius:12px;font:inherit;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 6px 24px rgba(60,103,214,.35);}
-.cta-form button:hover{background:var(--blue-dk);}
-.cta-form .leg{font-size:11px;color:var(--grey-l);margin:14px 0 0;text-align:center;line-height:1.5;}
+.case-stats{margin-top:40px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.cs{background:var(--canvas);border-radius:22px;padding:28px;border:1px solid var(--line);}
+.cs b{display:block;font-size:42px;font-weight:800;color:var(--blue);letter-spacing:-.025em;line-height:1;margin-bottom:8px;}
+.cs span{font-size:14px;color:var(--muted);line-height:1.4;}
 
-/* ─── Footer ─── */
-footer{background:var(--ink);color:rgba(255,255,255,.65);padding:54px 0;font-size:14px;}
-.foot-row{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
-.foot-logo{font-size:22px;font-weight:900;color:#fff;letter-spacing:-.02em;}
-.foot-logo span{color:var(--blue-2);}
-footer a{color:#fff;text-decoration:none;font-weight:500;opacity:.7;}
-footer a:hover{opacity:1;}
+.case-funnel{margin-top:40px;background:var(--canvas);border-radius:24px;padding:36px;}
+.case-funnel h3{font-size:24px;font-weight:700;letter-spacing:-.015em;margin:0 0 8px;color:var(--ink);}
+.case-funnel p.s{font-size:15px;color:var(--muted);margin:0 0 28px;}
+.funnel-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;align-items:end;}
+.funnel-col{text-align:center;}
+.funnel-bar{background:linear-gradient(180deg,var(--blue-light),var(--blue));border-radius:14px 14px 6px 6px;color:#fff;padding:18px 12px;display:flex;flex-direction:column;justify-content:flex-end;min-height:80px;font-weight:700;font-size:24px;letter-spacing:-.02em;}
+.funnel-col:nth-child(2) .funnel-bar{min-height:140px;}
+.funnel-col:nth-child(3) .funnel-bar{min-height:180px;}
+.funnel-col:nth-child(4) .funnel-bar{min-height:220px;}
+.funnel-col:nth-child(5) .funnel-bar{min-height:260px;background:linear-gradient(180deg,#3CD68B,var(--green));}
+.funnel-label{font-size:13px;color:var(--text);margin-top:12px;font-weight:600;line-height:1.3;}
+.funnel-conv{font-size:11px;color:var(--muted);margin-top:4px;}
 
-/* ─── Mobile ─── */
-@media (max-width:980px){
-  .container{padding:0 20px;}
+.faq{background:var(--canvas);}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.faq-item{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px;}
+.faq-item .q{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px;}
+.faq-item .q .qmark{flex-shrink:0;width:32px;height:32px;border-radius:10px;background:var(--blue-10);color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;}
+.faq-item .q h4{margin:0;font-size:17px;line-height:1.35;letter-spacing:-.01em;font-weight:700;color:var(--ink);padding-top:4px;}
+.faq-item .a{font-size:15px;color:var(--text);line-height:1.55;padding-left:46px;}
+.faq-item .a b{color:var(--green);font-weight:700;}
+
+.product{background:#fff;}
+.product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.product-card{background:linear-gradient(135deg,#fff,var(--canvas));border:1.5px solid var(--line);border-radius:24px;padding:32px;display:flex;gap:24px;align-items:flex-start;}
+.product-card .pico{flex-shrink:0;width:56px;height:56px;border-radius:14px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;}
+.product-card .pico svg{width:28px;height:28px;}
+.product-card h4{font-size:19px;line-height:1.3;letter-spacing:-.01em;margin:0 0 10px;font-weight:700;color:var(--ink);}
+.product-card p{font-size:15px;color:var(--muted);margin:0;line-height:1.55;}
+
+.cta{background:linear-gradient(135deg,#0E1320 0%,#1B2746 50%,#3C67D6 100%);color:#fff;border-radius:36px;padding:72px;margin-bottom:80px;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;position:relative;overflow:hidden;}
+.cta::before{content:"";position:absolute;right:-150px;top:-150px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(63,171,255,.4) 0%,transparent 70%);pointer-events:none;}
+.cta-text{position:relative;z-index:1;}
+.cta-tag{display:inline-block;background:rgba(255,255,255,.12);padding:7px 14px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;backdrop-filter:blur(10px);}
+.cta h2{font-size:44px;line-height:1.08;letter-spacing:-.025em;margin:18px 0 18px;font-weight:700;}
+.cta h2 em{font-style:normal;font-family:'Caveat',cursive;color:#F4A82C;font-weight:700;}
+.cta p{font-size:17px;color:rgba(255,255,255,.8);margin:0 0 32px;line-height:1.55;max-width:520px;}
+.cta-includes{display:grid;gap:10px;margin-bottom:32px;max-width:520px;padding:0;}
+.cta-includes li{list-style:none;display:flex;align-items:flex-start;gap:12px;font-size:15px;color:rgba(255,255,255,.92);}
+.cta-includes li::before{content:"✓";flex-shrink:0;width:24px;height:24px;background:var(--green);border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+
+.cta-form{position:relative;z-index:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:24px;padding:36px;backdrop-filter:blur(20px);}
+.cta-form label{display:block;font-size:13px;font-weight:600;color:rgba(255,255,255,.9);margin-bottom:8px;letter-spacing:.02em;}
+.cta-form input,.cta-form textarea{width:100%;background:rgba(255,255,255,.95);border:0;padding:14px 18px;border-radius:12px;font:inherit;font-size:15px;color:var(--ink);margin-bottom:18px;}
+.cta-form input:focus,.cta-form textarea:focus{outline:2px solid var(--blue-light);}
+.cta-form textarea{resize:vertical;min-height:80px;}
+.cta-form .btn-cta{width:100%;background:#fff;color:var(--blue);border:0;padding:18px;border-radius:14px;font:inherit;font-weight:700;font-size:16px;cursor:pointer;letter-spacing:-.01em;}
+.cta-form .btn-cta:hover{background:var(--gold);color:#fff;}
+.cta-form .alt{display:block;margin-top:16px;text-align:center;font-size:13px;color:rgba(255,255,255,.75);}
+.cta-form .alt a{color:#fff;font-weight:600;border-bottom:1px dashed rgba(255,255,255,.4);}
+
+footer{background:#0E1320;color:rgba(255,255,255,.5);padding:48px 0 32px;font-size:13px;text-align:center;}
+footer .logo{color:#fff;display:block;margin-bottom:14px;}
+footer .logo span{color:var(--blue-light);}
+
+@media (max-width:920px){
   section{padding:64px 0;}
-  .sec-head{margin-bottom:32px;}
-  .sec-head h2{font-size:34px;}
-  .sec-head .lede{font-size:16px;}
-  .nav-links{display:none;}
-  .nav-cta{padding:10px 14px;font-size:13px;white-space:nowrap;}
-  .nav-logo{font-size:20px;}
-  .nav-logo .tag{display:none;}
-  .hero{padding:36px 0 60px;}
-  .hero-grid{grid-template-columns:1fr;gap:48px;}
-  .hero h1{font-size:36px;}
-  .hero .lede{font-size:17px;margin-bottom:24px;}
-  .hero-cta-row{flex-direction:column;align-items:stretch;}
-  .hero-stats{grid-template-columns:1fr 1fr;gap:18px;padding-top:20px;}
-  .hero-stat .v{font-size:24px;}
-  .phone{width:240px;height:490px;}
-  .float-badge{display:none;}
-  .trust-grid{grid-template-columns:1fr;gap:24px;}
-  .trust h3{font-size:22px;}
-  .trust-nums{grid-template-columns:1fr 1fr;gap:20px;}
-  .trust-n .v{font-size:30px;}
-  .feats{grid-template-columns:1fr;gap:14px;}
-  .feat{padding:24px;}
-  .funnel{grid-template-columns:1fr;gap:32px;}
-  .funnel-side h3{font-size:22px;}
-  .chan{grid-template-columns:1fr 1fr;}
-  .fin{grid-template-columns:1fr;}
-  .fin-card{padding:24px;}
-  .fin-summary{grid-template-columns:1fr;text-align:center;padding:24px;}
-  .fin-sum-c .v{font-size:26px;}
-  .q{padding:18px 20px;}
-  .q summary{font-size:15px;}
-  .cta{padding:60px 0;}
-  .cta-grid{grid-template-columns:1fr;gap:36px;}
+  .hero{padding-top:32px;padding-bottom:56px;}
+  .hero-in{grid-template-columns:1fr;gap:40px;}
+  .hero h1{font-size:42px;}
+  .hero p.lead{font-size:17px;}
+  .hero-stats{grid-template-columns:1fr 1fr;}
+  .hero-stat b{font-size:24px;}
+  .hero-visual{height:auto;display:grid;grid-template-columns:1fr;gap:14px;}
+  .hv-card{position:relative;width:auto !important;top:auto !important;left:auto !important;right:auto !important;bottom:auto !important;}
+  .hv-card.main .hv-big{font-size:36px;}
+  .sec-head h2{font-size:32px;}
+  .sec-head p{font-size:16px;}
+  .why-grid,.how-flow,.product-grid,.faq-grid,.econ-grid,.case-stats{grid-template-columns:1fr;}
+  .case-stats{grid-template-columns:1fr 1fr;}
+  .owner-line{flex-direction:column;align-items:flex-start;padding:32px;text-align:left;}
+  .owner-line-big{font-size:80px;}
+  .case-hero{grid-template-columns:1fr;padding:36px;}
+  .case-hero h2{font-size:28px;}
+  .case-photo{height:240px;}
+  .funnel-grid{grid-template-columns:repeat(5,1fr);gap:6px;}
+  .funnel-bar{font-size:16px;padding:10px 6px;}
+  .funnel-label{font-size:11px;}
+  .funnel-conv{font-size:10px;}
+  .cta{grid-template-columns:1fr;padding:36px;border-radius:24px;}
   .cta h2{font-size:30px;}
-  .cta p{font-size:15px;}
-  .cta-form{padding:24px;}
-  .foot-row{flex-direction:column;align-items:flex-start;text-align:left;}
+  .econ-margin .big{font-size:72px;}
+  .econ-margin .big small{font-size:28px;}
+  .nav-cta{padding:8px 14px;font-size:13px;}
+  .nav-in{padding:14px 20px;}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="nav">
-  <div class="container nav-row">
-    <div class="nav-left">
-      <a class="nav-logo" href="#">Fitbase <span class="tag">для залов без персонала</span></a>
-      <div class="nav-links">
-        <a href="#how">Как работает</a>
-        <a href="#case">Реальный кейс</a>
-        <a href="#money">Финмодель</a>
-        <a href="#faq">Вопросы</a>
-      </div>
-    </div>
-    <a class="nav-cta" href="#cta">Получить консультацию</a>
+  <div class="nav-in">
+    <a class="logo" href="/">Fit<span>base</span></a>
+    <button class="nav-cta" onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})">Запросить расчёт</button>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="container hero-grid">
+  <div class="wrap hero-in">
     <div>
-      <div class="eyebrow"><span class="dot"></span>Новый формат фитнеса</div>
-      <h1>Управляйте залом <span class="hw">без админов</span> и тренеров — <span class="accent">30 минут в день</span></h1>
-      <p class="lede">Fitbase даёт всё, что нужно автономному клубу: <b>брендированное приложение, доступ через QR, слоты с лимитом, пуш-рассылки и аналитику.</b> Клиент сам записывается, оплачивает и проходит — вы только смотрите цифры.</p>
-      <div class="hero-cta-row">
-        <a class="btn-pri" href="#cta">Бесплатная консультация по запуску</a>
-        <a class="btn-sec" href="#case">Смотреть реальный кейс</a>
-      </div>
+      <span class="tag-pill">Зал без персонала — новая ниша 2026</span>
+      <h1>Новый <em>маржинальный</em> бизнес в фитнесе. И в него легко зайти.</h1>
+      <p class="lead">Формат, который уже работает в России: автономный фитнес-зал у дома, открывается по приложению. Низкий порог входа, прозрачная экономика, маржа выше классического клуба.</p>
+
       <div class="hero-stats">
-        <div class="hero-stat"><div class="v"><span class="accent">30</span> мин/день</div><div class="l">время владельца на управление</div></div>
-        <div class="hero-stat"><div class="v"><span class="accent">81–85%</span></div><div class="l">удержание клиентов после 2,5 мес</div></div>
-        <div class="hero-stat"><div class="v">от <span class="accent">9 000</span> ₽</div><div class="l">стоимость Fitbase в месяц</div></div>
-        <div class="hero-stat"><div class="v">до <span class="accent">50%</span></div><div class="l">маржинальность при полной загрузке</div></div>
+        <div class="hero-stat"><b>до 55%</b><span>маржинальность при загрузке</span></div>
+        <div class="hero-stat"><b>5 мес</b><span>до точки безубыточности</span></div>
+        <div class="hero-stat"><b>7–12 млн</b><span>инвестиции в зал 130–200 м²</span></div>
+        <div class="hero-stat"><b>2–4 ч</b><span>владельца в неделю</span></div>
+      </div>
+
+      <div class="hero-cta-row">
+        <button class="btn-primary" onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})">Запросить расчёт под вашу локацию</button>
+        <a class="btn-ghost" href="#how">Как это работает</a>
       </div>
     </div>
 
-    <div class="phone-stage">
-      <div class="float-badge b1"><div class="ico">✓</div><div><b>506 регистраций</b><span>за 2,5 месяца</span></div></div>
-      <div class="float-badge b2"><div class="ico">★</div><div><b>0 краж</b><span>за всё время работы</span></div></div>
-      <div class="float-badge b3"><div class="ico">⚡</div><div><b>QR-доступ</b><span>дверь открывается с телефона</span></div></div>
-      <div class="phone">
-        <div class="phone-scr">
-          <div class="phone-bar">
-            <div class="phone-brand">Мой зал <small>· у дома</small></div>
-            <div class="phone-avatar">А</div>
-          </div>
-          <div class="phone-hello">
-            <h3>Привет, Анна</h3>
-            <p>Месячная подписка активна</p>
-          </div>
-          <div class="phone-card">
-            <div class="phone-card-l">
-              <small>Активный абонемент</small>
-              <b>Месячный · 3 299 ₽</b>
-              <span>До 27 июня · 23 дня</span>
-            </div>
-            <div class="phone-card-r">⌧</div>
-          </div>
-          <div class="phone-section"><span>Ближайшие слоты</span><a href="#">все →</a></div>
-          <div class="phone-slot">
-            <div class="phone-slot-l"><b>Сегодня · 19:00</b><span>Свободно 8 из 15</span></div>
-            <div class="phone-slot-r">записаться</div>
-          </div>
-          <div class="phone-slot">
-            <div class="phone-slot-l"><b>Сегодня · 20:00</b><span>Свободно 3 из 15</span></div>
-            <div class="phone-slot-r busy">мало мест</div>
-          </div>
-          <div class="phone-action">Открыть дверь</div>
+    <div class="hero-visual">
+      <div class="hv-card main">
+        <div class="hv-title">Выручка при 300 подписках</div>
+        <div class="hv-big">990<small style="font-size:24px;opacity:.7;font-weight:600;"> тыс/мес</small></div>
+        <div class="hv-sub">— 450 тыс OPEX = 540 тыс маржи (55%)</div>
+        <div class="hv-bar">
+          <i style="height:25%"></i>
+          <i style="height:38%"></i>
+          <i style="height:48%"></i>
+          <i style="height:58%" class="hi"></i>
+          <i style="height:68%" class="hi"></i>
+          <i style="height:78%" class="hi"></i>
+          <i style="height:88%" class="hi"></i>
+          <i style="height:100%" class="hi"></i>
         </div>
       </div>
+      <div class="hv-card payback">
+        <div class="hv-label">Окупаемость</div>
+        <div class="hv-month">5</div>
+        <div class="hv-text">месяцев до точки<br/>безубыточности</div>
+        <svg viewBox="0 0 200 50"><path d="M0,40 Q40,30 80,28 T160,12 L200,5" stroke="#26B99A" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="200" cy="5" r="5" fill="#26B99A"/></svg>
+      </div>
+      <div class="hv-card activity">
+        <div style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:700;margin-bottom:10px;">Активность за час</div>
+        <div class="hv-row"><span class="dot"></span><span>Вошёл по QR — 12:04</span><time>сейчас</time></div>
+        <div class="hv-row"><span class="dot"></span><span>Подписка продлена</span><time>4 мин</time></div>
+        <div class="hv-row"><span class="dot"></span><span>Запись на слот 19:00</span><time>8 мин</time></div>
+        <div class="hv-row"><span class="dot"></span><span>Оплата прошла</span><time>11 мин</time></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- TRUST -->
-<section class="trust">
-  <div class="container trust-grid">
-    <div>
-      <div class="trust-head">Кейс действующего клиента</div>
-      <h3>133 м², один владелец, 2,5 месяца с открытия</h3>
-    </div>
-    <div class="trust-nums">
-      <div class="trust-n"><div class="v">506</div><div class="l">регистраций в приложении</div></div>
-      <div class="trust-n"><div class="v">249</div><div class="l">платных клиентов · конверсия 49%</div></div>
-      <div class="trust-n"><div class="v">127</div><div class="l">активных абонементов</div></div>
-      <div class="trust-n"><div class="v">81%</div><div class="l">удержание подписчиков</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section id="how">
-  <div class="container">
+<section class="why">
+  <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow"><span class="dot"></span>Что внутри</div>
-      <h2>Шесть инструментов, которые <span class="hw">заменяют</span><br/>команду <span class="accent">из 5 человек</span></h2>
-      <p class="lede">Один владелец вместо администратора, кассира, тренера-консультанта, маркетолога и охранника. Каждая роль закрыта продуктом — не людьми.</p>
+      <span class="eyebrow">Почему сейчас</span>
+      <h2>Рынок <em>готов</em>. Люди привыкли пользоваться без персонала.</h2>
+      <p>Каршеринг, самокаты, отели self-check-in, доставки в постаматы — за 5 лет автономные сервисы стали нормой. В фитнесе эта волна только начинается.</p>
     </div>
 
-    <div class="feats">
-      <div class="feat">
-        <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><circle cx="12" cy="17.5" r="1.5"/></svg></div>
-        <h3>Брендированное приложение</h3>
-        <p>Клиент скачивает приложение под вашим логотипом, регистрируется, выбирает тариф и оплачивает картой. Без админа на входе.</p>
-        <div class="feat-job">Работа клиента: «Хочу записаться и оплатить в 23:00 со смартфона, без звонков»</div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+        </div>
+        <h3>Новая привычка к автономности</h3>
+        <p>Поколение 20–35 лет не нуждается в админе на ресепшене. Они привыкли к QR-коду на входе и приложению вместо звонка.</p>
       </div>
-
-      <div class="feat">
-        <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3z M17 17h4v4h-4z"/></svg></div>
-        <h3>Доступ по QR и через приложение</h3>
-        <p>Дверь открывается одним нажатием в приложении или сканом QR на входе. Интеграция с домофонами и СКУД — экономия 200+ тыс ₽ против классической СКУД.</p>
-        <div class="feat-job">Работа клиента: «Прийти, открыть дверь, потренироваться — без ключей»</div>
+      <div class="why-card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 9h6M9 13h6M9 17h6"/></svg>
+        </div>
+        <h3>Городская плотность</h3>
+        <p>Один новый ЖК — это 3–5 тысяч квартир в пешеходной доступности. У вас уже есть аудитория, до неё буквально 5 минут пешком.</p>
       </div>
-
-      <div class="feat">
-        <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><circle cx="8" cy="15" r="1" fill="currentColor"/></svg></div>
-        <h3>Слоты с лимитом мест</h3>
-        <p>Время делится на сеансы (например, по 15 человек). Когда слот занят — записаться нельзя. Никакой давки и автоматический контроль загрузки.</p>
-        <div class="feat-job">Работа владельца: «Не пускать больше, чем может комфортно тренироваться»</div>
-      </div>
-
-      <div class="feat">
-        <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4z M3 12l9 4 9-4 M3 17l9 4 9-4"/></svg></div>
-        <h3>Пуш, СМС и рассылки</h3>
-        <p>Возвращайте «уснувших» клиентов и держите контакт с базой автоматически: триггеры при окончании подписки, акциях, новых слотах.</p>
-        <div class="feat-job">Работа владельца: «Видеть, кто перестал ходить — и возвращать до отмены»</div>
-      </div>
-
-      <div class="feat">
-        <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M22 8l-6 4 6 4z"/></svg></div>
-        <h3>Видеонаблюдение и контроль</h3>
-        <p>Связка с камерами клуба. Видите кто и когда пришёл — даже без админа. По кейсу клиента: 9 камер, ноль краж за 2,5 месяца работы, единичные нарушения закрываются звонком.</p>
-        <div class="feat-job">Работа владельца: «Спать спокойно ночью, не приезжать в клуб без повода»</div>
-      </div>
-
-      <div class="feat">
-        <div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V11M11 21V7M17 21V14"/></svg></div>
-        <h3>Воронка и аналитика</h3>
-        <p>Регистрации → пробные → подписки → удержание. Видите, где люди теряются и сколько реально приносит каждый канал привлечения.</p>
-        <div class="feat-job">Работа владельца: «Не гнать новый трафик в дырявое ведро»</div>
+      <div class="why-card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6m0 0l-3-3m3 3l3-3M3 12a9 9 0 1018 0 9 9 0 00-18 0z"/><path d="M12 18v-4"/></svg>
+        </div>
+        <h3>Классический клуб — переплата</h3>
+        <p>Большому клубу нужны ресепшен, тренеры, групповые, бассейн. Для частоты «3 раза в неделю на свои тренировки» клиенту достаточно автономного формата за половину цены.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FUNNEL -->
-<section id="case" class="canvas">
-  <div class="container">
+<section class="how" id="how">
+  <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow"><span class="dot"></span>Воронка действующего клиента</div>
-      <h2>За 2,5 месяца — <span class="accent">506 регистраций</span> и <span class="accent">127 активных подписчиков</span></h2>
-      <p class="lede">Реальные цифры одного зала на 133 м² без админа на ресепшене и без тренера-консультанта. Только продукт.</p>
+      <span class="eyebrow">Как это работает</span>
+      <h2>Зал работает <em>сам</em>. Без админа, без вас.</h2>
+      <p>Клиент проходит весь путь через приложение: от записи и оплаты до открытия двери. Вы заходите дистанционно — несколько раз в неделю.</p>
     </div>
 
-    <div class="funnel">
-      <div class="funnel-bars">
-        <div class="funnel-bar b1">
-          <div class="funnel-bar-l"><b>506</b><span>Регистрации в приложении</span></div>
-          <div class="funnel-bar-r">100%</div>
+    <div class="how-flow">
+      <div class="how-step">
+        <span class="num">1</span>
+        <div class="pic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
         </div>
-        <div class="funnel-bar b2">
-          <div class="funnel-bar-l"><b>249</b><span>Платных покупок · из них пробное и подписки</span></div>
-          <div class="funnel-bar-r">49%</div>
+        <h4>Клиент скачивает приложение</h4>
+        <p>Видит расписание, тарифы, свободные слоты. Покупает пробное за 399 ₽ или подписку — всё внутри приложения.</p>
+      </div>
+
+      <div class="how-step">
+        <span class="num">2</span>
+        <div class="pic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="20" y="14" width="1" height="1"/><rect x="14" y="20" width="1" height="1"/><rect x="20" y="20" width="1" height="1"/></svg>
         </div>
-        <div class="funnel-bar b3">
-          <div class="funnel-bar-l"><b>183</b><span>Купили пробное занятие</span></div>
-          <div class="funnel-bar-r">73% от платных</div>
+        <h4>Записывается на слот</h4>
+        <p>Видит сколько свободных мест в каждом окне. Лимит по закладке — 10–15 человек одновременно. Слот забронирован — можно идти.</p>
+      </div>
+
+      <div class="how-step">
+        <span class="num">3</span>
+        <div class="pic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
-        <div class="funnel-bar b4">
-          <div class="funnel-bar-l"><b>127</b><span>Активный подписчик прямо сейчас</span></div>
-          <div class="funnel-bar-r">удержание 81–85%</div>
+        <h4>Открывает дверь</h4>
+        <p>Через приложение или QR-код на входе. Доступ работает только в окне его слота. Камеры на входе фиксируют каждое посещение.</p>
+      </div>
+
+      <div class="how-step">
+        <span class="num">4</span>
+        <div class="pic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6h20l-2 12H4L2 6zM6 6V4a2 2 0 012-2h8a2 2 0 012 2v2"/><circle cx="9" cy="13" r="1"/><circle cx="15" cy="13" r="1"/></svg>
+        </div>
+        <h4>Тренируется сам</h4>
+        <p>Залу 130 м² достаточно набора блочных тренажёров + кардио. Тренеры — на аренде (3–4 человека по гибкому графику), не в штате.</p>
+      </div>
+
+      <div class="how-step">
+        <span class="num">5</span>
+        <div class="pic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-3v10l-6-3z"/></svg>
+        </div>
+        <h4>Контроль — камеры + сообщество</h4>
+        <p>9 камер с записью. Сообщество саморегулируется: клиенты сами следят за порядком, сообщают о нарушениях. Один звонок нарушителю — больше не приходит.</p>
+      </div>
+
+      <div class="how-step">
+        <span class="num">6</span>
+        <div class="pic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3M3 14h18"/></svg>
+        </div>
+        <h4>Вы смотрите дашборд</h4>
+        <p>Видите выручку, активность, заполняемость слотов. Заезжаете в зал 2–3 раза в неделю на час-полтора. Всё остальное — автономно.</p>
+      </div>
+    </div>
+
+    <div class="owner-line">
+      <div class="owner-line-big">2–4ч</div>
+      <div class="owner-line-text">
+        <h3>Времени владельца в неделю</h3>
+        <p>Зал не требует ежедневного присутствия. По данным действующих операторов формат отнимает в среднем 30 минут в день — то есть 2–4 часа в неделю на администрирование, проверку и коммуникации с клиентами.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="econ" id="economics">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Юнит-экономика</span>
+      <h2>Расчёт на <em>работающем</em> формате 130 м²</h2>
+      <p>Цифры из реального запуска: зал в Екатеринбурге, май 2026. Метраж 133 м², инвестиции 10,5–11 млн ₽, целевая загрузка — 300 подписок.</p>
+    </div>
+
+    <div class="econ-grid">
+      <div class="econ-card">
+        <div class="econ-h"><h3>Инвестиции в запуск</h3><span class="pill">CAPEX</span></div>
+        <div class="econ-row"><span>Оборудование (тренажёры, кардио)</span><b>~5 млн ₽</b></div>
+        <div class="econ-row"><span>Электрика, двери, доступ</span><b>0,3–0,4 млн ₽</b></div>
+        <div class="econ-row"><span>Вывеска + наружка</span><b>~0,16 млн ₽</b></div>
+        <div class="econ-row"><span>Стяжка (плавающая, против вибрации)</span><b>~0,3 млн ₽</b></div>
+        <div class="econ-row"><span>Вентиляция (компоненты)</span><b>~0,35 млн ₽</b></div>
+        <div class="econ-row"><span>Видеонаблюдение (9 камер)</span><b>значимая статья</b></div>
+        <div class="econ-row"><span>Кондиционирование + отделка</span><b>остальное</b></div>
+        <div class="econ-row"><span>Итого вложений в зал 130 м²</span><b>10–12 млн ₽</b></div>
+        <div class="econ-total"><span>Целевой бюджет</span><b>7–12 млн ₽</b></div>
+      </div>
+
+      <div class="econ-margin">
+        <div>
+          <h3>Маржа при загрузке</h3>
+          <div class="big">55<small>%</small></div>
+          <div class="sub">При 300 активных подписках по 3 299 ₽: выручка ≈ 990 тыс ₽/мес, OPEX ≈ 450 тыс ₽/мес, маржа ≈ 540 тыс ₽.</div>
+        </div>
+        <div class="note">
+          <b>Нелинейность прибыли</b>
+          Подняв тариф с 2 999 до 3 299 ₽ при тех же расходах, владелец увеличивает маржу непропорционально — расходы фиксированные, каждый дополнительный рубль выручки идёт почти полностью в прибыль.
         </div>
       </div>
-      <div class="funnel-side">
-        <h3>Что видно из цифр</h3>
-        <p>Половина зашедших в приложение оплачивает уже на первом шаге. Из тех, кто берёт пробное — 45% переходит в месячную подписку. Удержание выше среднеотраслевого.</p>
-        <ul>
-          <li>Пробное за 399 ₽ — главный конверсионный инструмент</li>
-          <li>45% из пробного покупают месяц за 3 299 ₽</li>
-          <li>3-месячная подписка 8 990 ₽ — апсейл для лояльных</li>
-          <li>Удержание 81–85% против среднеотраслевых 60–70%</li>
+    </div>
+
+    <div class="payback-chart">
+      <h3>График выхода на безубыточность</h3>
+      <p class="s">Точка безубыточности достигается при 250–300 активных подписках. По наблюдениям действующих операторов — 5–6 месяцев с момента полного открытия.</p>
+      <div class="chart-wrap">
+        <div class="chart-y"><span>+540к</span><span>+300к</span><span>0</span><span>−170к</span></div>
+        <svg viewBox="0 0 600 240" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="gFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#26B99A" stop-opacity=".25"/>
+              <stop offset="100%" stop-color="#26B99A" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <line x1="0" y1="60" x2="600" y2="60" stroke="#E4E6EB" stroke-dasharray="4 4"/>
+          <line x1="0" y1="120" x2="600" y2="120" stroke="#E4E6EB"/>
+          <line x1="0" y1="180" x2="600" y2="180" stroke="#E4E6EB" stroke-dasharray="4 4"/>
+          <text x="540" y="115" fill="#757885" font-size="11" font-weight="600" text-anchor="end">безубыточность</text>
+          <path d="M0,210 L100,200 L200,170 L300,120 L400,90 L500,65 L600,55 L600,120 L0,120 Z" fill="url(#gFill)"/>
+          <path d="M0,210 Q60,205 100,200 T200,170 T300,120 T400,90 T500,65 T600,55" stroke="#26B99A" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <circle cx="300" cy="120" r="8" fill="#fff" stroke="#26B99A" stroke-width="3"/>
+          <text x="300" y="105" fill="#26B99A" font-size="13" font-weight="700" text-anchor="middle">5 мес</text>
+          <circle cx="600" cy="55" r="7" fill="#26B99A"/>
+          <text x="585" y="42" fill="#26B99A" font-size="12" font-weight="700" text-anchor="end">+540к ₽/мес</text>
+        </svg>
+      </div>
+      <div class="chart-x">
+        <span>0 мес</span><span>1</span><span>2</span><span>3</span><span>4</span><b>5 мес</b><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Реальный кейс</span>
+      <h2>«Свой фитнес» — Екатеринбург, <em>133 м²</em></h2>
+      <p>Зал работает с марта 2026 года. Через 2 месяца после открытия — 127 активных клиентов, удержание 81–85%, маркетинг 15–20 тысяч в месяц.</p>
+    </div>
+
+    <div class="case-hero">
+      <div>
+        <span class="case-tag">Кейс владельца</span>
+        <h2>Открыл зал, набираю <em>300 клиентов</em>. Без сотрудников.</h2>
+        <p class="case-q">«За 2,5 месяца — ни одной кражи. Один случай несанкционированного прохода — позвонил, отправил договор, больше не возвращался. Сообщество клиентов само поддерживает порядок».</p>
+        <div class="case-author">
+          <div class="av">АК</div>
+          <div>
+            <b>Алексей Кочкин</b>
+            <span>Владелец «Свой фитнес», 20 лет в фитнесе</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3"/><path d="M3 6l3-3h12l3 3"/></svg>
+        <span>📷 фото зала «Свой фитнес»<br/>добавим из материалов кейса</span>
+      </div>
+    </div>
+
+    <div class="case-stats">
+      <div class="cs"><b>127</b><span>активных клиентов через 2 месяца</span></div>
+      <div class="cs"><b>49%</b><span>конверсия из регистрации в покупку</span></div>
+      <div class="cs"><b>45%</b><span>конверсия из пробного в подписку</span></div>
+      <div class="cs"><b>81–85%</b><span>удержание через 2,5 месяца</span></div>
+    </div>
+
+    <div class="case-funnel">
+      <h3>Воронка за 2 месяца работы</h3>
+      <p class="s">Главный канал привлечения — посты в чатах ЖК (~3 500 жителей): 10 регистраций с одного поста. Бесплатно.</p>
+      <div class="funnel-grid">
+        <div class="funnel-col">
+          <div class="funnel-bar">506</div>
+          <div class="funnel-label">Регистрации<br/>в приложении</div>
+          <div class="funnel-conv">старт</div>
+        </div>
+        <div class="funnel-col">
+          <div class="funnel-bar">249</div>
+          <div class="funnel-label">Покупки<br/>любого продукта</div>
+          <div class="funnel-conv">49% от регистраций</div>
+        </div>
+        <div class="funnel-col">
+          <div class="funnel-bar">183</div>
+          <div class="funnel-label">Пробное<br/>занятие</div>
+          <div class="funnel-conv">73% от покупателей</div>
+        </div>
+        <div class="funnel-col">
+          <div class="funnel-bar">83</div>
+          <div class="funnel-label">Подписка<br/>после пробного</div>
+          <div class="funnel-conv">45% из пробного</div>
+        </div>
+        <div class="funnel-col">
+          <div class="funnel-bar">127</div>
+          <div class="funnel-label">Активных<br/>клиентов</div>
+          <div class="funnel-conv">удержание 81–85%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Что обычно спрашивают</span>
+      <h2>Возражения, которые мы <em>уже</em> закрыли практикой</h2>
+      <p>Эти вопросы задают на каждом вебинаре по формату. Ниже — ответы от действующих операторов, не теория.</p>
+    </div>
+
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="q"><span class="qmark">?</span><h4>А не украдут ли всё без персонала?</h4></div>
+        <div class="a">За 2,5 месяца работы — <b>ни одной кражи</b>. 9 камер с высоким качеством записи. Был один случай несанкционированного прохода — звонок нарушителю + ссылка на договор → клиент больше не приходит.</div>
+      </div>
+      <div class="faq-item">
+        <div class="q"><span class="qmark">?</span><h4>Кто будет поддерживать порядок?</h4></div>
+        <div class="a">Сообщество клиентов <b>саморегулируется</b>. Они сами протирают тренажёры, прибирают коврики, сообщают о нарушениях. Это норма формата. Дополнительно — клининг 2 раза в день при полной загрузке.</div>
+      </div>
+      <div class="faq-item">
+        <div class="q"><span class="qmark">?</span><h4>Где зарабатывают тренеры?</h4></div>
+        <div class="a">Тренеры работают на <b>аренде</b> (10/15/20 тыс за 1/2/3 месяца), не в штате. Договор запрещает клиентам коммерческие тренировки внутри зала. Площадка помогает тренерам продвигаться: баннер в приложении, рассылка.</div>
+      </div>
+      <div class="faq-item">
+        <div class="q"><span class="qmark">?</span><h4>Хватит ли клиентов в одном ЖК?</h4></div>
+        <div class="a">Один новый ЖК = 3–5 тысяч квартир. При вовлечённости 10% это <b>1 500 потенциальных подписок</b>. Для безубыточности нужно 250–300. Главное — пешая доступность 5 минут.</div>
+      </div>
+      <div class="faq-item">
+        <div class="q"><span class="qmark">?</span><h4>Сколько стоит маркетинг?</h4></div>
+        <div class="a">15–20 тыс ₽/мес. Главный канал — посты в <b>чатах ЖК</b> (бесплатно), 10 регистраций с одного поста. Дополнительно — Яндекс.Карты (органика), пуш-рассылки, СМС по базе.</div>
+      </div>
+      <div class="faq-item">
+        <div class="q"><span class="qmark">?</span><h4>Подойдёт ли формат для пилатеса или йоги?</h4></div>
+        <div class="a"><b>Да</b>, с одной поправкой — там присутствует тренер на занятии. Логика доступов через приложение и автономного администрирования работает идентично. Уже есть запросы от студий пилатеса.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="product">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Что даёт Fitbase</span>
+      <h2>Платформа, на которой формат <em>работает</em></h2>
+      <p>Готовый стек для запуска: брендированное приложение, расписание со слотами, доступ через QR, рассылки, видеонаблюдение. Один раз настроили — дальше всё едет автоматически.</p>
+    </div>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+        <div>
+          <h4>Брендированное приложение клиента</h4>
+          <p>iOS + Android под вашим брендом. Скачивает с QR-кода у входа. Видит расписание, покупает подписку, открывает дверь. Стоимость от 6–9 тыс ₽/мес.</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14l7 7M14 21l7-7"/></svg></div>
+        <div>
+          <h4>Автоматический доступ по QR</h4>
+          <p>Дверь открывается приложением только в окне забронированного слота. Никакого дорогого СКУД-оборудования — обычный электрозамок + наша интеграция. Экономия 200+ тыс на запуске.</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div>
+          <h4>Расписание со слотами и лимитами</h4>
+          <p>Делите день на окна по 1–1,5 часа, ставите лимит мест (10–15). Когда слот заполнен — клиент видит и записывается на следующий. Никаких очередей.</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
+        <div>
+          <h4>Пуш и рассылки по сегментам</h4>
+          <p>Автонапоминания об окончании абонемента, возврат «спящих», поздравления с ДР. Всё триггерами, без участия человека. Главный канал удержания.</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="M17 10l4-2v8l-4-2z"/></svg></div>
+        <div>
+          <h4>Видеонаблюдение с записью</h4>
+          <p>Подключение IP-камер прямо в админку. Смотрите запись задним числом, отправляете кадры нарушителю в чат. Удалённый контроль из любой точки.</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/><path d="M7 10l3 3 7-7"/></svg></div>
+        <div>
+          <h4>Дашборд владельца</h4>
+          <p>Выручка, активность, заполняемость слотов, удержание, ARPU. В одном окне — что происходит сейчас и куда идёт бизнес. Уведомления о ключевых событиях в Telegram.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tight">
+  <div class="wrap">
+    <div class="cta" id="form">
+      <div class="cta-text">
+        <span class="cta-tag">Бесплатная консультация</span>
+        <h2>Покажем, как это сработает на <em>вашей</em> локации</h2>
+        <p>Соберём юнит-модель под ваше помещение, оценим потенциал района, покажем чек-лист запуска и стек технологий. Час времени — у вас полная картина бизнеса.</p>
+        <ul class="cta-includes">
+          <li>Оценка локации: плотность ЖК, конкуренты, доходимость</li>
+          <li>Финансовая модель: CAPEX, OPEX, выручка, окупаемость под ваши вводные</li>
+          <li>Чек-лист запуска: оборудование, инженерка, маркетинг, документы</li>
+          <li>Демонстрация платформы: приложение, доступ, дашборд</li>
         </ul>
       </div>
+
+      <form class="cta-form" onsubmit="event.preventDefault();alert('Спасибо! Свяжемся в течение рабочего дня.');">
+        <label>Имя</label>
+        <input type="text" name="name" required placeholder="Как к вам обращаться"/>
+        <label>Телефон</label>
+        <input type="tel" name="phone" required placeholder="+7 ___ ___ __ __"/>
+        <label>Город или адрес помещения</label>
+        <input type="text" name="city" placeholder="Например: Екатеринбург, ЖК «Аврора»"/>
+        <label>Что в фокусе (необязательно)</label>
+        <textarea name="note" placeholder="Есть помещение / выбираю локацию / уже на этапе ремонта"></textarea>
+        <button type="submit" class="btn-cta">Запросить расчёт</button>
+        <span class="alt">или напишите в Telegram <a href="https://t.me/Becauseflatsucks" target="_blank">@Becauseflatsucks</a></span>
+      </form>
     </div>
   </div>
 </section>
 
-<!-- MARKETING CHANNELS -->
-<section>
-  <div class="container">
-    <div class="sec-head">
-      <div class="eyebrow"><span class="dot"></span>Маркетинг</div>
-      <h2>Запуск без рекламного бюджета — <span class="hw">15–20 тыс</span> в месяц</h2>
-      <p class="lede">Зал без персонала не требует громких кампаний. По кейсу клиента, четыре канала закрывают первичную загрузку. Один из них — практически бесплатный.</p>
-    </div>
-
-    <div class="chan">
-      <div class="chan-c win">
-        <div class="chan-c-tag">⭐ топ-канал</div>
-        <h4>Чаты ЖК</h4>
-        <p class="res"><b>10 регистраций</b> за один пост в чате на 3 500 жителей. Бесплатно.</p>
-      </div>
-      <div class="chan-c win">
-        <div class="chan-c-tag">работает</div>
-        <h4>Яндекс.Карты</h4>
-        <p class="res">Органический трафик «у дома», люди приходят пешком.</p>
-      </div>
-      <div class="chan-c win">
-        <div class="chan-c-tag">работает</div>
-        <h4>Сарафан и соседи</h4>
-        <p class="res">Первые 2 недели зал заполнялся без платной рекламы.</p>
-      </div>
-      <div class="chan-c lose">
-        <div class="chan-c-tag">не работает</div>
-        <h4>Промоутер с листовками</h4>
-        <p class="res">Конверсия 1%. Не стоит сил и денег.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FINANCE -->
-<section id="money" class="canvas">
-  <div class="container">
-    <div class="sec-head">
-      <div class="eyebrow"><span class="dot"></span>Финмодель</div>
-      <h2><span class="accent">Окупаемость с 5 месяца</span><br/>и маржинальность <span class="hw">до 50%</span></h2>
-      <p class="lede">Реальные расходы и тарифы зала на 133 м². Точка безубыточности — 250–300 подписок за 4–6 месяцев. После выхода в плюс каждый новый клиент идёт в маржу непропорционально быстрее.</p>
-    </div>
-
-    <div class="fin">
-      <div class="fin-card">
-        <h3>Операционные расходы</h3>
-        <div class="sub">Сейчас (неполная загрузка)</div>
-        <div class="fin-rows">
-          <div class="fin-row"><span class="k">Аренда</span><span class="v">110 000 ₽</span></div>
-          <div class="fin-row"><span class="k">Клининг</span><span class="v">20 000 ₽</span></div>
-          <div class="fin-row"><span class="k">Маркетинг</span><span class="v">15–20 000 ₽</span></div>
-          <div class="fin-row"><span class="k">Fitbase + приложение</span><span class="v">от 9 000 ₽</span></div>
-          <div class="fin-row tot"><span class="k">Итого в месяц</span><span class="v">~160–170 000 ₽</span></div>
-        </div>
-      </div>
-
-      <div class="fin-card">
-        <h3>Тарифы для клиента</h3>
-        <div class="sub">Подписочная модель</div>
-        <div class="fin-rows">
-          <div class="fin-row"><span class="k">Пробное занятие</span><span class="v">399 ₽</span></div>
-          <div class="fin-row"><span class="k">Разовое посещение</span><span class="v">799 ₽</span></div>
-          <div class="fin-row"><span class="k">Месячная подписка</span><span class="v">3 299 ₽</span></div>
-          <div class="fin-row"><span class="k">3-месячная подписка</span><span class="v">8 990 ₽</span></div>
-          <div class="fin-row tot"><span class="k">Цель к концу года</span><span class="v">300 подписчиков</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="fin-summary">
-      <div class="fin-sum-c"><div class="v">5 мес</div><div class="l">Срок выхода в безубыточность</div></div>
-      <div class="fin-sum-c"><div class="v">~990 000 ₽</div><div class="l">Выручка при 300 подписчиках</div></div>
-      <div class="fin-sum-c"><div class="v">~50–55%</div><div class="l">Маржинальность при полной загрузке</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq">
-  <div class="container">
-    <div class="sec-head" style="text-align:center;margin:0 auto 48px;">
-      <div class="eyebrow" style="margin-left:auto;margin-right:auto;"><span class="dot"></span>Что обычно спрашивают</div>
-      <h2 style="margin-left:auto;margin-right:auto;">Открытые <span class="accent">вопросы</span> практику</h2>
-    </div>
-
-    <div class="faq">
-      <details class="q">
-        <summary>А что если всё украдут — без админа же?<span class="q-ico"></span></summary>
-        <div class="q-body">За первые 2,5 месяца работы зала по нашему кейсу — <b>ноль случаев краж</b>. Помогает связка: 9 камер с высоким разрешением, договор с клиентом и саморегуляция сообщества. На редких нарушителей — звонок + ссылка на договор. Повторов не было.</div>
-      </details>
-      <details class="q">
-        <summary>А как же порядок без дежурного?<span class="q-ico"></span></summary>
-        <div class="q-body">Сообщество клиентов саморегулируется. Клиенты сами убирают за собой, сообщают о нарушениях в чате. Уборщик приходит 1–2 раза в день — этого достаточно при пиковой загрузке.</div>
-      </details>
-      <details class="q">
-        <summary>Если человек открыл дверь, и с ним прошёл кто-то ещё?<span class="q-ico"></span></summary>
-        <div class="q-body">Договором запрещено. Видеонаблюдение фиксирует. Звонок клиенту со ссылкой на пункт договора — нарушений больше не повторяется. По кейсу клиента — один такой случай за всю историю работы, разрешён за один звонок.</div>
-      </details>
-      <details class="q">
-        <summary>Подходит ли формат для студии пилатеса / йоги?<span class="q-ico"></span></summary>
-        <div class="q-body">Да. В таких залах обычно есть тренер на занятии, но <b>административных функций нет</b> — Fitbase закрывает запись, оплату, доступ и контроль. Принцип тот же: владелец не сидит на ресепшене.</div>
-      </details>
-      <details class="q">
-        <summary>Сколько стоит Fitbase?<span class="q-ico"></span></summary>
-        <div class="q-body">Стоимость ПО с приложением — <b>от 9 000 ₽ в месяц</b> для зала без персонала. В стоимость входит брендированное приложение, управление доступом, слоты, рассылки и аналитика. Точная цифра зависит от объёма функций — рассчитаем на консультации.</div>
-      </details>
-      <details class="q">
-        <summary>Какая аудитория покупает абонемент в автономный зал?<span class="q-ico"></span></summary>
-        <div class="q-body">По наблюдениям клиента — <b>20–35 лет, студенты, молодые специалисты</b>. Уже привычны к каршерингу, доставке, отелям без админа. У этой аудитории нет психологического барьера перед автономным форматом.</div>
-      </details>
-      <details class="q">
-        <summary>Какой минимальный бюджет на запуск?<span class="q-ico"></span></summary>
-        <div class="q-body">По нашему кейсу зала на 133 м² — <b>10–11 млн ₽ CAPEX</b>: оборудование, инженерка, ремонт, видеонаблюдение, СКУД. Существенно меньше типового клуба за счёт отсутствия зон с обслуживанием (бар, рецепция, раздевалки на десятки шкафов).</div>
-      </details>
-      <details class="q">
-        <summary>Сколько времени уходит у владельца в день?<span class="q-ico"></span></summary>
-        <div class="q-body">По кейсу клиента — <b>~30 минут в день</b>. Проверка камер, ответы на сообщения, реакция на единичные нарушения. Без выездов и без присутствия на территории.</div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section id="cta" class="cta">
-  <div class="container cta-grid">
-    <div>
-      <h2>Готовы открыть зал <span class="hw">без персонала?</span></h2>
-      <p>Бесплатная консультация — 40 минут с экспертом Fitbase. Разберём вашу локацию, финмодель, инженерку и формат запуска. Покажем, как цифры реального кейса применимы к вашей ситуации.</p>
-      <p style="font-size:14px;opacity:.6;">Без обязательств. По итогам — конкретные шаги для старта.</p>
-    </div>
-    <form class="cta-form" onsubmit="event.preventDefault();alert('Спасибо! Свяжемся в течение дня.');">
-      <h3>Получить консультацию</h3>
-      <p class="sub">Ответим в течение рабочего дня — пн–пт, 9:00–21:00</p>
-      <label>Имя</label>
-      <input type="text" required placeholder="Как к вам обращаться"/>
-      <label>Телефон</label>
-      <input type="tel" required placeholder="+7 ___ ___ __ __"/>
-      <label>На какой стадии вы сейчас?</label>
-      <select required>
-        <option value="">Выберите вариант</option>
-        <option>Только думаю — изучаю формат</option>
-        <option>Выбираю помещение</option>
-        <option>Готовлю запуск, идёт ремонт</option>
-        <option>Уже работаю — хочу перейти на Fitbase</option>
-      </select>
-      <button type="submit">Записаться на консультацию</button>
-      <p class="leg">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</p>
-    </form>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-  <div class="container foot-row">
-    <div class="foot-logo">Fit<span>base</span> · для залов без персонала</div>
-    <div><a href="https://fitbase.io">fitbase.io</a> · <a href="https://help.fitbase.io">База знаний</a> · <a href="#cta">Консультация</a></div>
-  </div>
+  <span class="logo">Fit<span>base</span></span>
+  Платформа для управления фитнес-бизнесом. © 2026
 </footer>
 
 </body>
