@@ -89,10 +89,15 @@ section.tight{padding:64px 0;}
 .why-card h3{font-size:22px;line-height:1.25;letter-spacing:-.02em;margin:0 0 12px;font-weight:700;color:var(--ink);}
 .why-card p{font-size:15px;color:var(--muted);line-height:1.55;margin:0;}
 
-/* === HOW IT WORKS (готовый блок из лендинга) === */
+/* === HOW IT WORKS — HTML-сетка (без скриншота) === */
 .how{background:#fff;}
-.how-block-img{border-radius:28px;overflow:hidden;border:1px solid var(--line);box-shadow:0 20px 50px -25px rgba(60,103,214,.2);}
-.how-block-img img{width:100%;display:block;}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.how-step{background:var(--canvas);border-radius:24px;padding:32px 28px;position:relative;border:1px solid var(--line);}
+.how-step .num{position:absolute;top:24px;right:24px;width:36px;height:36px;border-radius:10px;background:var(--blue);color:#fff;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;letter-spacing:-.01em;}
+.how-step .ico{width:54px;height:54px;border-radius:14px;background:var(--blue-10);color:var(--blue);display:flex;align-items:center;justify-content:center;margin-bottom:20px;}
+.how-step .ico svg{width:28px;height:28px;}
+.how-step h4{font-size:19px;line-height:1.25;letter-spacing:-.02em;margin:0 0 10px;font-weight:700;color:var(--ink);}
+.how-step p{font-size:14.5px;color:var(--muted);margin:0;line-height:1.55;}
 
 .owner-line{margin-top:48px;background:linear-gradient(135deg,#0E1320 0%,#1B2746 60%,#243463 100%);color:#fff;border-radius:28px;padding:48px 56px;display:flex;align-items:center;gap:48px;position:relative;overflow:hidden;}
 .owner-line::before{content:"";position:absolute;right:-100px;top:-100px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(123,153,232,.25) 0%,transparent 70%);pointer-events:none;}
@@ -146,8 +151,10 @@ section.tight{padding:64px 0;}
 .case-author b{display:block;font-size:15px;font-weight:700;}
 .case-author span{font-size:13px;opacity:.75;}
 
-.case-photo{position:relative;z-index:1;border-radius:24px;overflow:hidden;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);min-height:380px;display:flex;align-items:center;justify-content:center;}
-.case-photo img{width:100%;height:100%;object-fit:contain;}
+.case-highlights{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.ch-item{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:20px 22px;backdrop-filter:blur(10px);}
+.ch-item b{display:block;font-size:22px;font-weight:800;letter-spacing:-.025em;line-height:1;margin-bottom:8px;color:var(--blue-light);}
+.ch-item span{font-size:13px;color:rgba(255,255,255,.7);line-height:1.4;}
 
 .case-stats{margin-top:40px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
 .cs{background:var(--canvas);border-radius:22px;padding:28px;border:1px solid var(--line);}
@@ -167,32 +174,37 @@ section.tight{padding:64px 0;}
 .funnel-label{font-size:13px;color:var(--text);margin-top:12px;font-weight:600;line-height:1.3;}
 .funnel-conv{font-size:11px;color:var(--muted);margin-top:4px;}
 
-/* === FAQ === */
+/* === FAQ accordion === */
 .faq{background:var(--canvas);}
-.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-.faq-item{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px;}
-.faq-item .q{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px;}
-.faq-item .q .qmark{flex-shrink:0;width:32px;height:32px;border-radius:10px;background:var(--blue-10);color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;}
-.faq-item .q h4{margin:0;font-size:17px;line-height:1.35;letter-spacing:-.02em;font-weight:700;color:var(--ink);padding-top:4px;}
-.faq-item .a{font-size:15px;color:var(--text);line-height:1.55;padding-left:46px;}
+.faq-wrap{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:12px;}
+.faq-item{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.2s;}
+.faq-item[open]{border-color:var(--blue-20);box-shadow:0 14px 36px -20px rgba(60,103,214,.18);}
+.faq-item summary{cursor:pointer;list-style:none;padding:22px 28px;display:flex;align-items:center;gap:16px;font-weight:600;font-size:17px;color:var(--ink);letter-spacing:-.015em;line-height:1.35;}
+.faq-item summary::-webkit-details-marker{display:none;}
+.faq-item summary::after{content:"";flex-shrink:0;margin-left:auto;width:28px;height:28px;border-radius:8px;background:var(--blue-10);position:relative;transition:.2s;background-image:linear-gradient(currentColor,currentColor),linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-position:center;background-size:12px 2px,2px 12px;color:var(--blue);}
+.faq-item[open] summary::after{transform:rotate(45deg);background:var(--blue);color:#fff;background-image:linear-gradient(currentColor,currentColor),linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-position:center;background-size:12px 2px,2px 12px;}
+.faq-item .qmark{flex-shrink:0;width:34px;height:34px;border-radius:10px;background:var(--blue-10);color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;}
+.faq-item .a{padding:0 28px 24px 78px;font-size:15.5px;color:var(--text);line-height:1.6;}
 .faq-item .a b{color:var(--green);font-weight:700;}
 
-/* === Product showcase — using real mockups === */
+/* === Product showcase === */
 .product{background:#fff;}
-.product-showcase{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
-.product-card{background:linear-gradient(135deg,#fff,var(--canvas));border:1.5px solid var(--line);border-radius:24px;padding:36px;display:grid;grid-template-rows:1fr auto;}
-.product-card.dark{background:linear-gradient(135deg,#0E1320,#1B2746);color:#fff;border-color:transparent;}
-.product-card.dark p{color:rgba(255,255,255,.7);}
-.product-card .head{margin-bottom:24px;}
-.product-card h4{font-size:24px;line-height:1.25;letter-spacing:-.025em;margin:0 0 10px;font-weight:700;color:var(--ink);}
-.product-card.dark h4{color:#fff;}
-.product-card p{font-size:15px;color:var(--muted);margin:0;line-height:1.55;letter-spacing:-.01em;}
-.product-card .img-wrap{display:flex;justify-content:center;margin-top:auto;align-items:flex-end;}
-.product-card .img-wrap img{max-height:360px;width:auto;border-radius:12px;}
-.product-card.wide .img-wrap img{max-height:240px;width:100%;object-fit:contain;}
-.product-card .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
-.product-card .tags span{background:rgba(60,103,214,.1);color:var(--blue);font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;letter-spacing:-.005em;}
-.product-card.dark .tags span{background:rgba(255,255,255,.12);color:#fff;}
+.product-feat{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:24px;}
+.pf-card{background:var(--canvas);border-radius:22px;padding:32px;border:1px solid var(--line);}
+.pf-card .pf-ico{width:52px;height:52px;border-radius:14px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:20px;}
+.pf-card .pf-ico svg{width:26px;height:26px;}
+.pf-card h4{font-size:19px;line-height:1.25;letter-spacing:-.02em;margin:0 0 10px;font-weight:700;color:var(--ink);}
+.pf-card p{font-size:14.5px;color:var(--muted);margin:0;line-height:1.55;}
+.pf-dashboard{background:linear-gradient(135deg,#0E1320,#1B2746);border-radius:28px;padding:48px;color:#fff;display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center;position:relative;overflow:hidden;}
+.pf-dashboard::before{content:"";position:absolute;right:-100px;top:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(123,153,232,.25) 0%,transparent 70%);pointer-events:none;}
+.pf-dashboard-text{position:relative;z-index:1;}
+.pf-dashboard h3{font-size:32px;line-height:1.15;letter-spacing:-.025em;margin:0 0 14px;font-weight:700;}
+.pf-dashboard h3 .accent{color:var(--blue-light);}
+.pf-dashboard p{font-size:16px;color:rgba(255,255,255,.75);margin:0 0 20px;line-height:1.55;letter-spacing:-.01em;}
+.pf-dashboard .tags{display:flex;flex-wrap:wrap;gap:8px;}
+.pf-dashboard .tags span{background:rgba(255,255,255,.12);color:#fff;font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;letter-spacing:-.005em;}
+.pf-dashboard-img{position:relative;z-index:1;border-radius:18px;overflow:hidden;background:#fff;}
+.pf-dashboard-img img{width:100%;display:block;}
 
 /* === CTA === */
 .cta{background:linear-gradient(135deg,#0E1320 0%,#1B2746 50%,#3C67D6 100%);color:#fff;border-radius:36px;padding:72px;margin-bottom:80px;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;position:relative;overflow:hidden;}
@@ -233,7 +245,11 @@ footer .logo span{color:var(--blue-light);}
   .hero-visual .floating-stat .text b{font-size:15px;}
   .sec-head h2{font-size:30px;}
   .sec-head p{font-size:16px;}
-  .why-grid,.product-showcase,.faq-grid,.econ-grid,.case-stats{grid-template-columns:1fr;}
+  .why-grid,.product-feat,.how-grid,.econ-grid,.case-stats,.case-highlights{grid-template-columns:1fr;}
+  .product-feat{grid-template-columns:1fr 1fr;}
+  .how-grid{grid-template-columns:1fr;}
+  .pf-dashboard{grid-template-columns:1fr;padding:28px;}
+  .pf-dashboard h3{font-size:22px;}
   .case-stats{grid-template-columns:1fr 1fr;}
   .owner-line{flex-direction:column;align-items:flex-start;padding:32px;text-align:left;}
   .owner-line-big{font-size:64px;}
@@ -340,8 +356,43 @@ footer .logo span{color:var(--blue-light);}
       <p>Клиент проходит весь путь через приложение: от записи и оплаты до открытия двери. Вы заходите дистанционно — несколько раз в неделю.</p>
     </div>
 
-    <div class="how-block-img">
-      <img src="assets/unmanned/how-block.png" alt="Как работает зал без персонала на FitBase: 6 шагов" loading="lazy"/>
+    <div class="how-grid">
+      <div class="how-step">
+        <span class="num">1</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/><path d="M9 6h6"/></svg></div>
+        <h4>Скачал приложение</h4>
+        <p>Клиент устанавливает брендированное приложение, видит расписание и тарифы.</p>
+      </div>
+      <div class="how-step">
+        <span class="num">2</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/></svg></div>
+        <h4>Оплатил абонемент</h4>
+        <p>Онлайн-оплата картой прямо в приложении. Подписка активна сразу.</p>
+      </div>
+      <div class="how-step">
+        <span class="num">3</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="20" y="14" width="1" height="1"/><rect x="14" y="20" width="1" height="1"/><rect x="20" y="20" width="1" height="1"/></svg></div>
+        <h4>Получил цифровой доступ</h4>
+        <p>Автоматическая активация после оплаты. QR-код в приложении — это его «ключ».</p>
+      </div>
+      <div class="how-step">
+        <span class="num">4</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/><circle cx="12" cy="16" r="1"/></svg></div>
+        <h4>Открыл дверь</h4>
+        <p>Через приложение или QR-код у входа. Доступ работает только в окне его слота.</p>
+      </div>
+      <div class="how-step">
+        <span class="num">5</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12l3 3 5-5"/><path d="M14 6l8 0M14 12l8 0M14 18l8 0"/></svg></div>
+        <h4>Посещение зафиксировано</h4>
+        <p>Система всё отмечает автоматически: камеры на входе, статус «пришёл», списание слота.</p>
+      </div>
+      <div class="how-step">
+        <span class="num">6</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3M7 11l3 3 7-7"/></svg></div>
+        <h4>Владелец видит всё</h4>
+        <p>Выручка, активность, заполняемость слотов. Аналитика в реальном времени на смартфоне.</p>
+      </div>
     </div>
 
     <div class="owner-line">
@@ -443,8 +494,13 @@ footer .logo span{color:var(--blue-light);}
           </div>
         </div>
       </div>
-      <div class="case-photo">
-        <img src="assets/unmanned/phone-client-app.png" alt="Приложение клиента «Свой фитнес»"/>
+      <div class="case-highlights">
+        <div class="ch-item"><b>Март 2026</b><span>открытие в техническом режиме</span></div>
+        <div class="ch-item"><b>Май 2026</b><span>полное открытие</span></div>
+        <div class="ch-item"><b>10 рег.</b><span>с одного поста в чате ЖК</span></div>
+        <div class="ch-item"><b>15–20 тыс</b><span>маркетинг в месяц</span></div>
+        <div class="ch-item"><b>0 краж</b><span>за 2,5 месяца работы</span></div>
+        <div class="ch-item"><b>20 лет</b><span>опыта владельца в фитнесе</span></div>
       </div>
     </div>
 
@@ -498,31 +554,31 @@ footer .logo span{color:var(--blue-light);}
       <p>Эти вопросы задают на каждом вебинаре по формату. Ниже — ответы от действующих операторов, не теория.</p>
     </div>
 
-    <div class="faq-grid">
-      <div class="faq-item">
-        <div class="q"><span class="qmark">?</span><h4>А не украдут ли всё без персонала?</h4></div>
+    <div class="faq-wrap">
+      <details class="faq-item">
+        <summary><span class="qmark">?</span>А не украдут ли всё без персонала?</summary>
         <div class="a">За 2,5 месяца работы — <b>ни одной кражи</b>. 9 камер с высоким качеством записи. Был один случай несанкционированного прохода — звонок нарушителю + ссылка на договор → клиент больше не приходит.</div>
-      </div>
-      <div class="faq-item">
-        <div class="q"><span class="qmark">?</span><h4>Кто будет поддерживать порядок?</h4></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qmark">?</span>Кто будет поддерживать порядок?</summary>
         <div class="a">Сообщество клиентов <b>саморегулируется</b>. Они сами протирают тренажёры, прибирают коврики, сообщают о нарушениях. Это норма формата. Дополнительно — клининг 2 раза в день при полной загрузке.</div>
-      </div>
-      <div class="faq-item">
-        <div class="q"><span class="qmark">?</span><h4>Где зарабатывают тренеры?</h4></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qmark">?</span>Где зарабатывают тренеры?</summary>
         <div class="a">Тренеры работают на <b>аренде</b> (10/15/20 тыс за 1/2/3 месяца), не в штате. Договор запрещает клиентам коммерческие тренировки внутри зала. Площадка помогает тренерам продвигаться: баннер в приложении, рассылка.</div>
-      </div>
-      <div class="faq-item">
-        <div class="q"><span class="qmark">?</span><h4>Хватит ли клиентов в одном ЖК?</h4></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qmark">?</span>Хватит ли клиентов в одном ЖК?</summary>
         <div class="a">Один новый ЖК = 3–5 тысяч квартир. При вовлечённости 10% это <b>1 500 потенциальных подписок</b>. Для безубыточности нужно 250–300. Главное — пешая доступность 5 минут.</div>
-      </div>
-      <div class="faq-item">
-        <div class="q"><span class="qmark">?</span><h4>Сколько стоит маркетинг?</h4></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qmark">?</span>Сколько стоит маркетинг?</summary>
         <div class="a">15–20 тыс ₽/мес. Главный канал — посты в <b>чатах ЖК</b> (бесплатно), 10 регистраций с одного поста. Дополнительно — Яндекс.Карты (органика), пуш-рассылки, СМС по базе.</div>
-      </div>
-      <div class="faq-item">
-        <div class="q"><span class="qmark">?</span><h4>Подойдёт ли формат для пилатеса или йоги?</h4></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="qmark">?</span>Подойдёт ли формат для пилатеса или йоги?</summary>
         <div class="a"><b>Да</b>, с одной поправкой — там присутствует тренер на занятии. Логика доступов через приложение и автономного администрирования работает идентично. Уже есть запросы от студий пилатеса.</div>
-      </div>
+      </details>
     </div>
   </div>
 </section>
@@ -536,33 +592,46 @@ footer .logo span{color:var(--blue-light);}
       <p>Брендированное приложение клиента, доступ через QR, расписание со слотами, рассылки, видеонаблюдение и дашборд владельца — один стек из коробки.</p>
     </div>
 
-    <div class="product-showcase">
-      <div class="product-card">
-        <div class="head">
-          <h4>Приложение клиента под вашим брендом</h4>
-          <p>iOS + Android. Клиент видит расписание, покупает подписку, открывает дверь — всё внутри приложения. Скачивается с QR-кода у входа.</p>
-          <div class="tags"><span>Оплата</span><span>Расписание</span><span>Абонемент</span><span>Цифровой доступ</span></div>
-        </div>
-        <div class="img-wrap"><img src="assets/unmanned/phone-client-app.png" alt="Клиентское приложение Fitbase" loading="lazy"/></div>
+    <div class="product-feat">
+      <div class="pf-card">
+        <div class="pf-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div>
+        <h4>Приложение клиента</h4>
+        <p>iOS + Android под вашим брендом. Расписание, оплата подписки, открытие двери — всё внутри.</p>
       </div>
+      <div class="pf-card">
+        <div class="pf-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14l7 7M14 21l7-7"/></svg></div>
+        <h4>Автоматический доступ по QR</h4>
+        <p>Дверь открывается только в окне забронированного слота. Без СКУД-оборудования — экономия 200+ тыс.</p>
+      </div>
+      <div class="pf-card">
+        <div class="pf-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <h4>Расписание со слотами</h4>
+        <p>Окна по 1–1,5 часа, лимит мест 10–15. Когда слот заполнен — записаться нельзя. Никаких очередей.</p>
+      </div>
+      <div class="pf-card">
+        <div class="pf-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
+        <h4>Пуш и рассылки</h4>
+        <p>Триггеры на «спящих», окончание абонемента, поздравления. Главный канал удержания без участия человека.</p>
+      </div>
+      <div class="pf-card">
+        <div class="pf-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="M17 10l4-2v8l-4-2z"/></svg></div>
+        <h4>Видеонаблюдение</h4>
+        <p>Подключение IP-камер в админку. Запись задним числом, удалённый контроль из любой точки.</p>
+      </div>
+      <div class="pf-card">
+        <div class="pf-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h18M3 12h18M3 20h18"/><circle cx="6" cy="4" r="1.5" fill="currentColor"/><circle cx="14" cy="12" r="1.5" fill="currentColor"/><circle cx="18" cy="20" r="1.5" fill="currentColor"/></svg></div>
+        <h4>Тренеры на аренде</h4>
+        <p>Гибкая модель оплаты тренеров (за 1/2/3+ месяца). Договор защищает площадку от ухода клиентов.</p>
+      </div>
+    </div>
 
-      <div class="product-card">
-        <div class="head">
-          <h4>Приложение тренера</h4>
-          <p>Тренер видит своё расписание и клиентов в смартфоне. Удобно для арендных тренеров — никаких таблиц и общих чатов.</p>
-          <div class="tags"><span>Расписание</span><span>Посещаемость</span><span>Клиенты</span><span>График</span></div>
-        </div>
-        <div class="img-wrap"><img src="assets/unmanned/phone-trainer-app.png" alt="Приложение тренера Fitbase" loading="lazy"/></div>
+    <div class="pf-dashboard">
+      <div class="pf-dashboard-text">
+        <h3>Дашборд владельца — <span class="accent">вся аналитика</span> в одном окне</h3>
+        <p>Выручка, продления, загрузка зала, посещаемость, отчёты по филиалам. Открыл планшет — за 30 секунд видно, что происходит в бизнесе.</p>
+        <div class="tags"><span>Выручка</span><span>Продления</span><span>Загрузка зала</span><span>Посещаемость</span><span>Отчёты по филиалам</span></div>
       </div>
-
-      <div class="product-card wide" style="grid-column:1/-1;">
-        <div class="head">
-          <h4>Дашборд владельца — вся аналитика в одном окне</h4>
-          <p>Выручка, продления, загрузка зала, посещаемость, отчёты по филиалам. Открыл планшет — за 30 секунд понимаешь, что происходит в бизнесе.</p>
-          <div class="tags"><span>Выручка</span><span>Продления</span><span>Загрузка зала</span><span>Посещаемость</span><span>Отчёты по филиалам</span></div>
-        </div>
-        <div class="img-wrap"><img src="assets/unmanned/dashboard-ipad.png" alt="Дашборд владельца Fitbase" loading="lazy"/></div>
-      </div>
+      <div class="pf-dashboard-img"><img src="assets/unmanned/dashboard-ipad.png" alt="Дашборд владельца Fitbase" loading="lazy"/></div>
     </div>
   </div>
 </section>
