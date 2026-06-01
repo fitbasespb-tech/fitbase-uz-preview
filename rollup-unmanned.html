@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<title>Ролапы — Залы без персонала · 3 варианта (стиль 218:1488)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Manrope — ближайший по характеру к TT Norms (используемому в эталоне). При финальном рендере в Figma шрифт автоматически возьмётся TT Norms из проекта. -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  /* Цвета взяты из design context узла 218:1488 (Печать → Роллапы) */
+  --r-blue:#3C67D7;            /* Fitbase primary (точно из эталона) */
+  --r-blue-mid:#2D52BA;        /* верх градиента */
+  --r-blue-dark:#1D387D;       /* низ градиента */
+  --r-ink:#171717;             /* тёмный текст футера */
+  --r-white:#FFFFFF;
+}
+body{font-family:'Manrope','TT Norms',-apple-system,'SF Pro Display',sans-serif;background:#888;padding:40px;display:flex;gap:32px;justify-content:center;flex-wrap:wrap;letter-spacing:-.005em;}
+
+/* === КОНТЕЙНЕР РОЛАПА — 1573×3700 (точно как в эталоне) === */
+.rollup{
+  width:1573px;height:3700px;
+  position:relative;overflow:hidden;
+  /* Точный градиент из эталона 218:1488 */
+  background:linear-gradient(180deg, rgba(45,82,186,.8) 0%, rgba(29,56,125,.8) 100%), linear-gradient(90deg, #4A4DF7 0%, #4A4DF7 100%);
+  color:#fff;
+  flex-shrink:0;
+  box-shadow:0 30px 80px rgba(0,0,0,.5);
+  transform-origin:top left;
+  transform:scale(.265);
+  margin:0 -1155px -2720px 0;
+}
+
+/* === Шапка с лого === */
+.r-head{
+  position:absolute;top:172px;left:0;right:0;
+  display:flex;justify-content:center;align-items:center;gap:24px;
+  z-index:5;
+}
+.r-head .logo{display:flex;align-items:center;gap:8px;}
+.r-head .logo img{height:68px;width:auto;display:block;}
+
+/* === Большой H1 (157px Medium как в эталоне) === */
+.r-h1{
+  position:absolute;left:80px;right:80px;
+  text-align:center;color:#fff;
+  font-weight:500;
+  font-size:157px;line-height:.92;letter-spacing:-3px;
+}
+
+/* === Повёрнутая плашка-pill «комплексный подход» === */
+.r-pill{
+  position:absolute;left:50%;transform:translateX(-50%) rotate(-4deg);
+  background:var(--r-blue);
+  padding:28px 60px;border-radius:46px;
+  font-weight:600;font-size:78px;letter-spacing:-1.5px;color:#fff;
+  white-space:nowrap;
+  box-shadow:0 12px 40px rgba(60,103,215,.4);
+}
+
+/* === Буллеты с иконками (как в эталоне) === */
+.r-bullets{position:absolute;left:180px;right:80px;display:flex;flex-direction:column;gap:38px;}
+.r-bullet{display:flex;align-items:center;gap:42px;}
+.r-bullet .ico{
+  width:114px;height:114px;border-radius:30px;
+  background:rgba(255,255,255,.12);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.r-bullet .ico svg{width:62px;height:62px;stroke:#fff;fill:none;stroke-width:2.2;}
+.r-bullet .ico .num{font-weight:700;font-size:54px;color:#fff;letter-spacing:-2px;}
+.r-bullet .txt{font-weight:500;font-size:62px;line-height:1.15;color:#fff;letter-spacing:-1.8px;}
+
+/* Большие цифры-блоки (для economics) */
+.r-metrics{position:absolute;left:80px;right:80px;display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.r-metric{
+  background:rgba(255,255,255,.08);
+  border:2px solid rgba(255,255,255,.14);
+  border-radius:36px;padding:48px 44px;
+}
+.r-metric b{
+  display:block;font-weight:700;font-size:130px;line-height:1;letter-spacing:-5px;color:#fff;
+  margin-bottom:20px;
+}
+.r-metric b small{font-size:60px;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:-2px;}
+.r-metric span{font-size:34px;font-weight:500;color:rgba(255,255,255,.85);line-height:1.25;}
+
+/* === БЕЛЫЙ ФУТЕР (точно как в эталоне) === */
+.r-foot{
+  position:absolute;left:80px;right:80px;bottom:80px;
+  height:550px;background:#fff;border-radius:80px;
+  display:flex;align-items:center;padding:0 80px;justify-content:space-between;gap:48px;
+}
+.r-foot .ft-text{flex:1;}
+.r-foot .ft-title{
+  font-weight:700;font-size:64px;line-height:1.05;letter-spacing:-1.5px;color:var(--r-ink);
+  margin-bottom:36px;
+}
+.r-foot .ft-stores{display:flex;gap:24px;align-items:center;}
+.r-foot .ft-stores img{height:118px;width:auto;display:block;}
+.r-foot .ft-qr{
+  width:368px;height:368px;border-radius:32px;background:#fff;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  border:6px solid #fff;
+}
+.r-foot .ft-qr img{width:100%;height:100%;object-fit:cover;}
+
+/* === Декоративные элементы (повёрнутые акценты как в эталоне) === */
+.r-deco{position:absolute;pointer-events:none;}
+.r-deco-1{top:830px;left:-15px;width:165px;height:109px;transform:rotate(-8deg);opacity:.85;}
+.r-deco-2{top:1583px;right:0px;width:247px;height:164px;transform:rotate(7deg);opacity:.85;}
+.r-deco img{width:100%;height:100%;object-fit:contain;}
+
+/* === Большое фото (используется в варианте 2) === */
+.r-photo{
+  position:absolute;border-radius:48px;overflow:hidden;
+  background:rgba(255,255,255,.06);
+  border:2px solid rgba(255,255,255,.12);
+}
+.r-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* === Малый бейдж-pill (как «всего за 14 дней» в эталоне UZ) === */
+.r-mini-pill{
+  display:inline-flex;align-items:center;gap:14px;
+  background:#26B99A;color:#fff;
+  padding:18px 36px;border-radius:999px;
+  font-weight:700;font-size:38px;letter-spacing:-.8px;
+  box-shadow:0 10px 28px rgba(38,185,154,.4);
+}
+.r-mini-pill::before{content:"✓";font-weight:800;font-size:42px;}
+
+/* === Лого-фигура — слева/справа крутая ленточка как в дизайне === */
+.r-tag-top{
+  position:absolute;top:380px;left:0;right:0;text-align:center;
+  font-weight:700;font-size:36px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.7);
+}
+</style>
+</head>
+<body>
+
+<!-- ===== РОЛАП 1 — главный экономический посыл ===== -->
+<div class="rollup">
+  <div class="r-head">
+    <span class="logo">
+      <img src="assets/print/logo-fit.svg" alt="Fit"/>
+      <img src="assets/print/logo-base.svg" alt="base"/>
+    </span>
+  </div>
+
+  <div class="r-tag-top">Новый формат фитнес-бизнеса</div>
+
+  <div class="r-h1" style="top:540px;">
+    Зал<br/>без персонала
+  </div>
+
+  <div class="r-pill" style="top:1280px;">маржинальный формат</div>
+
+  <div class="r-metrics" style="top:1500px;">
+    <div class="r-metric"><b>до 50<small>%</small></b><span>маржинальность при загрузке</span></div>
+    <div class="r-metric"><b>1 год</b><span>средняя окупаемость</span></div>
+    <div class="r-metric"><b>2–4 ч</b><span>на управление в неделю</span></div>
+    <div class="r-metric"><b>0₽</b><span>фонд оплаты труда</span></div>
+  </div>
+
+  <div class="r-bullets" style="top:2530px;">
+    <div class="r-bullet"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div><div class="txt">Низкий порог входа в бизнес</div></div>
+    <div class="r-bullet"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="txt">Управляется удалённо, дистанционно</div></div>
+    <div class="r-bullet"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 22s-8-4.5-8-12V5l8-3 8 3v5c0 7.5-8 12-8 12z"/></svg></div><div class="txt">Прозрачный учёт, видеоконтроль</div></div>
+  </div>
+
+  <div class="r-foot">
+    <div class="ft-text">
+      <div class="ft-title">Покажем расчёт<br/>под вашу локацию</div>
+      <div class="ft-stores">
+        <img src="assets/print/app-store.svg" alt="App Store"/>
+        <img src="assets/print/google-play.svg" alt="Google Play"/>
+      </div>
+    </div>
+    <div class="ft-qr"><img src="assets/print/qr-fitbase.png" alt="QR"/></div>
+  </div>
+</div>
+
+<!-- ===== РОЛАП 2 — Что входит в платформу ===== -->
+<div class="rollup">
+  <div class="r-head">
+    <span class="logo">
+      <img src="assets/print/logo-fit.svg" alt="Fit"/>
+      <img src="assets/print/logo-base.svg" alt="base"/>
+    </span>
+  </div>
+
+  <div class="r-tag-top">Платформа для автономного зала</div>
+
+  <div class="r-h1" style="top:540px;">
+    Запустите зал<br/>без персонала
+  </div>
+
+  <div class="r-pill" style="top:1280px;">всё в одной системе</div>
+
+  <div class="r-bullets" style="top:1620px;">
+    <div class="r-bullet"><div class="ico"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div><div class="txt">Брендированное приложение клиента</div></div>
+    <div class="r-bullet"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><div class="txt">Доступ в зал по QR через приложение</div></div>
+    <div class="r-bullet"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div><div class="txt">Расписание со слотами и лимитом мест</div></div>
+    <div class="r-bullet"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="M17 10l4-2v8l-4-2z"/></svg></div><div class="txt">Видеонаблюдение в админке</div></div>
+    <div class="r-bullet"><div class="ico"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div><div class="txt">Пуш-рассылки и автокоммуникации</div></div>
+    <div class="r-bullet"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3M7 11l3 3 7-7"/></svg></div><div class="txt">Аналитика и дашборд владельца</div></div>
+  </div>
+
+  <div class="r-foot">
+    <div class="ft-text">
+      <div class="ft-title">Запустим зал<br/>без персонала с нуля</div>
+      <div class="ft-stores">
+        <img src="assets/print/app-store.svg" alt="App Store"/>
+        <img src="assets/print/google-play.svg" alt="Google Play"/>
+      </div>
+    </div>
+    <div class="ft-qr"><img src="assets/print/qr-fitbase.png" alt="QR"/></div>
+  </div>
+</div>
+
+<!-- ===== РОЛАП 3 — Преимущества формата ===== -->
+<div class="rollup">
+  <div class="r-head">
+    <span class="logo">
+      <img src="assets/print/logo-fit.svg" alt="Fit"/>
+      <img src="assets/print/logo-base.svg" alt="base"/>
+    </span>
+  </div>
+
+  <div class="r-tag-top">Преимущества формата</div>
+
+  <div class="r-h1" style="top:540px;">
+    Открой автономный<br/>фитнес-зал
+  </div>
+
+  <div class="r-pill" style="top:1320px;">у дома, у работы</div>
+
+  <div class="r-bullets" style="top:1660px;">
+    <div class="r-bullet"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2v6m0 0l-3-3m3 3l3-3"/><circle cx="12" cy="14" r="8"/></svg></div><div class="txt">Не нужны админы и тренеры в штате</div></div>
+    <div class="r-bullet"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 9h6M9 13h6M9 17h6"/></svg></div><div class="txt">Один новый ЖК — это рабочая локация</div></div>
+    <div class="r-bullet"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div><div class="txt">Растёт через чаты ЖК и сарафан</div></div>
+    <div class="r-bullet"><div class="ico"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div><div class="txt">Сообщество клиентов саморегулируется</div></div>
+    <div class="r-bullet"><div class="ico"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-3v10l-6-3z"/></svg></div><div class="txt">Видеоконтроль закрывает риск краж</div></div>
+    <div class="r-bullet"><div class="ico"><svg viewBox="0 0 24 24"><path d="M2 17l5-5 4 4 5-5 6 6"/><path d="M17 7h5v5"/></svg></div><div class="txt">Легко тиражируется во вторую точку</div></div>
+  </div>
+
+  <div class="r-foot">
+    <div class="ft-text">
+      <div class="ft-title">Бесплатная<br/>консультация по запуску</div>
+      <div class="ft-stores">
+        <img src="assets/print/app-store.svg" alt="App Store"/>
+        <img src="assets/print/google-play.svg" alt="Google Play"/>
+      </div>
+    </div>
+    <div class="ft-qr"><img src="assets/print/qr-fitbase.png" alt="QR"/></div>
+  </div>
+</div>
+
+</body>
+</html>
